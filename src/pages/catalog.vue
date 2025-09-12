@@ -58,8 +58,10 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-  border-radius: 10px;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0px 10px 10px 0px;
+
+  /* border-radius: 10px; */
   overflow: hidden;
 
 

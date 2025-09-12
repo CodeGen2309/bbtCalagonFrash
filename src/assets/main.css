@@ -1,0 +1,56 @@
+body {
+  margin: 0; padding: 0;
+  font-family: 'hero';
+}
+
+.transformer {
+  transform: skewX(30deg) translateX(-50px);
+  padding-left: 20px;
+}
+
+.transformer--inner {
+  transform: skewX(-30deg);
+}
+
+
+@font-face {
+  font-family: 'czizh';
+  src: url(/public/fonts/czizh.ttf);
+}
+
+@font-face {
+  font-family: 'montserrat';
+  src: url(/public/fonts/montserrat.ttf);
+}
+
+@font-face {
+  font-family: 'caviar';
+  src: url(/public/fonts/caviar.ttf);
+}
+
+@font-face {
+  font-family: 'ac';
+  src: url(/public/fonts/ac.ttf);
+}
+
+@font-face {
+  font-family: 'hero';
+  font-weight: 100;
+  src: url(/public/fonts/heroThin.ttf);
+}
+
+@font-face {
+  font-family: 'hero';
+  font-weight: 500;
+  src: url(/public/fonts/heroRegular.ttf);
+}
+
+@font-face {
+  font-family: 'zekton';
+  src: url(/public/fonts/zekton.ttf);
+}
+
+@font-face {
+  font-family: 'biocad';
+  src: url(/public/fonts/BiocadDisplay-Regular.ttf);
+}

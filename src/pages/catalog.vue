@@ -1,5 +1,7 @@
 <script setup>
 import sectionList from '@/components/sectionList.vue';
+import massonry from '@/components/massonry.vue';
+import CtlgFooter from '@/components/ctlgFooter.vue';
 
 </script>
 
@@ -10,17 +12,17 @@ import sectionList from '@/components/sectionList.vue';
       <sectionList></sectionList>
     </div>
 
-    <div class="ctlog--itemList">
-      <div class="ctlog--item ctlog--item-wide"></div>
-      <div class="ctlog--item ctlog--item-normal"></div>
-      <div class="ctlog--item ctlog--item-wide"></div>
-      <div class="ctlog--item ctlog--item-wide"></div>
-      <div class="ctlog--item ctlog--item-normal"></div>
-      <div class="ctlog--item ctlog--item-normal"></div>
-      <div class="ctlog--item ctlog--item-normal"></div>
+    <div class="ctlog--itemsHolder">
+      <massonry class="ctlog--itemList"></massonry>
     </div>
 
-    <div class="ctlog--footer"></div>
+    <div class="ctlog--footer">
+      <div class="ctlog--footerMain transformer">
+        <CtlgFooter class="ctlog--footerPanel transformer--inner"></CtlgFooter>
+      </div>
+
+      <button class="ctlog--footerButton">Посмотреть весь каталог</button>
+    </div>
   </div>
 </template>
 
@@ -45,34 +47,54 @@ import sectionList from '@/components/sectionList.vue';
 }
 
 
+.ctlog--itemsHolder {
+}
+
 .ctlog--itemList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
 
-.ctlog--item {
-  flex-grow: 1;
-  background: rebeccapurple;
-  border-radius: 10px;
-  opacity: 0.7;
 }
-
-.ctlog--item-normal {
-  width: 20%;
-}
-
-.ctlog--item-wide {
-  width: 40%;  
-}
-
 
 .ctlog--footer {
-  /* background: rgba(0, 0, 0, .3); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0), 
+    rgba(0, 0, 0, 0.1), 
+    rgba(0, 0, 0, 0.2), 
+    rgba(0, 0, 0, 0.6)
+  );
+
   grid-column: span 2;
-  border-top: 1px solid rgba(0, 0, 0, .3);
-  border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
 
+.ctlog--footerMain {
+  display: flex;
+  align-items: center;
+
+  background: white;
+  padding-left: 80px;
+  height: 100%; width: 40%;
+}
+
+.ctlog--footerPanel {
+  margin: 0; padding: 0;
+}
+
+.ctlog--footerButton {
+  background: white;
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+  outline: none;
+  border: none;
+
+  margin-right: 20px;
+  padding: 15px 30px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: thin;
+}
 
 </style>

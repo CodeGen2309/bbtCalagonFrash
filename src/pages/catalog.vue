@@ -58,6 +58,10 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  border-radius: 10px;
+  overflow: hidden;
+
 
   background: linear-gradient(
     to right,

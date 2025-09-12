@@ -16,9 +16,9 @@ import CtlgHeader from './components/ctlgHeader.vue';
 <style>
   .market {
     position: relative;
-    width: calc(100vw - 20px); 
-    height: calc(100vh - 20px);
-    margin: 10px;
+    width: calc(100vw - 40px); 
+    height: calc(100vh - 40px);
+    margin: 20px;
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;

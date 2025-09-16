@@ -32,14 +32,14 @@ let mocks = [
   { 
     'name': 'Терасса',
     'img': '/public/img/plitka/terassa.jpeg',
-    'size': 'normal',
+    'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Еще Атлант',
     'img': '/public/img/plitka/atlant2.jpg',
-    'size': 'wide',
+    'size': 'normal',
     'link': '#'
   },
 
@@ -85,8 +85,7 @@ let mocks = [
 
 
 .msnry--item:hover {
-  box-shadow: 20px 2px 20px 1px rgba(0, 0, 0, 0.2);
-  transform: scale(1.02);
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
 }
 
 .msnry--item-normal {
@@ -110,11 +109,19 @@ let mocks = [
 .msnry--labelHolder {
   position: absolute;
   bottom: 0; left: 0;
+
   padding: 10px 40px;
   margin: 0px 30px ;
   margin-bottom: -1px;
+  min-width: 5%;
 
   background: white;
+  transition: .3s;
+}
+
+.msnry--item:hover .msnry--labelHolder {
+  padding: 10px 60px;
+  min-width: 60%;
 }
 
 .msnry--itemLabel {

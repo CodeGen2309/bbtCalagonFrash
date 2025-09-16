@@ -4,7 +4,7 @@ let sectins = [
   { label: 'Арматурные изделия',    cover: '/public/img/sections/armatur.jpeg' },
   { label: 'Благоустройство',       cover: '/public/img/sections/blagoust.jpeg' },
   { label: 'Игровое оборудование',  cover: '/public/img/sections/detskoe.jpg' },
-  { label: 'Двери деревянные',                 cover: '/public/img/sections/doors.jpg' },
+  { label: 'Двери деревянные',      cover: '/public/img/sections/doors.jpg' },
   { label: 'Камни бетонные',        cover: '/public/img/sections/kamnibet.jpg' },
   { label: 'Блоки керамзитовые',    cover: '/public/img/sections/kerablock.jpg' },
   { label: 'Керамзит',              cover: '/public/img/sections/keramzit.jpg' },

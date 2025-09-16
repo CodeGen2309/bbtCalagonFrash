@@ -58,7 +58,7 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  border-top: 2px solid rgba(0, 0, 0, 0.05);
   border-radius: 0px 10px 10px 0px;
 
   /* border-radius: 10px; */
@@ -101,6 +101,13 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
   font-size: 16px;
   letter-spacing: 1px;
   font-weight: thin;
+
+  cursor: pointer;
+  transition: .3s;
+}
+
+.ctlog--footerButton:hover {
+  padding: 15px 50px;
 }
 
 </style>

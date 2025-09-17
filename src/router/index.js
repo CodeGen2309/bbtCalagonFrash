@@ -9,9 +9,14 @@ const router = createRouter({
       component: () => import('../pages/catalog.vue'),
     },
     {
-      path: '/',
+      path: '/catalog-modern',
       name: 'catalog-modern',
       component: () => import('../pages/catalog-modern.vue'),
+    },
+    {
+      path: '/',
+      name: 'section',
+      component: () => import('../pages/section.vue'),
     },
   ],
 })

@@ -1,5 +1,7 @@
 <script setup>
 // TODO: это касатеся всего проекта, прикрути анимашки как будет время
+// TODO: и еще можно вынести стеклышки в отдельный компонент, сложный сетап
+// TODO: бэкфон тоже можно в отдельный компонент вынести
 
 import Massonry from '@/components/massonry.vue';
 
@@ -24,6 +26,7 @@ let sections = [
   <div class="mct">
     <div class="mct--backHolder">
       <img class="mct--backImage" src="/public/img/sections/oblic.jpg">
+      <div class="mct--backCover"></div>
     </div>
 
     <div class="mct--content">
@@ -91,10 +94,23 @@ let sections = [
   }
 
   .mct--backImage {
-    min-width: 110%; height: 110%;
+    min-width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: blur(10px) brightness(.3) saturate(1.7);
+    filter: saturate(2);
+  }
+
+  .mct--backCover {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, .9),
+      rgba(0, 0, 0, .3),
+      rgba(0, 0, 0, .9)
+    );
   }
 
 

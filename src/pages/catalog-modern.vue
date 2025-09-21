@@ -1,9 +1,11 @@
 <script setup>
 // TODO: это касатеся всего проекта, прикрути анимашки как будет время
-// TODO: и еще можно вынести стеклышки в отдельный компонент, сложный сетап
-// TODO: бэкфон тоже можно в отдельный компонент вынести
+import { ref } from 'vue';
+import { animate, stagger } from 'motion';
+
 
 import Massonry from '@/components/massonry.vue';
+
 
 let sections = [
   { label: 'Арматурные изделия',    link: '/public/img/sections/armatur.jpeg' },
@@ -19,22 +21,59 @@ let sections = [
   // { label: 'Плиты перекрытия',      link: '/public/img/sections/plity.jpg' },
 ]
 
+// bacground props
+let showBack = ref(true)
+let backImg = ref('/public/img/sections/oblic.jpg')
+
+async function  changeBackground (imgSrc) {
+  showBack.value = false
+  hideTiles()
+
+  setTimeout(() => {
+    backImg.value = imgSrc
+    showBack.value = true
+  }, 200)
+
+
+  setTimeout(() => {
+    showTiles()
+  }, 2000);
+}
+
+
+async function hideTiles () {
+  animate(
+    '.msnry--item',
+    { opacity: 0 },
+    { type: 'keyframes', duration: .5, }
+  )
+}
+
+async function showTiles () {
+  animate(
+    '.msnry--item',
+    { opacity: 1 },
+    { duration: .5}
+  )
+}
+
 </script>
 
 
 <template>
   <div class="mct">
-    <div class="mct--backHolder">
-      <img class="mct--backImage" src="/public/img/sections/oblic.jpg">
-      <div class="mct--backCover"></div>
-    </div>
+      <div class="mct--backHolder">
+        <transition name="backAnim">
+          <img class="mct--backImage" :src="backImg" v-show="showBack">
+        </transition>
+      </div>
 
     <div class="mct--content">
       <div class="mct--sections mct--sections-left">
-        <a class="mct--sectionsLink" :href="section.link"
+        <a class="mct--sectionsLink" @click="changeBackground(section.link)"
           v-for="section in sections" :key="section.label"
         >
-        {{ section.label }}
+          {{ section.label }}
         </a>
       </div>
 
@@ -91,26 +130,17 @@ let sections = [
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
+
+    background: black;
+    transition: .3s;
   }
 
   .mct--backImage {
-    min-width: 100%; height: 100%;
+    min-width: 110%; height: 110%;
     object-fit: cover;
     object-position: center;
-    filter: saturate(2);
-  }
-
-  .mct--backCover {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    backdrop-filter: blur(5px);
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, .9),
-      rgba(0, 0, 0, .3),
-      rgba(0, 0, 0, .9)
-    );
+    filter: blur(4px) brightness(.3) saturate(1.7);
+    transition: .3s;
   }
 
 
@@ -217,8 +247,18 @@ let sections = [
     transform: skewX(30deg);
 
     text-decoration: none;
-    /* color: rgba(0, 0, 0, .6); */
     color: black;
     letter-spacing: 1px;
+  }
+
+
+  .backAnim-enter-active {
+    opacity: 0;
+    /* transform: translateX(50px); */
+  }
+
+  .backAnim-leave-active {
+    opacity: 0;
+    /* transform: translateX(-50px); */
   }
 </style>

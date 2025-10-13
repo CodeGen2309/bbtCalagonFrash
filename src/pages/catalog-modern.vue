@@ -23,40 +23,55 @@ let sections = [
 
 // bacground props
 let showBack = ref(true)
-let backImg = ref('/public/img/sections/oblic.jpg')
+let backImg  = ref('/public/img/sections/oblic.jpg')
 
 async function  changeBackground (imgSrc) {
   showBack.value = false
-  hideTiles()
 
-  setTimeout(() => {
-    backImg.value = imgSrc
+  await hideTiles()
+  .then(() => {
+    backImg.value  = imgSrc
     showBack.value = true
-  }, 200)
-
-
-  setTimeout(() => {
-    showTiles()
-  }, 2000);
+  })
+  .then(showTiles)
 }
 
 
 async function hideTiles () {
-  animate(
+  return animate(
     '.msnry--item',
     { opacity: 0 },
     { type: 'keyframes', duration: .5, }
   )
 }
 
+
 async function showTiles () {
   animate(
     '.msnry--item',
     { opacity: 1 },
-    { duration: .5}
+    { duration: .5, delay: stagger(.1) }
   )
 }
 
+
+function setActive (ent, link) {
+  let item = ent.target
+
+  console.log({item});
+  
+
+  let neihdors = item.parentElement.children
+
+  console.log({neihdors});
+
+  for (let i = 0; i < neihdors.length; i++) {
+    neihdors[i].classList.remove('mct--sectionsLink-active')
+  }
+
+  item.classList.toggle('mct--sectionsLink-active')
+  changeBackground(section.link)
+}
 </script>
 
 
@@ -212,6 +227,8 @@ async function showTiles () {
     z-index: -1;
   }
 
+  .mct--sectionsLink-active:hover::before,
+  .mct--sectionsLink-active:hover::after,
   .mct--sectionsLink:hover::before,
   .mct--sectionsLink:hover::after {
     mask-image: linear-gradient(
@@ -224,6 +241,8 @@ async function showTiles () {
     background: rgba(255, 255, 255, 1);
     transform: translateX(0px) translateY(0px);
   }
+
+
 
   .mct--footer {
     height: 60px;

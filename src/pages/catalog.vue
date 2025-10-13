@@ -3,6 +3,7 @@ import sectionList from '@/components/sectionList.vue';
 import massonry from '@/components/massonry.vue';
 import CtlgFooter from '@/components/ctlgFooter.vue';
 
+
 </script>
 
 
@@ -58,18 +59,16 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 2px solid rgba(0, 0, 0, 0.05);
+  border-top: 2px solid rgba(0, 0, 0, 0.001);
   border-radius: 0px 10px 10px 0px;
 
-  /* border-radius: 10px; */
   overflow: hidden;
-
 
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0), 
-    rgba(0, 0, 0, 0.1), 
+    rgba(0, 0, 0, 0) 10%, 
     rgba(0, 0, 0, 0.2), 
+    rgba(0, 0, 0, 0.4), 
     rgba(0, 0, 0, 0.6)
   );
 
@@ -90,17 +89,24 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
 }
 
 .ctlog--footerButton {
-  background: white;
-  color: rgba(0, 0, 0, 0.7);
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, .1),
+    rgba(255, 255, 255, .3),
+    rgba(255, 255, 255, .1)
+  );
+
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 6px;
   outline: none;
-  border: none;
 
   margin-right: 20px;
   padding: 15px 30px;
   font-size: 16px;
   letter-spacing: 1px;
-  font-weight: thin;
+  font-weight: 700;
 
   cursor: pointer;
   transition: .3s;
@@ -108,6 +114,9 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
 
 .ctlog--footerButton:hover {
   padding: 15px 50px;
+  background: white;
+  color: rgba(0, 0, 0, 1);
+  /* font-weight: 300; */
 }
 
 </style>

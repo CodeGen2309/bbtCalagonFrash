@@ -1,17 +1,17 @@
 <script setup>
 
 let sectins = [
-  { label: 'Арматурные изделия',    cover: '/public/img/sections/armatur.jpeg' },
-  { label: 'Благоустройство',       cover: '/public/img/sections/blagoust.jpeg' },
-  { label: 'Игровое оборудование',  cover: '/public/img/sections/detskoe.jpg' },
-  { label: 'Двери деревянные',      cover: '/public/img/sections/doors.jpg' },
-  { label: 'Камни бетонные',        cover: '/public/img/sections/kamnibet.jpg' },
-  { label: 'Блоки керамзитовые',    cover: '/public/img/sections/kerablock.jpg' },
-  { label: 'Керамзит',              cover: '/public/img/sections/keramzit.jpg' },
-  { label: 'Металлические изделия', cover: '/public/img/sections/metart.jpg' },
-  { label: 'Кирпич облицовочный',   cover: '/public/img/sections/oblic.jpg' },
-  { label: 'Окна деревянные',       cover: '/public/img/sections/okna.jpg' },
-  { label: 'Плиты перекрытия',      cover: '/public/img/sections/plity.jpg' },
+  { label: 'Арматурные изделия',    cover: '/img/sections/armatur.jpeg' },
+  { label: 'Благоустройство',       cover: '/img/sections/blagoust.jpeg' },
+  { label: 'Игровое оборудование',  cover: '/img/sections/detskoe.jpg' },
+  { label: 'Двери деревянные',      cover: '/img/sections/doors.jpg' },
+  { label: 'Камни бетонные',        cover: '/img/sections/kamnibet.jpg' },
+  { label: 'Блоки керамзитовые',    cover: '/img/sections/kerablock.jpg' },
+  { label: 'Керамзит',              cover: '/img/sections/keramzit.jpg' },
+  { label: 'Металлические изделия', cover: '/img/sections/metart.jpg' },
+  { label: 'Кирпич облицовочный',   cover: '/img/sections/oblic.jpg' },
+  { label: 'Окна деревянные',       cover: '/img/sections/okna.jpg' },
+  { label: 'Плиты перекрытия',      cover: '/img/sections/plity.jpg' },
 ]
 
 

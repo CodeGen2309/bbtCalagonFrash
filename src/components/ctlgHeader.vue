@@ -64,12 +64,12 @@
     <div class="header--main">
       <div class="header--inner">
         <RouterLink class="header--logoLink" to="/">
-          <img class="header--logo" src="/public/icons/logo.svg">
+          <img class="header--logo" src="/icons/logo.svg">
         </RouterLink>
 
         <div class="header--menuLink" @click="$emit('burgerClick')">
           <img class="header--menuIcon" 
-            src="/public/icons/menu.svg"
+            src="/icons/menu.svg"
           >
         </div>
       </div>
@@ -78,7 +78,7 @@
 
     <div class="header--phone">
       <div class="header--phone__inner">
-        <img class="header--phoneImg" src="/public/icons/phone.svg">
+        <img class="header--phoneImg" src="/icons/phone.svg">
         <p class="header--phoneText"> +7 (4722) 37-63-33 </p>
       </div>
     </div>

@@ -1,5 +1,33 @@
 <script setup>
-  import massonry from '@/components/massonry.vue';
+  import { animate, stagger } from 'motion';
+
+  import productList from '@/components/productList.vue';
+  import filre from './filre.vue';
+
+  async function showOffAnim () {
+    console.log('SHOW OFF');
+    
+    let tiles = document.querySelectorAll('.msnry--item')
+
+    animate(
+      tiles,
+      { opacity: [1, 0] },
+      { duration: .5 }
+    ).then(() => {
+      resetFilter()
+    })
+  }
+
+
+  async function resetFilter () {
+    let tiles = document.querySelectorAll('.msnry--item')
+
+    animate(
+      tiles,
+      { opacity: [0, 1],  transform: ['translateY(-20px)', 'translateY(0px)'] },
+      { duration: .5, delay: stagger(.1) }
+    )
+  }
 
 </script>
 
@@ -12,11 +40,11 @@
     </div>
 
     <div class="sect--sidebar">
-      <p>Sidebar</p>
+      <filre  @filter="showOffAnim" />
     </div>
 
     <div class="sect--productList">
-      <massonry></massonry>
+      <productList/>
     </div>
   </div>
 </template>
@@ -26,7 +54,7 @@
 
 .sect {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(300px, 1fr) 2fr;
   grid-template-rows: 200px 1fr;
   gap: 20px;
 
@@ -111,11 +139,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, .1);
   box-sizing: border-box;
+  padding: 0 10px;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
 }
 
 .sect--productList {
+  padding: 40px 20px;
+  flex-grow: 1;
+  overflow-y: scroll;  
 }
 
 </style>

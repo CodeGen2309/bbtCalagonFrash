@@ -4,42 +4,108 @@ let mocks = [
   { 
     'name': 'Атлант',     
     'img': '/public/img/plitka/atlant.jpg', 
-    'size': 'normal',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия', 
     'img': '/public/img/plitka/fantazy.jpg', 
-    'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Классико',
     'img': '/public/img/plitka/klassiko.jpeg',
-    'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия',
     'img': '/public/img/plitka/fantazy2.jpeg', 
-    'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Терасса',
     'img': '/public/img/plitka/terassa.jpeg',
-    'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Еще Атлант',
     'img': '/public/img/plitka/atlant2.jpg',
-    'size': 'normal',
+    'link': '#'
+  },
+
+  { 
+    'name': 'Атлант',     
+    'img': '/public/img/plitka/atlant.jpg', 
+    'link': '#'
+  },
+
+  { 
+    'name': 'Фантазия', 
+    'img': '/public/img/plitka/fantazy.jpg', 
+    'link': '#'
+  },
+
+  { 
+    'name': 'Классико',
+    'img': '/public/img/plitka/klassiko.jpeg',
+    'link': '#'
+  },
+
+  { 
+    'name': 'Фантазия',
+    'img': '/public/img/plitka/fantazy2.jpeg', 
+    'link': '#'
+  },
+
+  { 
+    'name': 'Терасса',
+    'img': '/public/img/plitka/terassa.jpeg',
+    'link': '#'
+  },
+
+  { 
+    'name': 'Еще Атлант',
+    'img': '/public/img/plitka/atlant2.jpg',
+    'link': '#'
+  },
+
+  { 
+    'name': 'Атлант',     
+    'img': '/public/img/plitka/atlant.jpg', 
+    'link': '#'
+  },
+
+  { 
+    'name': 'Фантазия', 
+    'img': '/public/img/plitka/fantazy.jpg', 
+    'link': '#'
+  },
+
+  { 
+    'name': 'Классико',
+    'img': '/public/img/plitka/klassiko.jpeg',
+    'link': '#'
+  },
+
+  { 
+    'name': 'Фантазия',
+    'img': '/public/img/plitka/fantazy2.jpeg', 
+    'link': '#'
+  },
+
+  { 
+    'name': 'Терасса',
+    'img': '/public/img/plitka/terassa.jpeg',
+    'link': '#'
+  },
+
+  { 
+    'name': 'Еще Атлант',
+    'img': '/public/img/plitka/atlant2.jpg',
     'link': '#'
   },
 
@@ -69,8 +135,6 @@ let mocks = [
   gap: 40px;
 
   width: 100%; height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .msnry--item {
@@ -78,6 +142,8 @@ let mocks = [
   flex-grow: 1;
   border-radius: 10px;
   overflow: hidden;
+  height: 200px;
+  width: 28%;
 
   text-decoration: none;
   color: black;

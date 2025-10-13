@@ -5,6 +5,7 @@ import { animate, stagger } from 'motion';
 
 
 import Massonry from '@/components/massonry.vue';
+import plitka from '../../public/mocks/plitka';
 
 
 let sections = [
@@ -92,9 +93,9 @@ function setActive (ent, link) {
         </a>
       </div>
 
-      <Massonry></Massonry>
+      <Massonry :mocks="plitka"></Massonry>
 
-      <div class="mct--sections mct--sections-left">
+      <div class="mct--sections mct--sections-right">
         <a class="mct--sectionsLink" :href="section.link"
           v-for="section in sections" :key="section.label"
         >
@@ -105,9 +106,9 @@ function setActive (ent, link) {
 
     <div class="mct--footer">
       <div class="mct--footerHolder">
-        <a href="#" class="mct--footerLink">
-          Посмотреть весь каталог
-        </a>
+        <RouterLink :to="{name: 'catalog'}"  class="mct--footerLink">
+          Посмотреть весь раздел
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -181,6 +182,7 @@ function setActive (ent, link) {
     text-decoration: none;
     letter-spacing: 1px;
 
+    cursor: pointer;
     transition: .3s;
   }
 
@@ -271,13 +273,14 @@ function setActive (ent, link) {
   }
 
 
+  .backAnim-leave-active,
   .backAnim-enter-active {
     opacity: 0;
-    /* transform: translateX(50px); */
   }
 
-  .backAnim-leave-active {
-    opacity: 0;
-    /* transform: translateX(-50px); */
+  @media (max-width: 1300px) {
+    .mct--sections-right {
+      display: none;
+    }
   }
 </style>

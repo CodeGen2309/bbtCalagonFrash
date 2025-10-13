@@ -8,7 +8,12 @@ import CtlgHeader from './components/ctlgHeader.vue';
 <template>
   <section class="market">
     <CtlgHeader></CtlgHeader>
-    <RouterView></RouterView>
+
+    <RouterView v-slot="{ Component }" class="market--content">
+      <transition name="fadeAnim">
+        <component :is="Component" />
+      </transition>
+    </RouterView>    
   </section>
 </template>
 
@@ -22,5 +27,15 @@ import CtlgHeader from './components/ctlgHeader.vue';
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
+  }
+
+  .market--content {
+    transition: .3s;
+  }
+
+  .fadeAnim-enter-active, 
+  .fadeAnim-leave-active {
+    opacity: 0;
+    /* transform: blur(5px); */
   }
 </style>

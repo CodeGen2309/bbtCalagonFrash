@@ -1,52 +1,71 @@
 <script setup>
-  import { animate, stagger } from 'motion';
+import { ref } from 'vue';
+import { animate, stagger } from 'motion';
 
-  import productList from '@/components/productList.vue';
-  import filre from './filre.vue';
+import productList from '@/components/productList.vue';
+import filre from './filre.vue';
+import sectionRouter from '@/components/sectionRouter.vue';
 
-  async function showOffAnim () {
-    console.log('SHOW OFF');
-    
-    let tiles = document.querySelectorAll('.msnry--item')
+let isRouter = ref(false)
 
-    animate(
-      tiles,
-      { opacity: [1, 0] },
-      { duration: .5 }
-    ).then(() => {
-      resetFilter()
-    })
-  }
+async function showOffAnim () {
+  let tiles = document.querySelectorAll('.msnry--item')
+
+  animate(
+    tiles,
+    { opacity: [1, 0] },
+    { duration: .5 }
+  ).then(() => {
+    resetFilter()
+  })
+}
 
 
-  async function resetFilter () {
-    let tiles = document.querySelectorAll('.msnry--item')
+async function resetFilter () {
+  let tiles = document.querySelectorAll('.msnry--item')
 
-    animate(
-      tiles,
-      { opacity: [0, 1],  transform: ['translateY(-20px)', 'translateY(0px)'] },
-      { duration: .5, delay: stagger(.1) }
-    )
-  }
+  animate(
+    tiles,
+    { opacity: [0, 1],  transform: ['translateY(-20px)', 'translateY(0px)'] },
+    { duration: .5, delay: stagger(.1) }
+  )
+}
 
 </script>
 
 
 <template>
-  <div class="sect">
-    <div class="sect--cover">
-      <img class="sect--coverImage" src="/public/img/plitka/fantazy2.jpeg">
-      <p class="sect--coverTitle">Тротуарная плитка</p>
-    </div>
+<div class="sect">
+  <div class="sect--cover">
+    <img class="sect--coverImage" src="/public/img/plitka/fantazy2.jpeg">
+    <p class="sect--coverTitle">Тротуарная плитка</p>
 
-    <div class="sect--sidebar">
+    <button class="sect--coverButton"
+      @click="isRouter = !isRouter"
+    >
+      Весь каталог
+    </button>
+  </div>
+
+  <transition name="slideAnim" type="animation" mode="out-in">
+    <div class="sect--sidebar" v-show="!isRouter">
       <filre  @filter="showOffAnim" />
     </div>
+  </transition>
 
-    <div class="sect--productList">
+
+  <transition name="slideAnim" type="animation" mode="out-in">
+    <div class="sect--productList" v-show="!isRouter">
       <productList/>
     </div>
-  </div>
+  </transition>
+
+  <transition name="slideAnim" type="animation" mode="out-in">
+    <div class="sect--router" v-show="isRouter">
+      <sectionRouter @sectionRouteClick=" isRouter = !isRouter" />
+    </div>
+  </transition>  
+</div>
 </template>
 
 
@@ -59,7 +78,6 @@
   gap: 20px;
 
   box-sizing: border-box;
-
 
   width: 100%; height: 100%;
   overflow: hidden;
@@ -133,6 +151,38 @@
   z-index: -1;
 }
 
+.sect--coverButton {
+  position: absolute;
+  bottom: 0; right: 0;
+  margin: 20px;
+
+  padding: 10px 30px;
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, .4),
+    rgba(255, 255, 255, .6),
+    rgba(255, 255, 255, .3)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 6px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  outline: none;
+
+  color: #000;
+  text-decoration: none;
+  font-weight: 300;
+
+  cursor: pointer;
+  transition: .3s;
+}
+
+.sect--coverButton:hover {
+  padding: 10px 40px;
+  background: white;
+}
+
 .sect--sidebar {
   position: relative;
 
@@ -145,12 +195,38 @@
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: thin;
+
+  transition: .3s;
 }
 
 .sect--productList {
+  min-height: 100%;
   padding: 40px 20px;
   flex-grow: 1;
-  overflow-y: scroll;  
+  overflow-y: scroll;
+  transition: .3s;
 }
+
+.sect--router {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  grid-column: span 2;
+  border-radius: 10px;
+
+  transition: .3s;
+}
+
+.slideAnim-enter-active, 
+.slideAnim-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.slideAnim-enter-from,
+.slideAnim-leave-to {
+  opacity: 0;
+}
+
 
 </style>

@@ -1,49 +1,6 @@
 <script setup>
 
-let mocks = [
-  { 
-    'name': 'Атлант',     
-    'img': '/public/img/plitka/atlant.jpg', 
-    'size': 'normal',
-    'link': '#'
-  },
-
-  { 
-    'name': 'Фантазия', 
-    'img': '/public/img/plitka/fantazy.jpg', 
-    'size': 'wide',
-    'link': '#'
-  },
-
-  { 
-    'name': 'Классико',
-    'img': '/public/img/plitka/klassiko.jpeg',
-    'size': 'wide',
-    'link': '#'
-  },
-
-  { 
-    'name': 'Фантазия',
-    'img': '/public/img/plitka/fantazy2.jpeg', 
-    'size': 'wide',
-    'link': '#'
-  },
-
-  { 
-    'name': 'Терасса',
-    'img': '/public/img/plitka/terassa.jpeg',
-    'size': 'wide',
-    'link': '#'
-  },
-
-  { 
-    'name': 'Еще Атлант',
-    'img': '/public/img/plitka/atlant2.jpg',
-    'size': 'normal',
-    'link': '#'
-  },
-
-]
+let props = defineProps(['mocks'])
 
 </script>
 
@@ -84,15 +41,6 @@ let mocks = [
 
   transition: .3s;
 }
-
-
-.msnry--item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-}
-
 
 .msnry--item:hover {
   /* box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1); */

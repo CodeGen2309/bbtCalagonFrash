@@ -1,7 +1,43 @@
 <script setup>
+import { ref } from 'vue';
+import { animate, stagger } from 'motion';
+
 import sectionList from '@/components/sectionList.vue';
 import massonry from '@/components/massonry.vue';
 import CtlgFooter from '@/components/ctlgFooter.vue';
+
+import plitka from '../../public/mocks/plitka';
+import oblic from '../../public/mocks/oblic.js';
+import blago from '../../public/mocks/blago';
+
+let mocks = { plitka, oblic, blago}
+
+let currentSection = ref(plitka)
+
+
+async function showOffAnim (section) {
+  let tiles = document.querySelectorAll('.msnry--item')
+
+  animate(
+    tiles,
+    { opacity: [1, 0], transform: ['scale(1)', 'scale(0.95)'] },
+    { duration: .5 }
+  ).then(() => {
+    resetFilter()
+  })
+}
+
+
+async function resetFilter () {
+  let tiles = document.querySelectorAll('.msnry--item')
+  // currentSection.value = plitka.sort(() => Math.random() - 0.5)
+
+  animate(
+    tiles,
+    { opacity: [0, 1],  transform: ['translateY(-20px)', 'translateY(0px)'] },
+    { duration: .5, delay: stagger(.1) }
+  )
+}
 
 
 </script>
@@ -10,11 +46,15 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
 <template>
   <div class="ctlog">
     <div class="ctlog--sections">
-      <sectionList></sectionList>
+      <sectionList 
+        @sectionClick="showOffAnim"
+      />
     </div>
 
     <div class="ctlog--itemsHolder">
-      <massonry class="ctlog--itemList"></massonry>
+      <massonry class="ctlog--itemList" 
+        :mocks="currentSection"
+      />
     </div>
 
     <div class="ctlog--footer">
@@ -22,7 +62,9 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
         <CtlgFooter class="ctlog--footerPanel transformer--inner"></CtlgFooter>
       </div>
 
-      <button class="ctlog--footerButton">Посмотреть весь каталог</button>
+      <RouterLink :to="{name: 'catalog-modern'}" class="ctlog--footerButton">
+        Посмотреть весь раздел
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -104,9 +146,11 @@ import CtlgFooter from '@/components/ctlgFooter.vue';
 
   margin-right: 20px;
   padding: 15px 30px;
+
   font-size: 16px;
   letter-spacing: 1px;
   font-weight: 700;
+  text-decoration: none;
 
   cursor: pointer;
   transition: .3s;

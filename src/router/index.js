@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createMemoryHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/catalog',
@@ -14,9 +14,14 @@ const router = createRouter({
       component: () => import('../pages/catalog-modern.vue'),
     },
     {
-      path: '/',
+      path: '/section',
       name: 'section',
       component: () => import('../pages/section.vue'),
+    },
+    {
+      path: '/',
+      name: 'ctitem',
+      component: () => import('../pages/item.vue'),
     },
   ],
 })

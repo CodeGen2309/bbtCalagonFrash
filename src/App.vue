@@ -9,11 +9,11 @@ import CtlgHeader from './components/ctlgHeader.vue';
   <section class="market">
     <CtlgHeader></CtlgHeader>
 
-    <RouterView v-slot="{ Component }" class="market--content">
-      <transition name="fadeAnim">
+    <router-view v-slot="{ Component }">
+      <transition name="fadeAnim" mode="out-in">
         <component :is="Component" />
       </transition>
-    </RouterView>    
+    </router-view>    
   </section>
 </template>
 
@@ -29,13 +29,10 @@ import CtlgHeader from './components/ctlgHeader.vue';
     overflow: hidden;
   }
 
-  .market--content {
-    transition: .3s;
+  .fadeAnim-enter-active, .fadeAnim-leave-active {
+    transition: opacity .5s ease;
   }
-
-  .fadeAnim-enter-active, 
-  .fadeAnim-leave-active {
+  .fadeAnim-enter-from, .fadeAnim-leave-to {
     opacity: 0;
-    /* transform: blur(5px); */
   }
 </style>

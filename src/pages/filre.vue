@@ -24,18 +24,18 @@ let palette = {
 }
 
 let colors = [
-  { name: 'Черный',     file: '/img/colors/black-1.jpg' },
-  { name: 'Белый',      file: '/img/colors/white.jpg' },
-  { name: 'Горчичный',  file: '/img/colors/karry.jpg' },
-  { name: 'Красный',    file: '/img/colors/red.jpg' },
-  { name: 'Серый',      file: '/img/colors/gray.jpg' },
-  { name: 'Коричневый', file: '/img/colors/brown2.jpg' },
-  { name: 'Черный',     file: '/img/colors/black-1.jpg' },
-  { name: 'Белый',      file: '/img/colors/white.jpg' },
-  { name: 'Горчичный',  file: '/img/colors/karry.jpg' },
-  { name: 'Красный',    file: '/img/colors/red.jpg' },
-  { name: 'Серый',      file: '/img/colors/gray.jpg' },
-  { name: 'Коричневый', file: '/img/colors/brown2.jpg' },
+  { name: 'Черный',     file: '/test/img/colors/black-1.jpg' },
+  { name: 'Белый',      file: '/test/img/colors/white.jpg' },
+  { name: 'Горчичный',  file: '/test/img/colors/karry.jpg' },
+  { name: 'Красный',    file: '/test/img/colors/red.jpg' },
+  { name: 'Серый',      file: '/test/img/colors/gray.jpg' },
+  { name: 'Коричневый', file: '/test/img/colors/brown2.jpg' },
+  { name: 'Черный',     file: '/test/img/colors/black-1.jpg' },
+  { name: 'Белый',      file: '/test/img/colors/white.jpg' },
+  { name: 'Горчичный',  file: '/test/img/colors/karry.jpg' },
+  { name: 'Красный',    file: '/test/img/colors/red.jpg' },
+  { name: 'Серый',      file: '/test/img/colors/gray.jpg' },
+  { name: 'Коричневый', file: '/test/img/colors/brown2.jpg' },
 ]
 
 

@@ -1,111 +1,113 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 
 let mocks = [
   { 
     'name': 'Атлант',     
-    'img': '/public/img/plitka/atlant.jpg', 
+    'img': '/test/img/plitka/atlant.jpg', 
     'link': '#'
   },
 
   { 
     'name': 'Фантазия', 
-    'img': '/public/img/plitka/fantazy.jpg', 
+    'img': '/test/img/plitka/fantazy.jpg', 
     'link': '#'
   },
 
   { 
     'name': 'Классико',
-    'img': '/public/img/plitka/klassiko.jpeg',
+    'img': '/test/img/plitka/klassiko.jpeg',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия',
-    'img': '/public/img/plitka/fantazy2.jpeg', 
+    'img': '/test/img/plitka/fantazy2.jpeg', 
     'link': '#'
   },
 
   { 
     'name': 'Терасса',
-    'img': '/public/img/plitka/terassa.jpeg',
+    'img': '/test/img/plitka/terassa.jpeg',
     'link': '#'
   },
 
   { 
     'name': 'Еще Атлант',
-    'img': '/public/img/plitka/atlant2.jpg',
+    'img': '/test/img/plitka/atlant2.jpg',
     'link': '#'
   },
 
   { 
     'name': 'Атлант',     
-    'img': '/public/img/plitka/atlant.jpg', 
+    'img': '/test/img/plitka/atlant.jpg', 
     'link': '#'
   },
 
   { 
     'name': 'Фантазия', 
-    'img': '/public/img/plitka/fantazy.jpg', 
+    'img': '/test/img/plitka/fantazy.jpg', 
     'link': '#'
   },
 
   { 
     'name': 'Классико',
-    'img': '/public/img/plitka/klassiko.jpeg',
+    'img': '/test/img/plitka/klassiko.jpeg',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия',
-    'img': '/public/img/plitka/fantazy2.jpeg', 
+    'img': '/test/img/plitka/fantazy2.jpeg', 
     'link': '#'
   },
 
   { 
     'name': 'Терасса',
-    'img': '/public/img/plitka/terassa.jpeg',
+    'img': '/test/img/plitka/terassa.jpeg',
     'link': '#'
   },
 
   { 
     'name': 'Еще Атлант',
-    'img': '/public/img/plitka/atlant2.jpg',
+    'img': '/test/img/plitka/atlant2.jpg',
     'link': '#'
   },
 
   { 
     'name': 'Атлант',     
-    'img': '/public/img/plitka/atlant.jpg', 
+    'img': '/test/img/plitka/atlant.jpg', 
     'link': '#'
   },
 
   { 
     'name': 'Фантазия', 
-    'img': '/public/img/plitka/fantazy.jpg', 
+    'img': '/test/img/plitka/fantazy.jpg', 
     'link': '#'
   },
 
   { 
     'name': 'Классико',
-    'img': '/public/img/plitka/klassiko.jpeg',
+    'img': '/test/img/plitka/klassiko.jpeg',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия',
-    'img': '/public/img/plitka/fantazy2.jpeg', 
+    'img': '/test/img/plitka/fantazy2.jpeg', 
     'link': '#'
   },
 
   { 
     'name': 'Терасса',
-    'img': '/public/img/plitka/terassa.jpeg',
+    'img': '/test/img/plitka/terassa.jpeg',
     'link': '#'
   },
 
   { 
     'name': 'Еще Атлант',
-    'img': '/public/img/plitka/atlant2.jpg',
+    'img': '/test/img/plitka/atlant2.jpg',
     'link': '#'
   },
 
@@ -116,14 +118,14 @@ let mocks = [
 
 <template>
   <div class="msnry">
-    <a v-for="item in mocks" :key="item.name" :href="item.link"
+    <RouterLink v-for="item in mocks" :key="item.name" to="/"
       class="msnry--item" :class="'msnry--item-' + item.size"
     >
-      <img class="msnry--itemImg" :src="item.img" alt="">
+      <img class="msnry--itemImg" :src="item.img" alt="" />
       <div class="msnry--labelHolder transformer">
         <p class="msnry--itemLabel transformer--inner">{{ item.name }}</p>
       </div>
-    </a>
+    </RouterLink>
   </div>
 </template>
 

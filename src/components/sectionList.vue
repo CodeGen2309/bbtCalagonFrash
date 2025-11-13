@@ -1,72 +1,17 @@
 <script setup>
 
 let sectins = [
-  { 
-    label: 'Арматурные изделия', 
-    cover: '/img/sections/armatur.jpeg' ,
-    mock: ''
-  },
-
-  { 
-    label: 'Благоустройство', 
-    cover: '/img/sections/blagoust.jpeg' ,
-    mock: 'blago'
-  },
-
-  { 
-    label: 'Игровое оборудование', 
-    cover: '/img/sections/detskoe.jpg' ,
-    mock: ''
-  },
-
-  { 
-    label: 'Двери деревянные', 
-    cover: '/img/sections/doors.jpg' ,
-    mock: ''
-  },
-
-  { 
-    label: 'Камни бетонные', 
-    cover: '/img/sections/kamnibet.jpg' ,
-    mock: ''
-  },
-
-  { 
-    label: 'Блоки керамзитовые', 
-    cover: '/img/sections/kerablock.jpg' ,
-    mock: ''
-  },
-
-  { 
-    label: 'Керамзит', 
-    cover: '/img/sections/keramzit.jpg',
-    mock: ''
-  },
-
-  { 
-    label: 'Металлические изделия', 
-    cover: '/img/sections/metart.jpg',
-    mock: ''
-  },
-
-  { 
-    label: 'Кирпич облицовочный', 
-    cover: '/img/sections/oblic.jpg',
-    mock: 'oblic'
-  },
-
-  { 
-    label: 'Окна деревянные', 
-    cover: '/img/sections/okna.jpg' ,
-    mock: ''
-  },
-
-  { 
-    label: 'Плиты перекрытия', 
-    cover: '/img/sections/plity.jpg',
-    mock: ''
-  },
-
+  { label: 'Арматурные изделия',    cover: '/test/img/sections/armatur.jpeg' },
+  { label: 'Благоустройство',       cover: '/test/img/sections/blagoust.jpeg' },
+  { label: 'Игровое оборудование',  cover: '/test/img/sections/detskoe.jpg' },
+  { label: 'Двери деревянные',      cover: '/test/img/sections/doors.jpg' },
+  { label: 'Камни бетонные',        cover: '/test/img/sections/kamnibet.jpg' },
+  { label: 'Блоки керамзитовые',    cover: '/test/img/sections/kerablock.jpg' },
+  { label: 'Керамзит',              cover: '/test/img/sections/keramzit.jpg' },
+  { label: 'Металлические изделия', cover: '/test/img/sections/metart.jpg' },
+  { label: 'Кирпич облицовочный',   cover: '/test/img/sections/oblic.jpg' },
+  { label: 'Окна деревянные',       cover: '/test/img/sections/okna.jpg' },
+  { label: 'Плиты перекрытия',      cover: '/test/img/sections/plity.jpg' },
 ]
 
 
@@ -75,9 +20,7 @@ let sectins = [
 
 <template>
   <ul class="sList">
-    <li class="sList--item" v-for="section in sectins" :key="section.label"
-      @click="$emit('sectionClick', section.mock)"
-    >
+    <li class="sList--item" v-for="section in sectins" :key="section.label">
       <img class="sList--image" :src="section.cover" :alt="section.label">
       <div class="sList--cover"></div>
 
@@ -110,8 +53,6 @@ let sectins = [
   border-radius: 2px;
 
   overflow: hidden;
-
-  cursor: pointer;
   transition: .4s;
   transition-delay: .1s;
 }

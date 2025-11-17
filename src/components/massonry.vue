@@ -1,44 +1,45 @@
 <script setup>
+import setupEnv from '../../setupEnv';
 
 let mocks = [
   { 
     'name': 'Атлант',     
-    'img': '/test/img/plitka/atlant.jpg', 
+    'img': `${setupEnv.assetDir}/img/plitka/atlant.jpg`, 
     'size': 'normal',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия', 
-    'img': '/test/img/plitka/fantazy.jpg', 
+    'img': `${setupEnv.assetDir}/img/plitka/fantazy.jpg`, 
     'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Классико',
-    'img': '/test/img/plitka/klassiko.jpeg',
+    'img': `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
     'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Фантазия',
-    'img': '/test/img/plitka/fantazy2.jpeg', 
+    'img': `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`, 
     'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Терасса',
-    'img': '/test/img/plitka/terassa.jpeg',
+    'img': `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
     'size': 'wide',
     'link': '#'
   },
 
   { 
     'name': 'Еще Атлант',
-    'img': '/test/img/plitka/atlant2.jpg',
+    'img': `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
     'size': 'normal',
     'link': '#'
   },
@@ -54,6 +55,7 @@ let mocks = [
       class="msnry--item" :class="'msnry--item-' + item.size"
     >
       <img class="msnry--itemImg" :src="item.img" alt="">
+      
       <div class="msnry--labelHolder transformer">
         <p class="msnry--itemLabel transformer--inner">{{ item.name }}</p>
       </div>

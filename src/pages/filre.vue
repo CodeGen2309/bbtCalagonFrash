@@ -2,6 +2,9 @@
 import { defineEmits } from 'vue'
 import arrowIcon from '/public/icons/arrow.svg?component'
 
+import setupEnv from '../../setupEnv';
+
+
 let emit = defineEmits(['filter'])
 
 
@@ -24,18 +27,18 @@ let palette = {
 }
 
 let colors = [
-  { name: 'Черный',     file: '/test/img/colors/black-1.jpg' },
-  { name: 'Белый',      file: '/test/img/colors/white.jpg' },
-  { name: 'Горчичный',  file: '/test/img/colors/karry.jpg' },
-  { name: 'Красный',    file: '/test/img/colors/red.jpg' },
-  { name: 'Серый',      file: '/test/img/colors/gray.jpg' },
-  { name: 'Коричневый', file: '/test/img/colors/brown2.jpg' },
-  { name: 'Черный',     file: '/test/img/colors/black-1.jpg' },
-  { name: 'Белый',      file: '/test/img/colors/white.jpg' },
-  { name: 'Горчичный',  file: '/test/img/colors/karry.jpg' },
-  { name: 'Красный',    file: '/test/img/colors/red.jpg' },
-  { name: 'Серый',      file: '/test/img/colors/gray.jpg' },
-  { name: 'Коричневый', file: '/test/img/colors/brown2.jpg' },
+  { name: 'Черный',     file: `${setupEnv.assetDir}/img/colors/black-1.jpg` },
+  { name: 'Белый',      file: `${setupEnv.assetDir}/img/colors/white.jpg` },
+  { name: 'Горчичный',  file: `${setupEnv.assetDir}/img/colors/karry.jpg` },
+  { name: 'Красный',    file: `${setupEnv.assetDir}/img/colors/red.jpg` },
+  { name: 'Серый',      file: `${setupEnv.assetDir}/img/colors/gray.jpg` },
+  { name: 'Коричневый', file: `${setupEnv.assetDir}/img/colors/brown2.jpg` },
+  { name: 'Черный',     file: `${setupEnv.assetDir}/img/colors/black-1.jpg` },
+  { name: 'Белый',      file: `${setupEnv.assetDir}/img/colors/white.jpg` },
+  { name: 'Горчичный',  file: `${setupEnv.assetDir}/img/colors/karry.jpg` },
+  { name: 'Красный',    file: `${setupEnv.assetDir}/img/colors/red.jpg` },
+  { name: 'Серый',      file: `${setupEnv.assetDir}/img/colors/gray.jpg` },
+  { name: 'Коричневый', file: `${setupEnv.assetDir}/img/colors/brown2.jpg` },
 ]
 
 

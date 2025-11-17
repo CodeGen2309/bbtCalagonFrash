@@ -26,7 +26,7 @@ import CtlgHeader from './components/ctlgHeader.vue';
     margin: 20px;
     box-sizing: border-box;
     border-radius: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   .fadeAnim-enter-active, .fadeAnim-leave-active {

@@ -1,8 +1,9 @@
 <script setup>
-import sectionList from '@/components/sectionList.vue';
-import massonry from '@/components/massonry.vue';
-import CtlgFooter from '@/components/ctlgFooter.vue';
 import { RouterLink } from 'vue-router';
+
+import sectionList    from '@/components/sectionList.vue';
+import massonry       from '@/components/massonry.vue';
+import CtlgFooter     from '@/components/ctlgFooter.vue';
 
 
 </script>

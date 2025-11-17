@@ -1,129 +1,139 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+  import { onMounted, defineProps } from 'vue';
+  import { RouterLink } from 'vue-router';
 
+  import setupEnv from '../../setupEnv';
+  
 
-let mocks = [
-  { 
-    'name': 'Атлант',     
-    'img': '/test/img/plitka/atlant.jpg', 
-    'link': '#'
-  },
+  let props = defineProps([ 'items', 'title', 'cover' ])
 
-  { 
-    'name': 'Фантазия', 
-    'img': '/test/img/plitka/fantazy.jpg', 
-    'link': '#'
-  },
+  let mocks = [
+    { 
+      'name': 'Атлант',     
+      'img': `${setupEnv.assetDir}/img/plitka/atlant.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Классико',
-    'img': '/test/img/plitka/klassiko.jpeg',
-    'link': '#'
-  },
+    { 
+      'name': 'Фантазия', 
+      'img': `${setupEnv.assetDir}/img/plitka/fantazy.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Фантазия',
-    'img': '/test/img/plitka/fantazy2.jpeg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Классико',
+      'img': `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Терасса',
-    'img': '/test/img/plitka/terassa.jpeg',
-    'link': '#'
-  },
+    { 
+      'name': 'Фантазия',
+      'img': `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Еще Атлант',
-    'img': '/test/img/plitka/atlant2.jpg',
-    'link': '#'
-  },
+    { 
+      'name': 'Терасса',
+      'img': `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Атлант',     
-    'img': '/test/img/plitka/atlant.jpg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Еще Атлант',
+      'img': `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Фантазия', 
-    'img': '/test/img/plitka/fantazy.jpg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Атлант',     
+      'img': `${setupEnv.assetDir}/img/plitka/atlant.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Классико',
-    'img': '/test/img/plitka/klassiko.jpeg',
-    'link': '#'
-  },
+    { 
+      'name': 'Фантазия', 
+      'img': `${setupEnv.assetDir}/img/plitka/fantazy.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Фантазия',
-    'img': '/test/img/plitka/fantazy2.jpeg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Классико',
+      'img': `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Терасса',
-    'img': '/test/img/plitka/terassa.jpeg',
-    'link': '#'
-  },
+    { 
+      'name': 'Фантазия',
+      'img': `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Еще Атлант',
-    'img': '/test/img/plitka/atlant2.jpg',
-    'link': '#'
-  },
+    { 
+      'name': 'Терасса',
+      'img': `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Атлант',     
-    'img': '/test/img/plitka/atlant.jpg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Еще Атлант',
+      'img': `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Фантазия', 
-    'img': '/test/img/plitka/fantazy.jpg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Атлант',     
+      'img': `${setupEnv.assetDir}/img/plitka/atlant.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Классико',
-    'img': '/test/img/plitka/klassiko.jpeg',
-    'link': '#'
-  },
+    { 
+      'name': 'Фантазия', 
+      'img': `${setupEnv.assetDir}/img/plitka/fantazy.jpg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Фантазия',
-    'img': '/test/img/plitka/fantazy2.jpeg', 
-    'link': '#'
-  },
+    { 
+      'name': 'Классико',
+      'img': `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Терасса',
-    'img': '/test/img/plitka/terassa.jpeg',
-    'link': '#'
-  },
+    { 
+      'name': 'Фантазия',
+      'img': `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`,
+      'link': '#'
+    },
 
-  { 
-    'name': 'Еще Атлант',
-    'img': '/test/img/plitka/atlant2.jpg',
-    'link': '#'
-  },
+    { 
+      'name': 'Терасса',
+      'img': `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
+      'link': '#'
+    },
 
-]
+    { 
+      'name': 'Еще Атлант',
+      'img': `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
+      'link': '#'
+    },
 
+  ]
+
+  onMounted( async () => {
+    if (!props.items) { props.items = mocks }
+  })
 </script>
 
 
 <template>
   <div class="msnry">
-    <RouterLink v-for="item in mocks" :key="item.name" to="/"
-      class="msnry--item" :class="'msnry--item-' + item.size"
+    <RouterLink v-for="item in items" :key="item.ID" 
+      :to="{ name: 'ctitem', params: { id: item.ID } }"
+      class="msnry--item" 
     >
-      <img class="msnry--itemImg" :src="item.img" alt="" />
+      <img class="msnry--itemImg" :src="item['GALLERY'][0]" alt="" />
+
       <div class="msnry--labelHolder transformer">
-        <p class="msnry--itemLabel transformer--inner">{{ item.name }}</p>
+        <p class="msnry--itemLabel transformer--inner">{{ item.NAME }}</p>
       </div>
     </RouterLink>
   </div>
@@ -141,7 +151,7 @@ let mocks = [
 
 .msnry--item {
   position: relative;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   border-radius: 10px;
   overflow: hidden;
   height: 200px;

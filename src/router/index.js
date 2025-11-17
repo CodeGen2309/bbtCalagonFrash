@@ -4,22 +4,22 @@ const router = createRouter({
   history: createMemoryHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/catalog',
+      path: '/',
       name: 'catalog',
       component: () => import('../pages/catalog.vue'),
     },
     {
-      path: '/catalog-modern',
+      path: '/modern',
       name: 'catalog-modern',
       component: () => import('../pages/catalog-modern.vue'),
     },
     {
-      path: '/section',
+      path: '/section/:id',
       name: 'section',
       component: () => import('../pages/section.vue'),
     },
     {
-      path: '/',
+      path: '/ctitem/:id',
       name: 'ctitem',
       component: () => import('../pages/item.vue'),
     },

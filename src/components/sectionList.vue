@@ -1,33 +1,51 @@
 <script setup>
+  import { onMounted, ref } from 'vue';
+  import { RouterLink } from 'vue-router';
+  import setupEnv from '../../setupEnv';
 
-let sectins = [
-  { label: 'Арматурные изделия',    cover: '/test/img/sections/armatur.jpeg' },
-  { label: 'Благоустройство',       cover: '/test/img/sections/blagoust.jpeg' },
-  { label: 'Игровое оборудование',  cover: '/test/img/sections/detskoe.jpg' },
-  { label: 'Двери деревянные',      cover: '/test/img/sections/doors.jpg' },
-  { label: 'Камни бетонные',        cover: '/test/img/sections/kamnibet.jpg' },
-  { label: 'Блоки керамзитовые',    cover: '/test/img/sections/kerablock.jpg' },
-  { label: 'Керамзит',              cover: '/test/img/sections/keramzit.jpg' },
-  { label: 'Металлические изделия', cover: '/test/img/sections/metart.jpg' },
-  { label: 'Кирпич облицовочный',   cover: '/test/img/sections/oblic.jpg' },
-  { label: 'Окна деревянные',       cover: '/test/img/sections/okna.jpg' },
-  { label: 'Плиты перекрытия',      cover: '/test/img/sections/plity.jpg' },
-]
+  import bridge from '@/backbridge';
 
 
+  let sections = ref('')
+  // let mockSections = [
+  //   { label: 'Арматурные изделия',    cover: `${setupEnv.assetDir}/img/sections/armatur.jpeg` },
+  //   { label: 'Благоустройство',       cover: `${setupEnv.assetDir}/img/sections/blagoust.jpeg` },
+  //   { label: 'Игровое оборудование',  cover: `${setupEnv.assetDir}/img/sections/detskoe.jpg` },
+  //   { label: 'Двери деревянные',      cover: `${setupEnv.assetDir}/img/sections/doors.jpg` },
+  //   { label: 'Камни бетонные',        cover: `${setupEnv.assetDir}/img/sections/kamnibet.jpg` },
+  //   { label: 'Блоки керамзитовые',    cover: `${setupEnv.assetDir}/img/sections/kerablock.jpg` },
+  //   { label: 'Керамзит',              cover: `${setupEnv.assetDir}/img/sections/keramzit.jpg` },
+  //   { label: 'Металлические изделия', cover: `${setupEnv.assetDir}/img/sections/metart.jpg` },
+  //   { label: 'Кирпич облицовочный',   cover: `${setupEnv.assetDir}/img/sections/oblic.jpg` },
+  //   { label: 'Окна деревянные',       cover: `${setupEnv.assetDir}/img/sections/okna.jpg` },
+  //   { label: 'Плиты перекрытия',      cover: `${setupEnv.assetDir}/img/sections/plity.jpg` },
+  // ]
+
+  onMounted( async () => {
+    let sectionReq = await bridge.getSections()
+    let sectionList = await sectionReq.json()
+
+    sections.value = sectionList
+
+    console.log("AHELOOOOOO!")
+    console.log(sectionList)
+  })
 </script>
 
 
 <template>
   <ul class="sList">
-    <li class="sList--item" v-for="section in sectins" :key="section.label">
-      <img class="sList--image" :src="section.cover" :alt="section.label">
+    <router-link class="sList--item" 
+      v-for="section in sections" :key="section.ID"
+      :to="{ name: 'section', params: { id: section.ID } }"
+    >
+      <img class="sList--image" :src="section.PICTURE_FILE" :alt="section.PICTURE_FILE">
       <div class="sList--cover"></div>
 
       <div class="sList--label transformer">
-        <p class="sList--text transformer--inner">{{ section.label }}</p>
+        <p class="sList--text transformer--inner">{{ section.NAME }}</p>
       </div>
-    </li>
+    </router-link>
   </ul>
 </template>
 
@@ -51,6 +69,7 @@ let sectins = [
   width: 100%;
 
   border-radius: 2px;
+  text-decoration: none;
 
   overflow: hidden;
   transition: .4s;

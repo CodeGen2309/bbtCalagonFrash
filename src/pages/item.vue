@@ -1,9 +1,5 @@
 <script setup>
 
-import { ref } from 'vue';
-import { animate } from 'motion';
-import { RouterLink } from 'vue-router';
-
 let mockButtons = [
   'Описание', 
   'Технические характеристики', 
@@ -12,13 +8,13 @@ let mockButtons = [
 ]
 
 let mockImages = [
-  "/test/img/plitka/atlant.jpg",
-  "/test/img/plitka/atlant2.jpg",
-  "/test/img/plitka/fantazy.jpg",
-  "/test/img/plitka/fantazy2.jpeg",
-  "/test/img/plitka/klassiko.jpeg",
-  "/test/img/plitka/terassa.jpeg",
-  "/test/img/plitka/villano.jpg",
+  `${setupEnv.assetDir}/img/plitka/atlant.jpg`,
+  `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
+  `${setupEnv.assetDir}/img/plitka/fantazy.jpg`,
+  `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`,
+  `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
+  `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
+  `${setupEnv.assetDir}/img/plitka/villano.jpg`,
 ]
 
 let optList = [
@@ -59,7 +55,29 @@ let optList = [
   },
 ]
 
+
+import { onMounted, ref } from 'vue';
+import { animate } from 'motion';
+import { RouterLink, useRoute } from 'vue-router';
+
+import setupEnv from '../../setupEnv.js'
+import bridge from '@/backbridge.js';
+
+let route = useRoute()
+let itemID = route.params.id
+
+let arrItem  = ref({})
+let name  = ref('')
+let price = ref('')
+let decription = ref('')
+
+let section = ref({
+  'NAME': '',  'ID': ''
+})
+
+let slides = ref([])
 let mockSlide = ref(mockImages[0])
+
 let subinfo = ref(false)
 let subTitle = ref('Описание')
 
@@ -82,8 +100,8 @@ function toggleSlide (fadeArr, delay = 0) {
 
 async function changeSlide (idx) {
   toggleSlide([1, 0]).then(() => {
-    mockSlide.value = mockImages[idx]
-    toggleSlide([0, 1], .2)
+    mockSlide.value = slides.value[idx]
+    toggleSlide([0, 1], .4)
   })
 }
 
@@ -115,6 +133,27 @@ async function hideInfo () {
   subinfo.value = false
 }
 
+
+onMounted( async () => {
+  let reqItem  = await bridge.getProduct(itemID)
+  let resItem  = await reqItem.json()
+
+  let rawPrice = resItem['PRICE']['PRICE']
+  rawPrice = rawPrice.toString().replaceAll('.00', ' руб.')
+
+  arrItem.value = resItem
+  price.value = rawPrice
+  name.value = resItem['ITEM']['NAME']
+  decription.value = resItem['ITEM']['DETAIL_TEXT']
+  section.value = resItem['SECTION']
+
+  slides.value = resItem['GALLERY']
+  mockSlide.value = slides.value[0]
+
+  console.log({resItem});
+  
+})
+
 </script>
 
 
@@ -122,20 +161,24 @@ async function hideInfo () {
 <div class="ctitem">
   <div class="ctitem--content">
     <div class="ctitem--subinfo" v-show="subinfo">
-      <h1 class="ctitem--subinfoTitle">{{ subTitle }}</h1>
+      <div class="ctitem--subinfoTitle" v-html="decription" ></div>
       <div class="ctitem--subinfoClose" @click="hideInfo">Вернуться к товару</div>
     </div>
 
     <div class="ctitem--block ctitem--breadcrumbs">
-      <RouterLink to="/catalog" class="ctitem--crumb">Каталог</RouterLink> / 
-      <RouterLink to="/section" class="ctitem--crumb">Тротуарная плитка</RouterLink> / 
-      <RouterLink to="/" class="ctitem--crumb">Атлант</RouterLink>
+      <RouterLink :to="{ name: 'catalog'}" class="ctitem--crumb">Каталог</RouterLink> / 
+
+      <RouterLink :to="{ name: 'section', params: { id: section.ID }}" class="ctitem--crumb">
+        {{  section.NAME  }}
+      </RouterLink> / 
+
+      <a href="#"  class="ctitem--crumb">{{ name }}</a>
     </div>
 
     <div class="ctitem--block ctitem--gallery ctgallery">
       <ul class="ctgallery--thumblist">
         <li class="ctgallery--thumb" 
-          v-for="(item, index) in mockImages"
+          v-for="(item, index) in slides"
           @click="changeSlide(index)"
         >
           <img class="ctgallery--thumbImage" :src="item">
@@ -148,7 +191,7 @@ async function hideInfo () {
 
       <div class="ctgallery--pricePanel">
         <div class="ctgallery--priceHolder transformer">
-          <p class="ctgallery--price transformer--inner">15 800 руб.</p>
+          <p class="ctgallery--price transformer--inner">{{ price }}</p>
         </div>
 
         <div class="transformer ctgallery--countHolder">
@@ -165,7 +208,7 @@ async function hideInfo () {
 
     <div class="ctitem--block ctitem--filter ctfilter">
       <div class="ctfilter--wall ctwall">
-        <p class="ctwall--title">Атлант</p>
+        <p class="ctwall--title">{{ name }}</p>
 
         <div class="ctwall--optHolder" v-for="item in optList" :id="item.id">
           <p class="ctwall--optName">{{ item.name }}</p>
@@ -250,14 +293,18 @@ async function hideInfo () {
   width: 100%; height: 100%;
   top: 0; left: 0;
 
-  background: rgba(255, 255, 255, .8);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: blur(8px);
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   z-index: 8;
+}
+
+.ctitem--subinfoTitle {
+  padding: 20px;
 }
 
 .ctitem--subinfoClose {

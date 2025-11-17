@@ -1,12 +1,20 @@
 <script setup>
+  import { onMounted, ref } from "vue"
   import { animate, stagger } from 'motion';
-
+  import { useRoute } from "vue-router";
+  
+  import bridge from "@/backbridge";
   import productList from '@/components/productList.vue';
   import filre from './filre.vue';
 
+  let route = useRoute()
+  let sectionID = route.params.id
+
+  let section = ref({})
+  let prodList = ref([])
+
+
   async function showOffAnim () {
-    console.log('SHOW OFF');
-    
     let tiles = document.querySelectorAll('.msnry--item')
 
     animate(
@@ -18,7 +26,6 @@
     })
   }
 
-
   async function resetFilter () {
     let tiles = document.querySelectorAll('.msnry--item')
 
@@ -29,14 +36,29 @@
     )
   }
 
+  async function getSection (sectoinId) {
+    let req = await bridge.getSectionItems(sectoinId)
+    return await req.json()
+  }
+
+  onMounted( async () => {
+    if (!sectionID) { sectionID = 126 }
+    console.log(sectionID);
+
+    let res = await getSection(sectionID)
+    section.value = res.section
+    prodList.value = res.items
+    
+    console.log(res)
+  })
 </script>
 
 
 <template>
   <div class="sect">
     <div class="sect--cover">
-      <img class="sect--coverImage" src="/public/img/plitka/fantazy2.jpeg">
-      <p class="sect--coverTitle">Тротуарная плитка</p>
+      <img class="sect--coverImage" :src="section.PICTURE_FILE">
+      <p class="sect--coverTitle">{{  section.NAME  }}</p>
     </div>
 
     <div class="sect--sidebar">
@@ -44,7 +66,7 @@
     </div>
 
     <div class="sect--productList">
-      <productList/>
+      <productList :items="prodList"/>
     </div>
   </div>
 </template>

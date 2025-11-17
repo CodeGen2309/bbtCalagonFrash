@@ -70,6 +70,8 @@
 
   border-radius: 2px;
   text-decoration: none;
+  font-size: .9rem;
+  letter-spacing: 1px;
 
   overflow: hidden;
   transition: .4s;

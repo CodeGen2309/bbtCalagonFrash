@@ -76,7 +76,7 @@
 
 .sect {
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) 2fr;
+  grid-template-columns: minmax(400px, 2fr) 4fr;
   grid-template-rows: 200px 1fr;
   gap: 20px;
 

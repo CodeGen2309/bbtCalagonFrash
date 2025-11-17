@@ -39,7 +39,7 @@
 
 .ftr__panelItem {
   display: flex;
-  align-items: end;
+  align-items: center;
   border-radius: 10px;
 
   padding: 10px 20px;

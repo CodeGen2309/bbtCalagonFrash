@@ -6,42 +6,42 @@ let mocks = [
     'name': 'Атлант',     
     'img': `${setupEnv.assetDir}/img/plitka/atlant.jpg`, 
     'size': 'normal',
-    'link': '#'
+    'id': '145964',
   },
 
   { 
     'name': 'Фантазия', 
     'img': `${setupEnv.assetDir}/img/plitka/fantazy.jpg`, 
     'size': 'wide',
-    'link': '#'
+    'id': '143695',
   },
 
   { 
     'name': 'Классико',
     'img': `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
     'size': 'wide',
-    'link': '#'
+    'id': '146030',
   },
 
   { 
-    'name': 'Фантазия',
-    'img': `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`, 
+    'name': 'Волна',
+    'img': `${setupEnv.assetDir}/img/plitka/volna.jpeg`, 
     'size': 'wide',
-    'link': '#'
+    'id': '143999',
   },
 
   { 
     'name': 'Терасса',
     'img': `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
     'size': 'wide',
-    'link': '#'
+    'id': '163798',
   },
 
   { 
-    'name': 'Еще Атлант',
+    'name': 'Плаза',
     'img': `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
     'size': 'normal',
-    'link': '#'
+    'id': '145925',
   },
 
 ]
@@ -51,15 +51,16 @@ let mocks = [
 
 <template>
   <div class="msnry">
-    <a v-for="item in mocks" :key="item.name" :href="item.link"
+    <router-link v-for="item in mocks" :key="item.name" 
+      :to="{ name: 'ctitem', params: { id: item.id } }"
       class="msnry--item" :class="'msnry--item-' + item.size"
     >
-      <img class="msnry--itemImg" :src="item.img" alt="">
+      <img class="msnry--itemImg" :src="item.img" alt="" />
       
       <div class="msnry--labelHolder transformer">
         <p class="msnry--itemLabel transformer--inner">{{ item.name }}</p>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 

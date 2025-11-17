@@ -2,9 +2,8 @@
 
 let mockButtons = [
   'Описание', 
-  'Технические характеристики', 
-  'Калькулятор плитки', 
-  'Гарантия', 
+  'С этим товаром покупают', 
+  'Гарантийные обязательства', 
 ]
 
 let mockImages = [
@@ -56,7 +55,7 @@ let optList = [
 ]
 
 
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { animate } from 'motion';
 import { RouterLink, useRoute } from 'vue-router';
 
@@ -68,18 +67,20 @@ let itemID = route.params.id
 
 let arrItem  = ref({})
 let name  = ref('')
-let price = ref('')
 let decription = ref('')
 
-let section = ref({
-  'NAME': '',  'ID': ''
-})
+let section = ref({ 'NAME': '',  'ID': ''})
 
 let slides = ref([])
 let mockSlide = ref(mockImages[0])
 
 let subinfo = ref(false)
 let subTitle = ref('Описание')
+
+let basePrice = ref(1)
+let count = ref(1)
+
+let finalPrice = computed(() => basePrice.value * count.value)
 
 
 // FUNCTIONS
@@ -105,6 +106,7 @@ async function changeSlide (idx) {
   })
 }
 
+
 function scrollFilter (id) {
   let el = document.getElementById(id)
   el.scrollIntoView({ behavior: 'smooth'})
@@ -119,11 +121,6 @@ async function togleInfo (text) {
     subinfo.value = !subinfo.value
     await animate(info, { opacity: [0, 1] }, { duration: .3, easing: 'ease-in-out' })
   }
-  
-  // else {
-  //   await animate(info, { opacity: [1, 0] }, { duration: .3, easing: 'ease-in-out' })
-  //   subinfo.value = !subinfo.value
-  // }
 }
 
 
@@ -138,20 +135,16 @@ onMounted( async () => {
   let reqItem  = await bridge.getProduct(itemID)
   let resItem  = await reqItem.json()
 
-  let rawPrice = resItem['PRICE']['PRICE']
-  rawPrice = rawPrice.toString().replaceAll('.00', ' руб.')
-
   arrItem.value = resItem
-  price.value = rawPrice
-  name.value = resItem['ITEM']['NAME']
-  decription.value = resItem['ITEM']['DETAIL_TEXT']
-  section.value = resItem['SECTION']
-
-  slides.value = resItem['GALLERY']
-  mockSlide.value = slides.value[0]
-
-  console.log({resItem});
   
+  name.value       = resItem['ITEM']['NAME']
+  slides.value     = resItem['GALLERY']
+  section.value    = resItem['SECTION']
+  basePrice.value  = Number(resItem['PRICE']['PRICE'])
+  mockSlide.value  = slides.value[0]
+  decription.value = resItem['ITEM']['DETAIL_TEXT']
+  
+  console.log({ resItem });
 })
 
 </script>
@@ -191,12 +184,13 @@ onMounted( async () => {
 
       <div class="ctgallery--pricePanel">
         <div class="ctgallery--priceHolder transformer">
-          <p class="ctgallery--price transformer--inner">{{ price }}</p>
+          <p class="ctgallery--price transformer--inner">{{ finalPrice }} руб. </p>
         </div>
 
         <div class="transformer ctgallery--countHolder">
           <div class="ctgallery--countPanel transformer--inner">
-            200 м<sup>2</sup>
+            <input class="ctgallery--count" type="number" v-model="count">
+            <span class="ctgallery--countUnit">  м<sup>2</sup> </span>
           </div>
         </div>
 
@@ -347,6 +341,7 @@ onMounted( async () => {
 
 .ctgallery--thumb {
   position: relative;
+  max-height: 150px;
   flex-grow: 1;
 }
 
@@ -415,6 +410,25 @@ onMounted( async () => {
   color: black;
   font-size: 1.2rem;
   letter-spacing: 1px;
+}
+
+.ctgallery--count {
+  outline: none; border: none;
+  border-radius: 10px;
+
+  padding: 10px;
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, .8);
+
+  font-size: .9rem;
+  text-align: center;
+  letter-spacing: 1px;
+
+}
+
+.ctgallery--countUnit {
+  padding: 0 10px;;
 }
 
 .ctgallery--countPanel {

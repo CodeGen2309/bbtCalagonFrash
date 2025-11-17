@@ -144,6 +144,7 @@
 .msnry {
   display: flex;
   flex-wrap: wrap;
+  align-items: start;
   gap: 40px;
 
   width: 100%; height: 100%;
@@ -152,6 +153,7 @@
 .msnry--item {
   position: relative;
   /* flex-grow: 1; */
+
   border-radius: 10px;
   overflow: hidden;
   height: 200px;
@@ -216,6 +218,8 @@
 .msnry--itemLabel {
   margin: 0;
   padding: 4px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 

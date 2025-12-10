@@ -1,5 +1,5 @@
 <script setup>
-import setupEnv from '../../setupEnv';
+import setupEnv from '@/setupEnv';
 
 let mocks = [
   { 
@@ -55,7 +55,7 @@ let mocks = [
       :to="{ name: 'ctitem', params: { id: item.id } }"
       class="msnry--item" :class="'msnry--item-' + item.size"
     >
-      <img class="msnry--itemImg" :src="item.img" alt="" />
+      <img class="msnry--itemImg" :src="item.img" alt=""  loading="lazy" />
       
       <div class="msnry--labelHolder transformer">
         <p class="msnry--itemLabel transformer--inner">{{ item.name }}</p>
@@ -134,13 +134,16 @@ let mocks = [
 }
 
 .msnry--item:hover .msnry--labelHolder {
-  padding: 10px 60px;
   min-width: 60%;
 }
 
 .msnry--itemLabel {
   margin: 0;
   padding: 4px 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 

@@ -1,5 +1,5 @@
 <script setup>
-import CtlgHeader from './components/ctlgHeader.vue';
+import CtlgHeader from '@/components/ctlgHeader.vue';
 
 
 </script>

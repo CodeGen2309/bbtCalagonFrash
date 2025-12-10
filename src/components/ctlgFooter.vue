@@ -7,20 +7,20 @@
 
 
 <template>
-  <ul class="ftr__panelList">
-    <li class="ftr__panelItem">
-      <userIcon class="ftr__icon" />
-      <p class="ftr__iconText">Личный кабинет</p>
+  <ul class="ftr--panelList">
+    <li class="ftr--panelItem">
+      <userIcon class="ftr--icon" />
+      <p class="ftr--iconText">Личный кабинет</p>
     </li>
     
-    <li class="ftr__panelItem">
-      <chatIcon class="ftr__icon" />
-      <p class="ftr__iconText">Поддержка</p>
+    <li class="ftr--panelItem">
+      <chatIcon class="ftr--icon" />
+      <p class="ftr--iconText">Чат с менеджером</p>
     </li>
     
-    <li class="ftr__panelItem">
-      <cartIcon class="ftr__icon"  />
-      <p class="ftr__iconText">Корзина</p>
+    <li class="ftr--panelItem">
+      <cartIcon class="ftr--icon"  />
+      <p class="ftr--iconText">Корзина</p>
     </li>
   </ul>
 </template>
@@ -28,39 +28,42 @@
 
 <style scoped>
 
-.ftr__panelList {
+.ftr--panelList {
   display: flex;
   justify-content: flex-start;
-  width: 100%;
+  align-items: center;
+  gap: 20px;
 
   list-style: none;
   margin: 0; padding: 0;
 }
 
-.ftr__panelItem {
+.ftr--panelItem {
   display: flex;
   align-items: center;
-  border-radius: 10px;
 
-  padding: 10px 20px;
-  margin: 0 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  /* background: hsl(190 10% 100%); */
+  background: white;
+  font-weight: 400;
 
   cursor: pointer;
   transition: .3s;
 }
 
-.ftr__panelItem:hover {
-  background: rgba(0, 0, 0, .5);
+.ftr--panelItem:hover {
+  background: hsl(190 10% 40%);
   color: aliceblue;
 }
 
-.ftr__panelItem:hover .ftr__icon {
+.ftr--panelItem:hover .ftr--icon {
   fill: whitesmoke;
 }
 
 
 
-.ftr__icon {
+.ftr--icon {
   fill: rgba(0, 0, 0, .6);
   scale: 1;
   padding: 0px 10px;
@@ -69,7 +72,7 @@
   transition: .3s;
 }
 
-.ftr__iconText {
+.ftr--iconText {
   margin: 0; padding: 0;
   font-size: 1rem;
   padding-bottom: 4px;

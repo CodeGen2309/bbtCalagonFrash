@@ -2,7 +2,7 @@
   import { onMounted, defineProps } from 'vue';
   import { RouterLink } from 'vue-router';
 
-  import setupEnv from '../../setupEnv';
+  import setupEnv from '@/setupEnv';
   
 
   let props = defineProps([ 'items', 'title', 'cover' ])
@@ -144,7 +144,7 @@
 .msnry {
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
+  justify-content: space-between;
   gap: 40px;
 
   width: 100%; height: 100%;
@@ -206,13 +206,15 @@
   margin-bottom: -1px;
   min-width: 5%;
 
+  overflow: hidden;
+  width: 50%;
+
   background: white;
   transition: .3s;
 }
 
 .msnry--item:hover .msnry--labelHolder {
-  padding: 10px 60px;
-  min-width: 60%;
+  width: 90%;
 }
 
 .msnry--itemLabel {
@@ -220,6 +222,11 @@
   padding: 4px 0;
   font-size: 1rem;
   letter-spacing: 1px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 

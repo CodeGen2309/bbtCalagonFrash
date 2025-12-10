@@ -2,7 +2,7 @@
 import { defineEmits } from 'vue'
 import arrowIcon from '/public/icons/arrow.svg?component'
 
-import setupEnv from '../../setupEnv';
+import setupEnv from '@/setupEnv';
 
 
 let emit = defineEmits(['filter'])

@@ -6,22 +6,23 @@ const router = createRouter({
     {
       path: '/',
       name: 'catalog',
-      component: () => import('../pages/catalog.vue'),
+      component: () => import('@/pages/catalog.vue'),
     },
     {
       path: '/modern',
       name: 'catalog-modern',
-      component: () => import('../pages/catalog-modern.vue'),
+      component: () => import('@/pages/catalog-modern.vue'),
     },
     {
       path: '/section/:id',
       name: 'section',
-      component: () => import('../pages/section.vue'),
+      component: () => import('@/pages/section.vue'),
     },
     {
       path: '/ctitem/:id',
+      // path: '/ctitem/',
       name: 'ctitem',
-      component: () => import('../pages/item.vue'),
+      component: () => import('@/pages/item.vue'),
     },
   ],
 })

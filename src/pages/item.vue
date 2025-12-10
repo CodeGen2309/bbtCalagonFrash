@@ -1,4 +1,22 @@
 <script setup>
+import { computed, onMounted, ref } from 'vue';
+import { animate } from 'motion';
+import { RouterLink, useRoute } from 'vue-router';
+
+import setupEnv from '@/setupEnv.js'
+import bridge from '@/backbridge.js';
+
+
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
+
+let sliderSetup = {
+
+}
+
 
 let mockButtons = [
   'Описание', 
@@ -54,13 +72,6 @@ let optList = [
   },
 ]
 
-
-import { computed, onMounted, ref } from 'vue';
-import { animate } from 'motion';
-import { RouterLink, useRoute } from 'vue-router';
-
-import setupEnv from '../../setupEnv.js'
-import bridge from '@/backbridge.js';
 
 let route = useRoute()
 let itemID = route.params.id
@@ -131,9 +142,11 @@ async function hideInfo () {
 }
 
 
-onMounted( async () => {
+
+async function setupAjax () {
   let reqItem  = await bridge.getProduct(itemID)
   let resItem  = await reqItem.json()
+  
 
   arrItem.value = resItem
   
@@ -145,6 +158,12 @@ onMounted( async () => {
   decription.value = resItem['ITEM']['DETAIL_TEXT']
   
   console.log({ resItem });
+  return resItem
+}
+
+
+onMounted( async () => {
+  await setupAjax()
 })
 
 </script>
@@ -181,6 +200,7 @@ onMounted( async () => {
       <div class="ctgallery--mainSlide">
         <img class="ctgallery--mainImage" :src="mockSlide">
       </div>
+
 
       <div class="ctgallery--pricePanel">
         <div class="ctgallery--priceHolder transformer">
@@ -244,7 +264,7 @@ onMounted( async () => {
   display: grid;
   grid-template-rows: 1fr 60px;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 30px;
 
   width: 100%; height: 100%;
 }
@@ -279,7 +299,7 @@ onMounted( async () => {
   max-height: 100%;
   overflow: hidden;
 
-  gap: 10px;
+  gap: 30px;
 }
 
 .ctitem--subinfo {
@@ -371,6 +391,7 @@ onMounted( async () => {
 .ctgallery--pricePanel {
   display: flex;
   justify-content: center;
+  background: hsl(190 10% 85%);
 
   width: 100%; height: 100%;
   overflow: hidden;
@@ -397,16 +418,10 @@ onMounted( async () => {
   font-size: 1.2rem;
   letter-spacing: 1px;
   font-weight: 600;
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, 1);
 }
 
 .ctgallery--countHolder {
-  background: linear-gradient(
-    to left,
-    rgba(189, 195, 199, .6),
-    rgba(236, 240, 241, .0)
-  );
-
   color: black;
   font-size: 1.2rem;
   letter-spacing: 1px;
@@ -418,8 +433,8 @@ onMounted( async () => {
 
   padding: 10px;
   box-sizing: border-box;
+  background: white;
 
-  background: rgba(255, 255, 255, .8);
 
   font-size: .9rem;
   text-align: center;
@@ -436,12 +451,12 @@ onMounted( async () => {
 }
 
 .ctgallery--buyHolder {
-  background: rgba(52, 73, 94, .9);
+  background: hsl(200 100 30);
   transition: .3s;
 }
 
 .ctgallery--buyHolder:hover {
-  background: rgba(52, 73, 94, 1);
+  background: hsl(205 100 50);
 }
 
 .ctgallery--buyButton {
@@ -525,8 +540,6 @@ onMounted( async () => {
 }
 
 
-
-
 .ctfilter--optItem {
   display: flex;
   justify-content: center;
@@ -534,13 +547,13 @@ onMounted( async () => {
 
   padding: 10px 20px;
 
-  background: rgba(0, 0, 0, .1);
-  color: rgba(0, 0, 0, .7);
+  background: hsl(190 10% 95%);
+  border: 2px solid hsl(190 10% 85%);
+  color: hsl(190 10% 0%);
 
   font-size: 1rem;
   letter-spacing: 1px;
   font-weight: 500;
-  /* border-radius: 10px; */
   flex-grow: 1;
 
   cursor: pointer;
@@ -593,7 +606,7 @@ onMounted( async () => {
 }
 
 .ctwall--optHolder {
-  margin: 40px 0px;
+  margin: 70px 0px;
 }
 
 .ctwall--optName {
@@ -650,42 +663,25 @@ onMounted( async () => {
 
   position: relative;
   padding: 10px 20px;
-  /* background: rgba(245, 246, 250,1.0); */
+  background: hsl(190 10% 90%);
+  border-radius: 4px;
 
   color: rgba(0, 0, 0, 1);
   font-size: .9rem;
   letter-spacing: 1px;
+  font-weight: 400;
   
   transition: .3s;
   cursor: pointer;
 }
 
 
-.ctwall--optItem::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: calc(100% - 2px); 
-  height: calc(100% - 2px);
-
-  border: 1px solid black;
-  
-  mask-image: linear-gradient(
-    to top right,
-    rgba(0, 0, 0, .0),
-    rgba(0, 0, 0, .1),
-    rgba(0, 0, 0, .4),
-    rgba(0, 0, 0, .1),
-    rgba(0, 0, 0, .0)
-
-  );
-}
-
 .ctwall--optItem:hover {
-  background: rgba(0, 0, 0, .7);
-  color: rgba(255, 255, 255, 1);
-  font-weight: 400;
+  background: hsl(190 10% 50%);
+  /* color: hsl(190 10% 100%); */
+  color: white;
 }
+
 
 
 /* FOOTER */
@@ -693,6 +689,7 @@ onMounted( async () => {
 .ctitem--footer {
   display: flex;
   justify-content: center;
+  background: hsl(190 10% 95%);
 
   position: relative;
 }
@@ -733,6 +730,5 @@ onMounted( async () => {
 .ctitem--footerLink:hover::before {
   width: 100%;
   background: rgba(189, 195, 199, .3);
-  z-index: -1;
 }
 </style>

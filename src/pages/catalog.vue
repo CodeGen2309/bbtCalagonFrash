@@ -20,9 +20,7 @@ import CtlgFooter     from '@/components/ctlgFooter.vue';
     </div>
 
     <div class="ctlog--footer">
-      <div class="ctlog--footerMain transformer">
-        <CtlgFooter class="ctlog--footerPanel transformer--inner"></CtlgFooter>
-      </div>
+      <CtlgFooter class="ctlog--footerPanel"></CtlgFooter>
 
       <RouterLink :to="{ name: 'section', params: { id: '485' }}" class="ctlog--footerButton">Посмотреть весь каталог</RouterLink>
     </div>
@@ -61,33 +59,22 @@ import CtlgFooter     from '@/components/ctlgFooter.vue';
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 2px solid rgba(0, 0, 0, 0.001);
-  border-radius: 0px 10px 10px 0px;
-
+  /* border-top: 2px solid rgba(0, 0, 0, 0.001); */
+  border-radius: 10px;
   overflow: hidden;
 
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 10%, 
-    rgba(0, 0, 0, 0.2), 
-    rgba(0, 0, 0, 0.4), 
-    rgba(0, 0, 0, 0.6)
-  );
+  background: hsl(190 10% 60%);
+  padding: 0px 20px;
+  margin-right: 20px;
 
   grid-column: span 2;
 }
 
-.ctlog--footerMain {
-  display: flex;
-  align-items: center;
-
-  background: white;
-  padding-left: 80px;
-  height: 100%; width: 40%;
-}
 
 .ctlog--footerPanel {
   margin: 0; padding: 0;
+  height: 100%;
+
 }
 
 .ctlog--footerButton {

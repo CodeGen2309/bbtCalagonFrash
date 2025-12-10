@@ -1,7 +1,7 @@
 <script setup>
   import { onMounted, ref } from 'vue';
   import { RouterLink } from 'vue-router';
-  import setupEnv from '../../setupEnv';
+  import setupEnv from '@/setupEnv';
 
   import bridge from '@/backbridge';
 
@@ -73,6 +73,7 @@
   font-size: .9rem;
   letter-spacing: 1px;
 
+  border-radius: 10px;
   overflow: hidden;
   transition: .4s;
   transition-delay: .1s;
@@ -105,15 +106,16 @@
 .sList--label {
   position: relative;
   margin: 0; padding: 0px;
+
   min-width: 20px;
+  width: 60%;
 
   display: flex;
   justify-content: center;
   align-items: end;
 
-
-  background: rgba(255,  255,  255,  1);
   color: black;
+  background: rgba(255, 255,  255, 1);
 
   transition: .4s;
   transition-delay: .1s;

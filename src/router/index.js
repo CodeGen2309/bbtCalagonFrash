@@ -20,7 +20,6 @@ const router = createRouter({
     },
     {
       path: '/ctitem/:id',
-      // path: '/ctitem/',
       name: 'ctitem',
       component: () => import('@/pages/item.vue'),
     },

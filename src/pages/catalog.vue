@@ -21,7 +21,7 @@ import CtlgFooter     from '@/components/ctlgFooter.vue';
 
     <div class="ctlog--footer">
       <CtlgFooter class="ctlog--footerPanel"></CtlgFooter>
-
+      
       <RouterLink :to="{ name: 'section', params: { id: '485' }}" class="ctlog--footerButton">Посмотреть весь каталог</RouterLink>
     </div>
   </div>

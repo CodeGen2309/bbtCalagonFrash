@@ -1,7 +1,7 @@
 <script setup>
   import { onMounted, ref } from "vue"
   import { animate, stagger } from 'motion';
-  import { useRoute } from "vue-router";
+  import { useRoute, RouterLink } from "vue-router";
   
   import bridge from "@/backbridge";
   import productList from '@/components/productList.vue';
@@ -59,6 +59,7 @@
     <div class="sect--cover">
       <img class="sect--coverImage" :src="section.PICTURE_FILE">
       <p class="sect--coverTitle">{{  section.NAME  }}</p>
+      <RouterLink to="/" class="sect--backButton">Вернуться в каталог</RouterLink>
     </div>
 
     <div class="sect--sidebar">
@@ -173,6 +174,26 @@
   padding: 40px 20px;
   flex-grow: 1;
   overflow-y: scroll;  
+}
+
+
+.sect--backButton {
+  position: absolute;
+  bottom: 10px; left: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .2);
+  border: 3px solid white ;
+  color: white;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: .3s;
+}
+
+.sect--backButton:hover {
+  background: white;
+  color: rgba(0, 0, 0, 8);
 }
 
 </style>

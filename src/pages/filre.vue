@@ -28,17 +28,17 @@ let palette = {
 
 let colors = [
   { name: 'Черный',     file: `${setupEnv.assetDir}/img/colors/black-1.jpg` },
-  { name: 'Белый',      file: `${setupEnv.assetDir}/img/colors/white.jpg` },
-  { name: 'Горчичный',  file: `${setupEnv.assetDir}/img/colors/karry.jpg` },
-  { name: 'Красный',    file: `${setupEnv.assetDir}/img/colors/red.jpg` },
-  { name: 'Серый',      file: `${setupEnv.assetDir}/img/colors/gray.jpg` },
-  { name: 'Коричневый', file: `${setupEnv.assetDir}/img/colors/brown2.jpg` },
+  { name: 'Белый',      file: `${setupEnv.assetDir}/img/colors/white.jpg`   },
+  { name: 'Горчичный',  file: `${setupEnv.assetDir}/img/colors/karry.jpg`   },
+  { name: 'Красный',    file: `${setupEnv.assetDir}/img/colors/red.jpg`     },
+  { name: 'Серый',      file: `${setupEnv.assetDir}/img/colors/gray.jpg`    },
+  { name: 'Коричневый', file: `${setupEnv.assetDir}/img/colors/brown2.jpg`  },
   { name: 'Черный',     file: `${setupEnv.assetDir}/img/colors/black-1.jpg` },
-  { name: 'Белый',      file: `${setupEnv.assetDir}/img/colors/white.jpg` },
-  { name: 'Горчичный',  file: `${setupEnv.assetDir}/img/colors/karry.jpg` },
-  { name: 'Красный',    file: `${setupEnv.assetDir}/img/colors/red.jpg` },
-  { name: 'Серый',      file: `${setupEnv.assetDir}/img/colors/gray.jpg` },
-  { name: 'Коричневый', file: `${setupEnv.assetDir}/img/colors/brown2.jpg` },
+  { name: 'Белый',      file: `${setupEnv.assetDir}/img/colors/white.jpg`   },
+  { name: 'Горчичный',  file: `${setupEnv.assetDir}/img/colors/karry.jpg`   },
+  { name: 'Красный',    file: `${setupEnv.assetDir}/img/colors/red.jpg`     },
+  { name: 'Серый',      file: `${setupEnv.assetDir}/img/colors/gray.jpg`    },
+  { name: 'Коричневый', file: `${setupEnv.assetDir}/img/colors/brown2.jpg`  },
 ]
 
 

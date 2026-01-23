@@ -7,28 +7,12 @@
 
 
   let sections = ref('')
-  // let mockSections = [
-  //   { label: 'Арматурные изделия',    cover: `${setupEnv.assetDir}/img/sections/armatur.jpeg` },
-  //   { label: 'Благоустройство',       cover: `${setupEnv.assetDir}/img/sections/blagoust.jpeg` },
-  //   { label: 'Игровое оборудование',  cover: `${setupEnv.assetDir}/img/sections/detskoe.jpg` },
-  //   { label: 'Двери деревянные',      cover: `${setupEnv.assetDir}/img/sections/doors.jpg` },
-  //   { label: 'Камни бетонные',        cover: `${setupEnv.assetDir}/img/sections/kamnibet.jpg` },
-  //   { label: 'Блоки керамзитовые',    cover: `${setupEnv.assetDir}/img/sections/kerablock.jpg` },
-  //   { label: 'Керамзит',              cover: `${setupEnv.assetDir}/img/sections/keramzit.jpg` },
-  //   { label: 'Металлические изделия', cover: `${setupEnv.assetDir}/img/sections/metart.jpg` },
-  //   { label: 'Кирпич облицовочный',   cover: `${setupEnv.assetDir}/img/sections/oblic.jpg` },
-  //   { label: 'Окна деревянные',       cover: `${setupEnv.assetDir}/img/sections/okna.jpg` },
-  //   { label: 'Плиты перекрытия',      cover: `${setupEnv.assetDir}/img/sections/plity.jpg` },
-  // ]
 
   onMounted( async () => {
     let sectionReq = await bridge.getSections()
     let sectionList = await sectionReq.json()
 
     sections.value = sectionList
-
-    console.log("AHELOOOOOO!")
-    console.log(sectionList)
   })
 </script>
 
@@ -130,6 +114,7 @@
 
 .sList--text {
   letter-spacing: 1px;
+  text-align: start;
   padding: 30px 50px;
   margin: 0;
 

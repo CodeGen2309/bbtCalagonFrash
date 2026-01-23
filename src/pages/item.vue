@@ -118,6 +118,7 @@ async function changeSlide (idx) {
 }
 
 
+// Не испоьлзуется
 function scrollFilter (id) {
   let el = document.getElementById(id)
   el.scrollIntoView({ behavior: 'smooth'})
@@ -232,17 +233,7 @@ onMounted( async () => {
           </ul>
         </div>
       </div>
-
-      <ul class="ctfilter--optList">
-        <li class="ctfilter--optItem"
-          v-for="item in optList"
-          @click="scrollFilter(item.id)"
-        >
-          {{ item.name }}
-        </li>
-      </ul>
     </div>
-
   </div>
 
   

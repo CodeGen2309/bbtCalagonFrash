@@ -1,15 +1,12 @@
 export default {
-  pathList: {
-    getSections: "/test/ajax/get-sections.php",
-    getSectionItems: "/test/ajax/get-section-items.php",
-    getItem: "/test/ajax/get-item.php",
-  },
+  apiUrl: "https://belbeton.ru",
+  // apiUrl: ".",
 
-  getReqest: async function (url) {
+  async getReqest (url) {
     return await fetch(url)
   },
 
-  postRequest: async function (url, body) {
+  async postRequest (url, body) {
     let opts = {
       method  : 'POST', 
       headers : { "Content-type": "application/json" },
@@ -19,17 +16,18 @@ export default {
     return await fetch(url, opts)
   },
 
-  getSections: async function () {
-    return await this.getReqest(this.pathList.getSections)
-  },
-
-  getSectionItems: async function (sectoinId) {
-    let link = this.pathList.getSectionItems + `?section_id=${sectoinId}`
+  async getSections () {
+    let link = `${this.apiUrl}/test/ajax/get-sections.php`
     return await this.getReqest(link)
   },
 
-  getProduct: async function (pid) {
-    let link = this.pathList.getItem + `?id=${pid}`
+  async getSectionItems (sectoinId) {
+    let link = `${this.apiUrl}/test/ajax/get-section-items.php?section_id=${sectoinId}`
+    return await this.getReqest(link)
+  },
+
+  async getProduct (pid) {
+    let link = `${this.apiUrl}/test/ajax/get-item.php?id=${pid}`
     return await this.getReqest(link)
   },
 }

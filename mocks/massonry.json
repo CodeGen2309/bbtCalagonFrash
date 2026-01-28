@@ -1,0 +1,43 @@
+[
+  { 
+    "name": "Атлант",     
+    "img": "https://belbeton.ru/test/img/plitka/atlant.jpg", 
+    "size": "normal",
+    "id": "145964"
+  },
+
+  { 
+    "name": "Фантазия", 
+    "img": "https://belbeton.ru/test/img/plitka/fantazy.jpg", 
+    "size": "wide",
+    "id": "143695"
+  },
+
+  { 
+    "name": "Классико",
+    "img": "https://belbeton.ru/test/img/plitka/klassiko.jpeg",
+    "size": "wide",
+    "id": "146030"
+  },
+
+  { 
+    "name": "Волна",
+    "img": "https://belbeton.ru/test/img/plitka/volna.jpeg", 
+    "size": "wide",
+    "id": "143999"
+  },
+
+  { 
+    "name": "Терасса",
+    "img": "https://belbeton.ru/test/img/plitka/terassa.jpeg",
+    "size": "wide",
+    "id": "163798"
+  },
+
+  { 
+    "name": "Плаза",
+    "img": "https://belbeton.ru/test/img/plitka/atlant2.jpg",
+    "size": "normal",
+    "id": "145925"
+  }
+]

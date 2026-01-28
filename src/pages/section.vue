@@ -3,7 +3,7 @@
   import { animate, stagger } from 'motion';
   import { useRoute, RouterLink } from "vue-router";
   
-  import bridge from "@/backbridge";
+  import apirator from '@/stores/apirator.js'
   import productList from '@/components/productList.vue';
   import filre from './filre.vue';
 
@@ -37,7 +37,7 @@
   }
 
   async function getSection (sectoinId) {
-    let req = await bridge.getSectionItems(sectoinId)
+    let req = await apirator.getSectionItems(sectoinId)
     return await req.json()
   }
 
@@ -48,8 +48,6 @@
     let res = await getSection(sectionID)
     section.value = res.section
     prodList.value = res.items
-    
-    console.log(res)
   })
 </script>
 

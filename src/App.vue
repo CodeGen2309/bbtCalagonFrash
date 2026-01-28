@@ -1,6 +1,12 @@
 <script setup>
 import CtlgHeader from '@/components/ctlgHeader.vue';
+import apirator from '@/stores/apirator.js';
+import { onMounted } from 'vue';
 
+
+onMounted( async () => {
+  apirator.devmode = true
+})
 
 </script>
 
@@ -13,7 +19,7 @@ import CtlgHeader from '@/components/ctlgHeader.vue';
       <transition name="fadeAnim" mode="out-in">
         <component :is="Component" />
       </transition>
-    </router-view>    
+    </router-view>
   </section>
 </template>
 

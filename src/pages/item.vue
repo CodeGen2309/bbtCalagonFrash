@@ -4,11 +4,12 @@ import { animate } from 'motion';
 import { RouterLink, useRoute } from 'vue-router';
 
 import setupEnv from '@/setupEnv.js'
-import bridge from '@/backbridge.js';
+import apirator from '@/stores/apirator.js';
 
 
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
@@ -80,7 +81,7 @@ let arrItem  = ref({})
 let name  = ref('')
 let decription = ref('')
 
-let section = ref({ 'NAME': '',  'ID': ''})
+let section = ref({ 'NAME': 'Load',  'ID': '1'})
 
 let slides = ref([])
 let mockSlide = ref(mockImages[0])
@@ -145,8 +146,10 @@ async function hideInfo () {
 
 
 async function setupAjax () {
-  let reqItem  = await bridge.getProduct(itemID)
+  let reqItem  = await apirator.getProduct(itemID)
   let resItem  = await reqItem.json()
+  
+  console.log({ resItem });
   
 
   arrItem.value = resItem
@@ -158,7 +161,6 @@ async function setupAjax () {
   mockSlide.value  = slides.value[0]
   decription.value = resItem['ITEM']['DETAIL_TEXT']
   
-  console.log({ resItem });
   return resItem
 }
 
@@ -179,11 +181,11 @@ onMounted( async () => {
     </div>
 
     <div class="ctitem--block ctitem--breadcrumbs">
-      <RouterLink :to="{ name: 'catalog'}" class="ctitem--crumb">Каталог</RouterLink> / 
+      <RouterLink :to="{ name: 'catalog', params: { id: section.ID }}" class="ctitem--crumb">Каталог</RouterLink> / 
 
       <RouterLink :to="{ name: 'section', params: { id: section.ID }}" class="ctitem--crumb">
         {{  section.NAME  }}
-      </RouterLink> / 
+      </RouterLink>
 
       <a href="#"  class="ctitem--crumb">{{ name }}</a>
     </div>

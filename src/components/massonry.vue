@@ -1,57 +1,12 @@
 <script setup>
-import setupEnv from '@/setupEnv';
-
-let mocks = [
-  { 
-    'name': 'Атлант',     
-    'img': `${setupEnv.assetDir}/img/plitka/atlant.jpg`, 
-    'size': 'normal',
-    'id': '145964',
-  },
-
-  { 
-    'name': 'Фантазия', 
-    'img': `${setupEnv.assetDir}/img/plitka/fantazy.jpg`, 
-    'size': 'wide',
-    'id': '143695',
-  },
-
-  { 
-    'name': 'Классико',
-    'img': `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
-    'size': 'wide',
-    'id': '146030',
-  },
-
-  { 
-    'name': 'Волна',
-    'img': `${setupEnv.assetDir}/img/plitka/volna.jpeg`, 
-    'size': 'wide',
-    'id': '143999',
-  },
-
-  { 
-    'name': 'Терасса',
-    'img': `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
-    'size': 'wide',
-    'id': '163798',
-  },
-
-  { 
-    'name': 'Плаза',
-    'img': `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
-    'size': 'normal',
-    'id': '145925',
-  },
-
-]
+  import tiles from '@mocks/massonry.json';
 
 </script>
 
 
 <template>
   <div class="msnry">
-    <router-link v-for="item in mocks" :key="item.name" 
+    <router-link v-for="item in tiles" :key="item.name" 
       :to="{ name: 'ctitem', params: { id: item.id } }"
       class="msnry--item" :class="'msnry--item-' + item.size"
     >
@@ -66,85 +21,83 @@ let mocks = [
 
 
 <style scoped>
-.msnry {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  .msnry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
 
-  width: 100%; height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
+    width: 100%; height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 
-.msnry--item {
-  position: relative;
-  flex-grow: 1;
-  border-radius: 10px;
-  overflow: hidden;
+  .msnry--item {
+    position: relative;
+    flex-grow: 1;
+    border-radius: 10px;
+    overflow: hidden;
 
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
 
-  transition: .3s;
-}
-
-
-.msnry--item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-}
+    transition: .3s;
+  }
 
 
-.msnry--item:hover {
-  /* box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1); */
-  box-shadow: 2px 2px 10px 1px rgba(255, 255, 255, .4);
-}
-
-.msnry--item-normal {
-  width: 20%;
-}
-
-.msnry--item-wide {
-  width: 40%;  
-}
+  .msnry--item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
 
 
-.msnry--itemImg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  .msnry--item:hover {
+    /* box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1); */
+    box-shadow: 2px 2px 10px 1px rgba(255, 255, 255, .4);
+  }
 
-  object-fit: cover;
-  object-position: center;
-}
+  .msnry--item-normal {
+    width: 20%;
+  }
 
-.msnry--labelHolder {
-  position: absolute;
-  bottom: 0; left: 0;
-
-  padding: 10px 40px;
-  margin: 0px 30px ;
-  margin-bottom: -1px;
-  min-width: 5%;
-
-  background: white;
-  transition: .3s;
-}
-
-.msnry--item:hover .msnry--labelHolder {
-  min-width: 60%;
-}
-
-.msnry--itemLabel {
-  margin: 0;
-  padding: 4px 0;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+  .msnry--item-wide {
+    width: 40%;  
+  }
 
 
+  .msnry--itemImg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .msnry--labelHolder {
+    position: absolute;
+    bottom: 0; left: 0;
+
+    padding: 10px 40px;
+    margin: 0px 30px ;
+    margin-bottom: -1px;
+    min-width: 5%;
+
+    background: white;
+    transition: .3s;
+  }
+
+  .msnry--item:hover .msnry--labelHolder {
+    min-width: 60%;
+  }
+
+  .msnry--itemLabel {
+    margin: 0;
+    padding: 4px 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 </style>

@@ -1,15 +1,15 @@
 <script setup>
   import { onMounted, ref } from 'vue';
   import { RouterLink } from 'vue-router';
-  import setupEnv from '@/setupEnv';
 
-  import bridge from '@/backbridge';
+  import apirator from '@/stores/apirator';
 
 
   let sections = ref('')
 
+
   onMounted( async () => {
-    let sectionReq = await bridge.getSections()
+    let sectionReq = await apirator.getSections()
     let sectionList = await sectionReq.json()
 
     sections.value = sectionList

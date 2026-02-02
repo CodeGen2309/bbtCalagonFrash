@@ -1,10 +1,12 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 
-import sectionList    from '@/components/sectionList.vue';
-import massonry       from '@/components/massonry.vue';
-import CtlgFooter     from '@/components/ctlgFooter.vue';
+import sectionList       from '@/components/sectionList.vue';
+import mobileSectionList from '@/components/mobileSectionList.vue';
+import massonry          from '@/components/massonry.vue';
+import CtlgFooter        from '@/components/ctlgFooter.vue';
 
+let isMobile = window.innerWidth < 900
 
 </script>
 
@@ -12,14 +14,15 @@ import CtlgFooter     from '@/components/ctlgFooter.vue';
 <template>
   <div class="ctlog">
     <div class="ctlog--sections">
-      <sectionList></sectionList>
+      <sectionList v-if="!isMobile"></sectionList>
+      <mobileSectionList v-else></mobileSectionList>
     </div>
 
-    <div class="ctlog--itemsHolder">
+    <div class="ctlog--itemsHolder" v-if="!isMobile">
       <massonry class="ctlog--itemList"></massonry>
     </div>
 
-    <div class="ctlog--footer">
+    <div class="ctlog--footer" v-if="!isMobile">
       <CtlgFooter class="ctlog--footerPanel"></CtlgFooter>
       
       <RouterLink :to="{ name: 'section', params: { id: '485' }}" class="ctlog--footerButton">Посмотреть весь каталог</RouterLink>
@@ -106,6 +109,17 @@ import CtlgFooter     from '@/components/ctlgFooter.vue';
   background: white;
   color: rgba(0, 0, 0, 1);
   /* font-weight: 300; */
+}
+
+@media screen and ( width < 900px ) {
+  .ctlog {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .ctlog--sections {
+    padding-right: 0px;
+  }
 }
 
 </style>

@@ -36,7 +36,7 @@ export default defineConfig({
       manifest: {
         "short_name": "ЖБК",
         "name": "ЖБК - 1",
-        "start_url": "/",
+        "scope": "/test/",
         "display": "standalone",
         "theme_color": "#333333",
         "background_color": "#000000",

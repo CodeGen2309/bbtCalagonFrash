@@ -8,11 +8,13 @@ const router = createRouter({
       name: 'catalog',
       component: () => import('@/pages/catalog.vue'),
     },
+    
     {
       path: '/section/:id',
       name: 'section',
       component: () => import('@/pages/section.vue'),
     },
+
     {
       path: '/ctitem/:id',
       name: 'ctitem',

@@ -1,6 +1,4 @@
-import { reactive } from 'vue'
-
-export default reactive({
+export default {
   devmode : false,
   apiUrl  : "https://belbeton.ru",
 
@@ -44,4 +42,4 @@ export default reactive({
     let link = `${this.apiUrl}/test/ajax/get-item.php?id=${pid}`
     return await this.getReqest(link)
   },
-})
+}

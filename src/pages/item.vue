@@ -4,7 +4,7 @@ import { animate } from 'motion';
 import { RouterLink, useRoute } from 'vue-router';
 
 import setupEnv from '@/setupEnv.js'
-import apirator from '@/stores/apirator.js';
+import apirator from '@/lib/apirator';
 
 
 import VueSlickCarousel from 'vue-slick-carousel'
@@ -14,10 +14,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 
-let sliderSetup = {
-
-}
-
+let isMobile = window.innerWidth < 900
 
 let mockButtons = [
   'Описание', 
@@ -334,6 +331,11 @@ onMounted( async () => {
   display: grid;
   grid-template-rows: 1fr 60px;
   grid-template-columns: 80px 1fr;
+  grid-template-areas: 
+    "thumblist mainSlide"
+    "thumblist pricePanel"
+  ;
+
   gap: 10px;
 }
 
@@ -345,6 +347,7 @@ onMounted( async () => {
   width: 100%; 
   height: 100%;
   grid-row: span 2;
+  grid-area: thumblist;
 
 
   margin: 0; 
@@ -370,6 +373,7 @@ onMounted( async () => {
 .ctgallery--mainSlide {
   position: relative;
   width: 100%; height: 100%;
+  grid-area: mainSlide;
 }
 
 .ctgallery--mainImage {
@@ -385,6 +389,7 @@ onMounted( async () => {
   display: flex;
   justify-content: center;
   background: hsl(190 10% 85%);
+  grid-area: pricePanel;
 
   width: 100%; height: 100%;
   overflow: hidden;
@@ -723,5 +728,52 @@ onMounted( async () => {
 .ctitem--footerLink:hover::before {
   width: 100%;
   background: rgba(189, 195, 199, .3);
+}
+
+@media screen and (width < 900px) {
+  .ctitem {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .ctitem--breadcrumbs { display: none; }
+
+  .ctitem--content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    overflow-y: scroll
+  }
+
+  .ctfilter {
+    min-height: 100dvh;
+  }
+
+  .ctgallery {
+    height: 80dvh;
+    grid-template-areas: 
+      'mainSlide mainSlide'
+      ' thumblist thumblist'
+    ;
+  }
+
+  .ctitem--footer {
+    display: none;
+  }
+
+  .ctgallery--pricePanel {
+    position: fixed;
+    bottom: 0; left: 0;
+    height: 80px;
+    z-index: 9;
+  }
+
+  .ctgallery--mainSlide {
+  }
+
+  .ctgallery--thumblist {
+    flex-direction: row;
+  }
 }
 </style>

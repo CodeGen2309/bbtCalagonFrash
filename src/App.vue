@@ -1,13 +1,5 @@
 <script setup>
 import CtlgHeader from '@/components/ctlgHeader.vue';
-import apirator from '@/stores/apirator.js';
-import { onMounted } from 'vue';
-
-
-onMounted( async () => {
-  apirator.devmode = true
-})
-
 </script>
 
 
@@ -40,5 +32,15 @@ onMounted( async () => {
   }
   .fadeAnim-enter-from, .fadeAnim-leave-to {
     opacity: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .market {
+      padding: 0;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    
   }
 </style>

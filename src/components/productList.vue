@@ -229,5 +229,22 @@
 
 }
 
+@media screen and (max-width: 900px) {
+  .msnry {
+    padding: 80px 0px;
+    justify-content: space-between;
+    gap: 20px;
+  }
 
+  .msnry--item {
+    width: 45%;
+    height: 35dvh;
+    flex-grow: 1;
+  }
+
+  .msnry--itemLabel {
+    font-size: .9rem;
+  }
+  
+}
 </style>

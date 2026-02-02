@@ -3,12 +3,13 @@
   import { animate, stagger } from 'motion';
   import { useRoute, RouterLink } from "vue-router";
   
-  import apirator from '@/stores/apirator.js'
+  import apirator from '@/lib/apirator'
   import productList from '@/components/productList.vue';
   import filre from './filre.vue';
 
   let route = useRoute()
   let sectionID = route.params.id
+  let isMobile = window.innerWidth < 900
 
   let section = ref({})
   let prodList = ref([])
@@ -43,7 +44,6 @@
 
   onMounted( async () => {
     if (!sectionID) { sectionID = 126 }
-    console.log(sectionID);
 
     let res = await getSection(sectionID)
     section.value = res.section
@@ -57,10 +57,11 @@
     <div class="sect--cover">
       <img class="sect--coverImage" :src="section.PICTURE_FILE">
       <p class="sect--coverTitle">{{  section.NAME  }}</p>
+
       <RouterLink to="/" class="sect--backButton">Вернуться в каталог</RouterLink>
     </div>
 
-    <div class="sect--sidebar">
+    <div class="sect--sidebar" v-if="!isMobile">
       <filre  @filter="showOffAnim" />
     </div>
 
@@ -192,6 +193,19 @@
 .sect--backButton:hover {
   background: white;
   color: rgba(0, 0, 0, 8);
+}
+
+@media screen and (max-width: 900px) {
+  .sect {
+    grid-template-columns: 1fr;
+    grid-template-rows:1fr;
+    gap: 0px;
+  }
+
+  .sect--productList {
+    padding: 10px;
+  }
+  
 }
 
 </style>

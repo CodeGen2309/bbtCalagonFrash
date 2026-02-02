@@ -2,7 +2,7 @@
   import { onMounted, ref } from 'vue';
   import { RouterLink } from 'vue-router';
 
-  import apirator from '@/stores/apirator';
+  import apirator from '@/lib/apirator';
 
 
   let sections = ref('')

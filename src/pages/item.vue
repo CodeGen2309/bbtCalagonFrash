@@ -14,8 +14,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 
-let isMobile = window.innerWidth < 900
-
 let mockButtons = [
   'Описание', 
   'С этим товаром покупают', 
@@ -38,21 +36,25 @@ let optList = [
     id: 'width',
     values: ['150мм', '200мм', '300мм', '400мм', '500мм']
   },
+
   {
     name: 'Высота', 
     id: 'height',
     values: ['20мм', '30мм', '40мм', '50мм', '60мм']
   },
+
   {
     name: 'Тип покраски', 
     id: 'okrasType',
     values: ['частичная', 'полная', 'смешанная']
   },
+
   {
     name: 'Цвет', 
     id: 'color',
     values: ['белый', 'серый', 'черный', 'красный', 'желтый']
   },
+
   {
     name: 'Толщина', 
     id: 'thickness',
@@ -94,6 +96,7 @@ let finalPrice = computed(() => basePrice.value * count.value)
 
 // FUNCTIONS
 // ============================
+
 
 function toggleSlide (fadeArr, delay = 0) {
   let slide = document.querySelector('.ctgallery--mainSlide')

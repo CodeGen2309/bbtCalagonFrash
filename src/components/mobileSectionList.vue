@@ -1,16 +1,18 @@
 <script setup>
-  import { onMounted, ref } from 'vue';
-  import { RouterLink } from 'vue-router';
+import { onMounted, ref } from 'vue';
+import { RouterLink } from 'vue-router';
+import { inView, animate } from 'motion'
 
-  import apirator from '@/lib/apirator';
+import apirator from '@/lib/apirator';
 
 
-  let sections = ref('')
-  let _install_ready = ref(false)
-  let _install_prompt = ref(null)
-  let _app_installed = ref(false)
-  let isInstalled = ref(false)
+let sections = ref('')
+let _install_ready = ref(false)
+let _install_prompt = ref(null)
+let _app_installed = ref(false)
+let isInstalled = ref(false)
 
+let timelineSupport = CSS.supports("animation-timeline: view()")
 
 function savePrompt(event){
   console.log(event);
@@ -29,30 +31,47 @@ function installPWA(){
   }
 }
 
-function checkInstalledApp(){
-  isInstalled.value = JSON.parse(localStorage.getItem("bbtTestAppInstalled"))
-  localStorage.setItem("bbtTestAppInstalled", "false")
-  console.log("IS APP INSTALLD");
-  console.log(isInstalled.value);
-}
 
 function handleAppInstalled(){
-    _install_prompt.value = null;
-    _app_installed.value = true;
+  _install_prompt.value = null;
+  _app_installed.value = true;
 }
 
-  onMounted( async () => {
-    window.addEventListener("beforeinstallprompt", savePrompt)
-    window.addEventListener("appinstalled", handleAppInstalled)
 
-    checkInstalledApp()
-    
+function setupAnimations () {
+  animate('.mobSections--item', { "opacity": 0 })
+  animate('.mobSections--label', { "opacity": 0, skewX: "30deg" })
 
-    let sectionReq = await apirator.getSections()
-    let sectionList = await sectionReq.json()
-
-    sections.value = sectionList
+  inView( '.mobSections--item',  (item) => {
+    animate( item, 
+      { "opacity": 1, translateX: [40, 0] }, 
+      { "duration": .5, delay: .4}
+    )
   })
+
+  inView( '.mobSections--label',  (item) => {
+    animate( item, 
+      { "opacity": 1, translateX: [-80, -40] }, 
+      { "duration": .5, delay: .4}
+    )
+  })
+}
+
+
+onMounted( async () => {
+  window.addEventListener("beforeinstallprompt",  savePrompt)
+  window.addEventListener("appinstalled", handleAppInstalled)
+
+  // let test = CSS.supports("animation-timeline: view()")
+  // console.log({test});
+
+
+  let sectionReq  = await apirator.getSections()
+  let sectionList = await sectionReq.json()
+
+  sections.value = sectionList
+  // setTimeout(() => { setupAnimations() }, 20);
+})
 </script>
 
 
@@ -79,14 +98,6 @@ function handleAppInstalled(){
 
     <button class="mobSections--footerButton" @click="installPWA">Установить</button>
   </div>
-
-
-  <div class="mobSections--footer" v-else>
-    <h3 class="mobSections--footerTitle">Спасибо, что установили наше приложение!</h3>
-    <p class="mobSections--footerNote">☑️ Быстрая загрузка</p>
-    <p class="mobSections--footerNote">☑️ Удобный интерфейс</p>
-    <p class="mobSections--footerNote">☑️ Всегда свежая информация</p>
-  </div>
 </section>
 </template>
 
@@ -102,6 +113,7 @@ function handleAppInstalled(){
   scroll-behavior: smooth;
   padding: 40px 0px;
   padding-bottom: 0;
+  view-timeline-name: --test-view;
 }
 
 .mobSections--title {
@@ -263,30 +275,35 @@ function handleAppInstalled(){
     min-height: 10px;;
     width: 94vw;
     border-radius: 10px;
+    opacity: 0;
   }
 
   20%  { 
     min-height: 10px;
     width: 94vw;
     border-radius: 10px;
+    opacity: .6;
   }
 
   50%  { 
-    min-height: 50dvh; 
+    min-height: 40dvh; 
     width: 100vw;
     border-radius: 0px;
+    opacity: 1;
   }
 
   80%  { 
     min-height: 10px;
     width: 94vw;
     border-radius: 10px;
+    opacity: .6;
   }
 
   100%  { 
     min-height: 10px;
     width: 94vw;
     border-radius: 10px;
+    opacity: 0;
   }
 }
 

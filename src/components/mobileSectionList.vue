@@ -1,77 +1,88 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import { RouterLink } from 'vue-router';
-import { inView, animate } from 'motion'
+  import { onMounted, ref } from 'vue';
+  import { RouterLink } from 'vue-router';
+  import { inView, animate, scroll } from 'motion'
 
-import apirator from '@/lib/apirator';
+  import apirator from '@/lib/apirator';
 
 
-let sections = ref('')
-let _install_ready = ref(false)
-let _install_prompt = ref(null)
-let _app_installed = ref(false)
-let isInstalled = ref(false)
+  let sections = ref('')
+  let _install_ready  = ref(false)
+  let _install_prompt = ref(null)
+  let _app_installed  = ref(false)
+  let isInstalled = ref(false)
 
-let timelineSupport = CSS.supports("animation-timeline: view()")
+  let viewSupport = window.CSS.supports("animation-timeline: view()")
 
-function savePrompt(event){
-  console.log(event);
-  
-  event.preventDefault(); // Предотвращает мобильную подсказку
-    // Сохраняем ссылку на событие, чтобы активировать его позже
-  _install_prompt.value = event;
-    // Уведомить пользовательский интерфейс о том, что приложение может быть установлено
-  _install_ready.value = true;
-}
-
-function installPWA(){
-  if(_install_prompt.value){
-    _install_prompt.value.prompt()
-    // localStorage.setItem("bbtTestAppInstalled", "true")
+  function savePrompt(event){
+    console.log(event);
+    
+    event.preventDefault(); // Предотвращает мобильную подсказку
+      // Сохраняем ссылку на событие, чтобы активировать его позже
+    _install_prompt.value = event;
+      // Уведомить пользовательский интерфейс о том, что приложение может быть установлено
+    _install_ready.value = true;
   }
-}
+
+  function installPWA(){
+    if(_install_prompt.value){
+      _install_prompt.value.prompt()
+      // localStorage.setItem("bbtTestAppInstalled", "true")
+    }
+  }
 
 
-function handleAppInstalled(){
-  _install_prompt.value = null;
-  _app_installed.value = true;
-}
+  function handleAppInstalled(){
+    _install_prompt.value = null;
+    _app_installed.value = true;
+  }
 
 
-function setupAnimations () {
-  animate('.mobSections--item', { "opacity": 0 })
-  animate('.mobSections--label', { "opacity": 0, skewX: "30deg" })
+  function scaleInAnimation (item, offView = false) {
+    let label = item.querySelector('.mobSections--label')
+    let labelAnimList = { opacity: [0, 1] }
 
-  inView( '.mobSections--item',  (item) => {
-    animate( item, 
-      { "opacity": 1, translateX: [40, 0] }, 
-      { "duration": .5, delay: .4}
+    let itemAnimList = {
+      "width": ['90vw', '100vw'], 
+      "height": ['20vh', '50vh'],
+      "border-radius": ['10px', '0px']
+    }
+
+
+    if ( offView ) {
+      labelAnimList = { opacity: [1, 0] }
+
+      for (let key in itemAnimList) { 
+        itemAnimList[key] = itemAnimList[key].reverse()
+      }
+    }
+
+    animate(item, itemAnimList, { "duration": .3 } )
+    animate(label, labelAnimList, { "duration": .5 } )
+  }
+
+
+  function setupJSAnim () {
+    animate('.mobSections--label', { "opacity": 0 })
+
+    inView('.mobSections--item', 
+      (item) => {
+        scaleInAnimation(item, false)
+        return () => scaleInAnimation(item, true)
+      },
+
+      { margin: '-40%' },
     )
+  }
+
+
+  onMounted( async () => {
+    window.addEventListener("beforeinstallprompt",  savePrompt)
+    window.addEventListener("appinstalled", handleAppInstalled)
+
+    sections.value = await apirator.getSections().then(res => res.json())
+    if (!viewSupport) { setTimeout(setupJSAnim, 200) } 
   })
-
-  inView( '.mobSections--label',  (item) => {
-    animate( item, 
-      { "opacity": 1, translateX: [-80, -40] }, 
-      { "duration": .5, delay: .4}
-    )
-  })
-}
-
-
-onMounted( async () => {
-  window.addEventListener("beforeinstallprompt",  savePrompt)
-  window.addEventListener("appinstalled", handleAppInstalled)
-
-  // let test = CSS.supports("animation-timeline: view()")
-  // console.log({test});
-
-
-  let sectionReq  = await apirator.getSections()
-  let sectionList = await sectionReq.json()
-
-  sections.value = sectionList
-  // setTimeout(() => { setupAnimations() }, 20);
-})
 </script>
 
 
@@ -137,8 +148,8 @@ onMounted( async () => {
 
   scroll-snap-align: center;
 
-  animation: scrollAnim .1s linear both;
-  animation-timeline: view();
+  /* animation: scrollAnim .1s linear both; */
+  /* animation-timeline: view(); */
 }
 
 .mobSections--image {
@@ -165,7 +176,9 @@ onMounted( async () => {
   margin: 0;
 }
 
-.mobSections--labelText {}
+.mobSections--labelText {
+
+}
 
 
 
@@ -268,6 +281,12 @@ onMounted( async () => {
 }
 
 
+@supports (animation-timeline: view()) {
+  .mobSections--item {
+    animation: scrollAnim .1s linear both;
+    animation-timeline: view();
+  }
+}
 
 
 @keyframes scrollAnim {
@@ -275,6 +294,41 @@ onMounted( async () => {
     min-height: 10px;;
     width: 94vw;
     border-radius: 10px;
+    opacity: 0;
+  }
+
+  20%  { 
+    min-height: 10px;
+    width: 94vw;
+    border-radius: 10px;
+    opacity: .6;
+  }
+
+  50%  { 
+    min-height: 40dvh; 
+    width: 100vw;
+    border-radius: 0px;
+    opacity: 1;
+  }
+
+  80%  { 
+    min-height: 10px;
+    width: 94vw;
+    border-radius: 10px;
+    opacity: .6;
+  }
+
+  100%  { 
+    min-height: 10px;
+    width: 94vw;
+    border-radius: 10px;
+    opacity: 0;
+  }
+}
+
+
+@keyframes firefoxScrollAnim {
+  0%  { 
     opacity: 0;
   }
 

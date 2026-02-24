@@ -7,7 +7,7 @@
 <template>
   <div class="msnry">
     <router-link v-for="item in tiles" :key="item.name" 
-      :to="{ name: 'ctitem', params: { id: item.id } }"
+      :to="{ name: 'itemCard', params: { id: item.id } }"
       class="msnry--item" :class="'msnry--item-' + item.size"
     >
       <img class="msnry--itemImg" :src="item.img" alt=""  loading="lazy" />

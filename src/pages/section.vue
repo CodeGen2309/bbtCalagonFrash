@@ -5,7 +5,7 @@
   
   import apirator from '@/lib/apirator'
   import productList from '@/components/productList.vue';
-  import filre from './filre.vue';
+  import filre from './fllter.vue';
 
   let route = useRoute()
   let sectionID = route.params.id

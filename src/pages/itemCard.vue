@@ -4,14 +4,7 @@ import { animate } from 'motion';
 import { RouterLink, useRoute } from 'vue-router';
 
 import setupEnv from '@/setupEnv.js'
-import apirator from '@/lib/apirator';
-
-
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-
-// optional style for arrows & dots
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import apirator from '@/lib/apirator.js';
 
 
 let mockButtons = [
@@ -127,7 +120,7 @@ function scrollFilter (id) {
 
 
 async function togleInfo (text) {
-  let info = document.querySelector('.ctitem--subinfo')
+  let info = document.querySelector('.iCard--subinfo')
   subTitle.value = text
   
   if (!subinfo.value) {
@@ -138,7 +131,7 @@ async function togleInfo (text) {
 
 
 async function hideInfo () {
-  let info = document.querySelector('.ctitem--subinfo')
+  let info = document.querySelector('.iCard--subinfo')
   await animate(info, { opacity: [1, 0] }, { duration: .3, easing: 'ease-in-out' })
   subinfo.value = false
 }
@@ -146,8 +139,7 @@ async function hideInfo () {
 
 
 async function setupAjax () {
-  let reqItem  = await apirator.getProduct(itemID)
-  let resItem  = await reqItem.json()
+  let resItem  = await apirator.getProduct(itemID).then(res => res.json())
   
   console.log({ resItem });
   
@@ -173,24 +165,24 @@ onMounted( async () => {
 
 
 <template>
-<div class="ctitem">
-  <div class="ctitem--content">
-    <div class="ctitem--subinfo" v-show="subinfo">
-      <div class="ctitem--subinfoTitle" v-html="decription" ></div>
-      <div class="ctitem--subinfoClose" @click="hideInfo">Вернуться к товару</div>
+<div class="iCard">
+  <div class="iCard--content">
+    <div class="iCard--subinfo" v-show="subinfo">
+      <div class="iCard--subinfoTitle" v-html="decription" ></div>
+      <div class="iCard--subinfoClose" @click="hideInfo">Вернуться к товару</div>
     </div>
 
-    <div class="ctitem--block ctitem--breadcrumbs">
-      <RouterLink :to="{ name: 'catalog', params: { id: section.ID }}" class="ctitem--crumb">Каталог</RouterLink> / 
+    <div class="iCard--block iCard--breadcrumbs">
+      <RouterLink :to="{ name: 'catalog', params: { id: section.ID }}" class="iCard--crumb">Каталог</RouterLink> / 
 
-      <RouterLink :to="{ name: 'section', params: { id: section.ID }}" class="ctitem--crumb">
+      <RouterLink :to="{ name: 'section', params: { id: section.ID }}" class="iCard--crumb">
         {{  section.NAME  }}
       </RouterLink>
 
-      <a href="#"  class="ctitem--crumb">{{ name }}</a>
+      <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 
-    <div class="ctitem--block ctitem--gallery ctgallery">
+    <div class="iCard--block iCard--gallery ctgallery">
       <ul class="ctgallery--thumblist">
         <li class="ctgallery--thumb" 
           v-for="(item, index) in slides"
@@ -223,7 +215,7 @@ onMounted( async () => {
       </div>
     </div>
 
-    <div class="ctitem--block ctitem--filter ctfilter">
+    <div class="iCard--block iCard--filter ctfilter">
       <div class="ctfilter--wall ctwall">
         <p class="ctwall--title">{{ name }}</p>
 
@@ -239,8 +231,8 @@ onMounted( async () => {
   </div>
 
   
-  <div class="ctitem--block ctitem--footer">
-    <a class="ctitem--footerLink" href="#" 
+  <div class="iCard--block iCard--footer">
+    <a class="iCard--footerLink" href="#" 
       v-for="item in mockButtons"
       @click="togleInfo(item)"
     >
@@ -253,7 +245,7 @@ onMounted( async () => {
 
 <style scoped>
 
-.ctitem {
+.iCard {
   display: grid;
   grid-template-rows: 1fr 60px;
   grid-template-columns: 1fr;
@@ -262,13 +254,13 @@ onMounted( async () => {
   width: 100%; height: 100%;
 }
 
-.ctitem--block {
+.iCard--block {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ctitem--breadcrumbs {
+.iCard--breadcrumbs {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,12 +270,12 @@ onMounted( async () => {
   z-index: 9;
 }
 
-.ctitem--crumb {
+.iCard--crumb {
   text-decoration: none;
   color: inherit;
 }
 
-.ctitem--content {
+.iCard--content {
   position: relative;
 
   display: grid;
@@ -295,7 +287,7 @@ onMounted( async () => {
   gap: 30px;
 }
 
-.ctitem--subinfo {
+.iCard--subinfo {
   position: absolute;
   width: 100%; height: 100%;
   top: 0; left: 0;
@@ -310,11 +302,11 @@ onMounted( async () => {
   z-index: 8;
 }
 
-.ctitem--subinfoTitle {
+.iCard--subinfoTitle {
   padding: 20px;
 }
 
-.ctitem--subinfoClose {
+.iCard--subinfoClose {
   padding: 10px 40px;
   background: rgba(0, 0, 0, .6);
   color: white;
@@ -327,7 +319,7 @@ onMounted( async () => {
   cursor: pointer;
 }
 
-.ctitem--gallery {
+.iCard--gallery {
 }
 
 .ctgallery {
@@ -477,7 +469,7 @@ onMounted( async () => {
   transition: .3s;
 }
 
-.ctitem--filter {
+.iCard--filter {
   overflow: hidden;
 }
 
@@ -687,7 +679,7 @@ onMounted( async () => {
 
 /* FOOTER */
 /* ================================================ */
-.ctitem--footer {
+.iCard--footer {
   display: flex;
   justify-content: center;
   background: hsl(190 10% 95%);
@@ -695,7 +687,7 @@ onMounted( async () => {
   position: relative;
 }
 
-.ctitem--footerLink {
+.iCard--footerLink {
   position: relative;
   height: 100%;
 
@@ -715,7 +707,7 @@ onMounted( async () => {
   transition: .3s;
 }
 
-.ctitem--footerLink::before {
+.iCard--footerLink::before {
   content: '';
   position: absolute;
   top: 0;
@@ -725,25 +717,25 @@ onMounted( async () => {
   transition: .5s;
 }
 
-.ctitem--footerLink:hover {
+.iCard--footerLink:hover {
 }
 
-.ctitem--footerLink:hover::before {
+.iCard--footerLink:hover::before {
   width: 100%;
   background: rgba(189, 195, 199, .3);
 }
 
 @media screen and (width < 900px) {
-  .ctitem {
+  .iCard {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     padding: 10px;
     box-sizing: border-box;
   }
 
-  .ctitem--breadcrumbs { display: none; }
+  .iCard--breadcrumbs { display: none; }
 
-  .ctitem--content {
+  .iCard--content {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     overflow-y: scroll
@@ -761,7 +753,7 @@ onMounted( async () => {
     ;
   }
 
-  .ctitem--footer {
+  .iCard--footer {
     display: none;
   }
 

@@ -125,15 +125,15 @@
 
 
 <template>
-  <div class="msnry">
+  <div class="productList">
     <RouterLink v-for="item in items" :key="item.ID" 
-      :to="{ name: 'ctitem', params: { id: item.ID } }"
-      class="msnry--item" 
+      :to="{ name: 'itemCard', params: { id: item.ID } }"
+      class="productList--item" 
     >
-      <img class="msnry--itemImg" :src="item['GALLERY'][0]" alt="" />
+      <img class="productList--itemImg" :src="item['GALLERY'][0]" alt="" />
 
-      <div class="msnry--labelHolder transformer">
-        <p class="msnry--itemLabel transformer--inner">{{ item.NAME }}</p>
+      <div class="productList--labelHolder transformer">
+        <p class="productList--itemLabel transformer--inner">{{ item.NAME }}</p>
       </div>
     </RouterLink>
   </div>
@@ -141,7 +141,7 @@
 
 
 <style scoped>
-.msnry {
+.productList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -150,7 +150,7 @@
   width: 100%; height: 100%;
 }
 
-.msnry--item {
+.productList--item {
   position: relative;
   /* flex-grow: 1; */
 
@@ -166,7 +166,7 @@
 }
 
 
-.msnry--item::before {
+.productList--item::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
@@ -174,21 +174,21 @@
 }
 
 
-.msnry--item:hover {
+.productList--item:hover {
   /* box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1); */
   box-shadow: 2px 2px 10px 1px rgba(255, 255, 255, .4);
 }
 
-.msnry--item-normal {
+.productList--item-normal {
   width: 20%;
 }
 
-.msnry--item-wide {
+.productList--item-wide {
   width: 40%;  
 }
 
 
-.msnry--itemImg {
+.productList--itemImg {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -197,7 +197,7 @@
   object-position: center;
 }
 
-.msnry--labelHolder {
+.productList--labelHolder {
   position: absolute;
   bottom: 0; left: 0;
 
@@ -213,11 +213,11 @@
   transition: .3s;
 }
 
-.msnry--item:hover .msnry--labelHolder {
+.productList--item:hover .productList--labelHolder {
   width: 90%;
 }
 
-.msnry--itemLabel {
+.productList--itemLabel {
   margin: 0;
   padding: 4px 0;
   font-size: 1rem;
@@ -230,19 +230,28 @@
 }
 
 @media screen and (max-width: 900px) {
-  .msnry {
+  .productList {
     padding: 80px 0px;
     justify-content: space-between;
-    gap: 20px;
+    gap: 30px;
   }
 
-  .msnry--item {
-    width: 45%;
-    height: 35dvh;
+  .productList--item {
+    /* width: 45%; */
+    width: 60%;
+    height: 30dvh;
     flex-grow: 1;
   }
 
-  .msnry--itemLabel {
+  .productList--labelHolder {
+    background: rgba(255, 255, 255, .7);
+    backdrop-filter: blur(5px);
+    width: 90%;
+  }
+
+  .productList--itemLabel {
+    /* position: absolute; */
+    white-space: inherit;
     font-size: .9rem;
   }
   

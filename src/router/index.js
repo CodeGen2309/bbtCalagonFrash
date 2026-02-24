@@ -16,9 +16,9 @@ const router = createRouter({
     },
 
     {
-      path: '/ctitem/:id',
-      name: 'ctitem',
-      component: () => import('@/pages/item.vue'),
+      path: '/itemCard/:id',
+      name: 'itemCard',
+      component: () => import('@/pages/itemCard.vue'),
     },
   ],
 })

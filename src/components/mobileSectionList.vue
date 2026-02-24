@@ -88,7 +88,11 @@
 
 <template>
 <section class="mobSections">
-  <h3 class="mobSections--title">Магазин <br> ЖБК - 1</h3>
+  <div class="mobSections--header mobHeader">
+    <img class="mobHeader--cover" src="/img/marketBack.jpeg" alt="">
+    <h1 class="mobHeader--title">Онлайн - магазин <br> ЖБК - 1</h1>
+  </div>
+
 
   <RouterLink class="mobSections--item" 
     v-for="item in sections" :key="item.ID"
@@ -122,14 +126,83 @@
 
   scroll-snap-type: y;
   scroll-behavior: smooth;
-  padding: 40px 0px;
+  padding: 20px 0px;
   padding-bottom: 0;
   view-timeline-name: --test-view;
 }
 
-.mobSections--title {
-  font-weight: 600; 
+.mobHeader {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
 }
+
+
+.mobHeader--cover {
+  position: absolute;
+  top: -10px; left: -10;
+  width: 110%; height: 110%;
+  object-fit: cover;
+  object-position: center;
+
+  filter: blur(4px) brightness(0.9);
+}
+
+
+.mobHeader--title {
+  position: relative;
+  width: 70%;
+  text-align: center;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 30px;
+
+  color: white;
+}
+
+.mobHeader--title::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 2px solid white;
+
+  mask-image: linear-gradient(
+    to right top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+
+  transform: translateX(3px) translateY(3px);
+}
+
+.mobHeader--title::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 2px solid white;
+
+  mask-image: linear-gradient(
+    to right top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0)
+  );
+
+  transform: translateX(-3px) translateY(-3px);
+  z-index: 1;
+}
+
+
 
 .mobSections--item {
   position: relative;
@@ -178,59 +251,6 @@
 
 .mobSections--labelText {
 
-}
-
-
-
-.mobSections--title {
-  position: relative;
-  width: 70%;
-  text-align: center;
-
-  font-size: 2rem;
-  font-weight: 600;
-  padding: 30px;
-
-  /* color: white; */
-  z-index: 1;
-}
-
-.mobSections--title::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: 1px solid black;
-
-  mask-image: linear-gradient(
-    to right top,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0)
-  );
-
-  transform: translateX(3px) translateY(3px);
-  z-index: -1;
-}
-
-.mobSections--title::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: 1px solid black;
-
-  mask-image: linear-gradient(
-    to right top,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0)
-  );
-
-  transform: translateX(-3px) translateY(-3px);
-  z-index: -1;
 }
 
 

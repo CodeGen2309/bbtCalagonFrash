@@ -5,7 +5,7 @@
   
   import apirator from '@/lib/apirator'
   import productList from '@/components/productList.vue';
-  import filre from './fllter.vue';
+  import pageFilter from '@/components/filter.vue';
 
   let route = useRoute()
   let sectionID = route.params.id
@@ -54,7 +54,7 @@
 
 <template>
   <div class="sect">
-    <div class="sect--cover">
+    <div class="sect--cover" v-if="!isMobile">
       <img class="sect--coverImage" :src="section.PICTURE_FILE">
       <p class="sect--coverTitle">{{  section.NAME  }}</p>
 
@@ -62,11 +62,18 @@
     </div>
 
     <div class="sect--sidebar" v-if="!isMobile">
-      <filre  @filter="showOffAnim" />
+      <pageFilter class="sect--filter" />
     </div>
 
     <div class="sect--productList">
-      <productList :items="prodList"/>
+      <div class="sect--cover" v-if="isMobile">
+        <img class="sect--coverImage" :src="section.PICTURE_FILE">
+        <p class="sect--coverTitle">{{  section.NAME  }}</p>
+
+        <RouterLink to="/" class="sect--backButton">Вернуться в каталог</RouterLink>
+      </div>
+
+      <productList class="sect--prodListComp" :items="prodList"/>
     </div>
   </div>
 </template>
@@ -160,13 +167,18 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   box-sizing: border-box;
   padding: 0 10px;
 
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: thin;
+}
+
+.sect--filter {
+  /* height: 60%; */
+  padding: 40px 0px;
 }
 
 .sect--productList {
@@ -199,11 +211,31 @@
   .sect {
     grid-template-columns: 1fr;
     grid-template-rows:1fr;
+    grid-auto-flow: row;
     gap: 0px;
+  }
+
+  .sect--cover {
+    height: 30dvh;
+    font-size: .8rem;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+  .sect--coverTitle {
+    width: 70%;
+    text-align: center;
+  }
+
+  .sect--backButton {
+    display: none;
   }
 
   .sect--productList {
     padding: 10px;
+  }
+
+  .sect--prodListComp {
+    padding: 30px 0px;
   }
   
 }

@@ -3,66 +3,15 @@ import { computed, onMounted, ref } from 'vue';
 import { animate } from 'motion';
 import { RouterLink, useRoute } from 'vue-router';
 
-import setupEnv from '@/setupEnv.js'
 import apirator from '@/lib/apirator.js';
+import slider from '@/components/slider.vue';
+import productFilter from '@/components/filter.vue';
 
 
 let mockButtons = [
   'Описание', 
   'С этим товаром покупают', 
   'Гарантийные обязательства', 
-]
-
-let mockImages = [
-  `${setupEnv.assetDir}/img/plitka/atlant.jpg`,
-  `${setupEnv.assetDir}/img/plitka/atlant2.jpg`,
-  `${setupEnv.assetDir}/img/plitka/fantazy.jpg`,
-  `${setupEnv.assetDir}/img/plitka/fantazy2.jpeg`,
-  `${setupEnv.assetDir}/img/plitka/klassiko.jpeg`,
-  `${setupEnv.assetDir}/img/plitka/terassa.jpeg`,
-  `${setupEnv.assetDir}/img/plitka/villano.jpg`,
-]
-
-let optList = [
-  {
-    name: 'Ширина', 
-    id: 'width',
-    values: ['150мм', '200мм', '300мм', '400мм', '500мм']
-  },
-
-  {
-    name: 'Высота', 
-    id: 'height',
-    values: ['20мм', '30мм', '40мм', '50мм', '60мм']
-  },
-
-  {
-    name: 'Тип покраски', 
-    id: 'okrasType',
-    values: ['частичная', 'полная', 'смешанная']
-  },
-
-  {
-    name: 'Цвет', 
-    id: 'color',
-    values: ['белый', 'серый', 'черный', 'красный', 'желтый']
-  },
-
-  {
-    name: 'Толщина', 
-    id: 'thickness',
-    values: ['2мм', '3мм', '4мм', '5мм', '6мм']
-  },
-  {
-    name: 'Толщина', 
-    id: 'thickness3',
-    values: ['2мм', '3мм', '4мм', '5мм', '6мм']
-  },
-  {
-    name: 'Толщина', 
-    id: 'thickness4',
-    values: ['2мм', '3мм', '4мм', '5мм', '6мм']
-  },
 ]
 
 
@@ -74,9 +23,10 @@ let name  = ref('')
 let decription = ref('')
 
 let section = ref({ 'NAME': 'Load',  'ID': '1'})
+let optList = ref([])
 
 let slides = ref([])
-let mockSlide = ref(mockImages[0])
+let mockSlide = ref("/img/plitka/atlant.jpg")
 
 let subinfo = ref(false)
 let subTitle = ref('Описание')
@@ -89,35 +39,6 @@ let finalPrice = computed(() => basePrice.value * count.value)
 
 // FUNCTIONS
 // ============================
-
-
-function toggleSlide (fadeArr, delay = 0) {
-  let slide = document.querySelector('.ctgallery--mainSlide')
-
-  let animation = animate(
-    slide,
-    { opacity: fadeArr },
-    { duration: .3, easing: 'ease-in-out', delay}    
-  )
-
-  return animation
-}
-
-
-async function changeSlide (idx) {
-  toggleSlide([1, 0]).then(() => {
-    mockSlide.value = slides.value[idx]
-    toggleSlide([0, 1], .4)
-  })
-}
-
-
-// Не испоьлзуется
-function scrollFilter (id) {
-  let el = document.getElementById(id)
-  el.scrollIntoView({ behavior: 'smooth'})
-}
-
 
 async function togleInfo (text) {
   let info = document.querySelector('.iCard--subinfo')
@@ -141,10 +62,8 @@ async function hideInfo () {
 async function setupAjax () {
   let resItem  = await apirator.getProduct(itemID).then(res => res.json())
   
-  console.log({ resItem });
-  
-
   arrItem.value = resItem
+  optList.value = await apirator.getFilter().then(res => res.json())
   
   name.value       = resItem['ITEM']['NAME']
   slides.value     = resItem['GALLERY']
@@ -182,20 +101,8 @@ onMounted( async () => {
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 
-    <div class="iCard--block iCard--gallery ctgallery">
-      <ul class="ctgallery--thumblist">
-        <li class="ctgallery--thumb" 
-          v-for="(item, index) in slides"
-          @click="changeSlide(index)"
-        >
-          <img class="ctgallery--thumbImage" :src="item">
-        </li>
-      </ul>
-
-      <div class="ctgallery--mainSlide">
-        <img class="ctgallery--mainImage" :src="mockSlide">
-      </div>
-
+    <div class="iCard--gallery ctgallery">
+      <slider class="iCard--slider" :images="slides"></slider>
 
       <div class="ctgallery--pricePanel">
         <div class="ctgallery--priceHolder transformer">
@@ -218,14 +125,7 @@ onMounted( async () => {
     <div class="iCard--block iCard--filter ctfilter">
       <div class="ctfilter--wall ctwall">
         <p class="ctwall--title">{{ name }}</p>
-
-        <div class="ctwall--optHolder" v-for="item in optList" :id="item.id">
-          <p class="ctwall--optName">{{ item.name }}</p>
-
-          <ul class="ctwall--optList">
-            <li class="ctwall--optItem" v-for="value in item.values">{{ value }}</li>
-          </ul>
-        </div>
+        <productFilter class="ctwall--filter"></productFilter>
       </div>
     </div>
   </div>
@@ -280,7 +180,7 @@ onMounted( async () => {
 
   display: grid;
   grid-template-rows: 50px 1fr;
-  grid-template-columns: 6fr 3fr;
+  grid-template-columns: 6fr minmax(300px, 3fr);
   max-height: 100%;
   overflow: hidden;
 
@@ -323,15 +223,13 @@ onMounted( async () => {
 }
 
 .ctgallery {
-  display: grid;
-  grid-template-rows: 1fr 60px;
-  grid-template-columns: 80px 1fr;
-  grid-template-areas: 
-    "thumblist mainSlide"
-    "thumblist pricePanel"
-  ;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-  gap: 10px;
+.iCard--slider {
+  flex-grow: 1;
 }
 
 .ctgallery--thumblist {
@@ -383,10 +281,12 @@ onMounted( async () => {
 .ctgallery--pricePanel {
   display: flex;
   justify-content: center;
-  background: hsl(190 10% 85%);
+  /* background: hsl(190 10% 85%); */
+  background: #ecf0f1;
   grid-area: pricePanel;
 
-  width: 100%; height: 100%;
+  width: 100%; 
+  height: 60px;
   overflow: hidden;
 }
 
@@ -473,96 +373,27 @@ onMounted( async () => {
   overflow: hidden;
 }
 
-.ctfilter {
+
+.ctfilter--wall {
+  flex-grow: 1;
+}
+
+
+.ctfilter--wall {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-}
+  gap: 40px;
 
-.ctfilter--wall {
-  flex-grow: 1;
-}
-
-.ctfilter--optList {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  list-style: none;
-  padding: 20px 0 0 0;
-  margin: 10px 0 0 0;
-
-  box-sizing: border-box;
-  font-family: 'Zekton';
-}
-
-
-.ctfilter--optList::before {
-  content: '';
-  position: absolute;
-  top: 4px; left: 0;
-  width: 100%;
-  height: 1px;
-
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, .0),
-    rgba(0, 0, 0, .3),
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, .7),
-    rgba(0, 0, 0, .0)
-  );
-}
-
-.ctfilter--optList::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 1px;
-
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, .0),
-    rgba(0, 0, 0, .7),
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, .3),
-    rgba(0, 0, 0, .0)
-  );
-}
-
-
-.ctfilter--optItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 10px 20px;
-
-  background: hsl(190 10% 95%);
-  border: 2px solid hsl(190 10% 85%);
-  color: hsl(190 10% 0%);
-
-  font-size: 1rem;
-  letter-spacing: 1px;
-  font-weight: 500;
-  flex-grow: 1;
-
-  cursor: pointer;
-  transition: .3s
-}
-
-
-
-.ctfilter--wall {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   height: 100%;
 }
 
 .ctwall--title {
+  /* justify-content: center; */
+  /* align-items: center; */
+
   position: relative;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   letter-spacing: 1px;
   padding: 10px;
   padding-top: 0;
@@ -598,82 +429,15 @@ onMounted( async () => {
   );
 }
 
-.ctwall--optHolder {
-  margin: 70px 0px;
-}
-
-.ctwall--optName {
-  position: relative;
-  width: 99%;
-
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  background: linear-gradient(
-    to right,
-    rgba(189, 195, 199, .4),
-    rgba(236, 240, 241, 0)
-  );
-
-
-  padding: 10px;
+.ctwall--filter {
+  height: 60%;
+  mask-image: linear-gradient(to bottom, transparent, black 20px, black 90%, transparent);
   box-sizing: border-box;
-  margin: 0;
+  padding: 40px 20px 40px 0px;
+  overflow-y: scroll;
+  flex-grow: 1;
 }
 
-.ctwall--optName::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: 0;
-  width: 100%; height: 100%;
-
-  border: 1px solid black;
-
-  mask-image: linear-gradient(
-    to bottom right,
-    rgba(0, 0, 0, .4),
-    rgba(0, 0, 0, .2),
-    rgba(0, 0, 0, .3)
-  );
-}
-
-
-.ctwall--optList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-
-  list-style: none;
-  font-weight: 300;
-  padding: 0;
-
-  margin: 20px 0;
-}
-
-.ctwall--optItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-  padding: 10px 20px;
-  background: hsl(190 10% 90%);
-  border-radius: 4px;
-
-  color: rgba(0, 0, 0, 1);
-  font-size: .9rem;
-  letter-spacing: 1px;
-  font-weight: 400;
-  
-  transition: .3s;
-  cursor: pointer;
-}
-
-
-.ctwall--optItem:hover {
-  background: hsl(190 10% 50%);
-  /* color: hsl(190 10% 100%); */
-  color: white;
-}
 
 
 
@@ -682,7 +446,8 @@ onMounted( async () => {
 .iCard--footer {
   display: flex;
   justify-content: center;
-  background: hsl(190 10% 95%);
+  /* background: hsl(190 10% 95%); */
+  background: #ecf0f1;
 
   position: relative;
 }
@@ -746,7 +511,7 @@ onMounted( async () => {
   }
 
   .ctgallery {
-    height: 80dvh;
+    height: 60dvh;
     grid-template-areas: 
       'mainSlide mainSlide'
       ' thumblist thumblist'

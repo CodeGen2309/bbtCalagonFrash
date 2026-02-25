@@ -1,5 +1,5 @@
 export default {
-  devmode : true,
+  devmode : false,
   apiUrl  : "https://belbeton.ru",
 
 
@@ -47,5 +47,9 @@ export default {
     
     let link = `${this.apiUrl}/test/ajax/get-item.php?id=${pid}`
     return await this.getReqest(link)
+  },
+
+  async getFilter () {
+    return await fetch("/mocks/mockFilter.json")
   },
 }

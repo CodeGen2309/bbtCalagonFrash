@@ -17,11 +17,11 @@ onMounted( async () => {
 
 <template>
 <div class="iFilter">
-  <div class="iFilter--optHolder" v-for="item in filterData" :id="item.id">
-    <p class="iFilter--optName">{{ item.name }}</p>
+  <div class="iFilter--optHolder" v-for="item in filterData" :id="item['ID']">
+    <p class="iFilter--optName">{{ item['NAME'] }}</p>
 
     <ul class="iFilter--optList">
-      <li class="iFilter--optValue" v-for="value in item.values">{{ value }}</li>
+      <li class="iFilter--optValue" v-for="value in item['VALUES']">{{ value['VALUE'] }}</li>
     </ul>
   </div>
 </div>

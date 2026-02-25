@@ -102,4 +102,8 @@ img {
 .thumbnail:hover {
   opacity: 1;
 }
+
+
+@media screen and (max-width: 600px) {
+}
 </style>

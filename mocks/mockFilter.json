@@ -1,42 +1,459 @@
 [
   {
-    "name": "Ширина", 
-    "id": "width",
-    "values": ["150мм", "200мм", "300мм", "400мм", "500мм"]
+    "ID": "369",
+    "NAME": "Толщина",
+    "CODE": "ATT_GAUGE",
+    "VALUES": [
+      {
+        "ID": "685",
+        "PROPERTY_ID": "369",
+        "VALUE": "100",
+        "DEF": "N",
+        "SORT": "400",
+        "XML_ID": "ATT_GAUGE_100",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_GAUGE_100",
+        "PROPERTY_NAME": "Толщина",
+        "PROPERTY_CODE": "ATT_GAUGE",
+        "PROPERTY_SORT": "100"
+      },
+      {
+        "ID": "682",
+        "PROPERTY_ID": "369",
+        "VALUE": "45",
+        "DEF": "N",
+        "SORT": "100",
+        "XML_ID": "ATT_GAUGE_45",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_GAUGE_45",
+        "PROPERTY_NAME": "Толщина",
+        "PROPERTY_CODE": "ATT_GAUGE",
+        "PROPERTY_SORT": "100"
+      },
+      {
+        "ID": "683",
+        "PROPERTY_ID": "369",
+        "VALUE": "60",
+        "DEF": "N",
+        "SORT": "200",
+        "XML_ID": "ATT_GAUGE_60",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_GAUGE_60",
+        "PROPERTY_NAME": "Толщина",
+        "PROPERTY_CODE": "ATT_GAUGE",
+        "PROPERTY_SORT": "100"
+      },
+      {
+        "ID": "684",
+        "PROPERTY_ID": "369",
+        "VALUE": "80",
+        "DEF": "N",
+        "SORT": "300",
+        "XML_ID": "ATT_GAUGE_80",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_GAUGE_80",
+        "PROPERTY_NAME": "Толщина",
+        "PROPERTY_CODE": "ATT_GAUGE",
+        "PROPERTY_SORT": "100"
+      }
+    ]
   },
-
   {
-    "name": "Высота", 
-    "id": "height",
-    "values": ["20мм", "30мм", "40мм", "50мм", "60мм"]
+    "ID": "395",
+    "NAME": "Размеры плитки",
+    "CODE": "ATT_RAZPLIT",
+    "VALUES": [
+      {
+        "ID": "802",
+        "PROPERTY_ID": "395",
+        "VALUE": "197*(197\/97)",
+        "DEF": "N",
+        "SORT": "400",
+        "XML_ID": "1D",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "1D",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "803",
+        "PROPERTY_ID": "395",
+        "VALUE": "197*197",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "1K",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "1K",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "799",
+        "PROPERTY_ID": "395",
+        "VALUE": "197*97",
+        "DEF": "N",
+        "SORT": "100",
+        "XML_ID": "1P",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "1P",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1312",
+        "PROPERTY_ID": "395",
+        "VALUE": "450*150,225*150,150*150",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "21ffbfb965a43e4d6ebbe216567a23e3",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "21ffbfb965a43e4d6ebbe216567a23e3",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "808",
+        "PROPERTY_ID": "395",
+        "VALUE": "97*97",
+        "DEF": "N",
+        "SORT": "100",
+        "XML_ID": "2K",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "2K",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "800",
+        "PROPERTY_ID": "395",
+        "VALUE": "247*59,5",
+        "DEF": "N",
+        "SORT": "200",
+        "XML_ID": "2P",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "2P",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "813",
+        "PROPERTY_ID": "395",
+        "VALUE": "188*188",
+        "DEF": "N",
+        "SORT": "1000",
+        "XML_ID": "3К",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "3К",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "815",
+        "PROPERTY_ID": "395",
+        "VALUE": "240*128",
+        "DEF": "N",
+        "SORT": "1200",
+        "XML_ID": "3Ф",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "3Ф",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "806",
+        "PROPERTY_ID": "395",
+        "VALUE": "497*497",
+        "DEF": "N",
+        "SORT": "800",
+        "XML_ID": "5K",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "5K",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "801",
+        "PROPERTY_ID": "395",
+        "VALUE": "597*297",
+        "DEF": "N",
+        "SORT": "300",
+        "XML_ID": "5P",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "5P",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "814",
+        "PROPERTY_ID": "395",
+        "VALUE": "333*197",
+        "DEF": "N",
+        "SORT": "1100",
+        "XML_ID": "5Ф",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "5Ф",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "805",
+        "PROPERTY_ID": "395",
+        "VALUE": "297*297",
+        "DEF": "N",
+        "SORT": "700",
+        "XML_ID": "6K",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "6K",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1316",
+        "PROPERTY_ID": "395",
+        "VALUE": "176\/153*121 96\/73*121",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "ab4fc5db17dbf6a14a726a373f7d212b",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ab4fc5db17dbf6a14a726a373f7d212b",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1310",
+        "PROPERTY_ID": "395",
+        "VALUE": "172*115\/115*115\/115*112\/70\/86*110\/53*60",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "af1e5821f20c71b4db4324b823c4bf3a",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "af1e5821f20c71b4db4324b823c4bf3a",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "807",
+        "PROPERTY_ID": "395",
+        "VALUE": "597*297",
+        "DEF": "N",
+        "SORT": "900",
+        "XML_ID": "b69053939746dc7fe6b21c9c942d3cb0",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "b69053939746dc7fe6b21c9c942d3cb0",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1307",
+        "PROPERTY_ID": "395",
+        "VALUE": "172*115, 115*115",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "classico",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "classico",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "804",
+        "PROPERTY_ID": "395",
+        "VALUE": "247*59,5",
+        "DEF": "N",
+        "SORT": "600",
+        "XML_ID": "e1fc26fe7259cabeabc1dafbc3f7ff2b",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "e1fc26fe7259cabeabc1dafbc3f7ff2b",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1305",
+        "PROPERTY_ID": "395",
+        "VALUE": "207*207, 207*102",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "fantazy1",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "fantazy1",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1306",
+        "PROPERTY_ID": "395",
+        "VALUE": "312*207, 207*207, 207*102",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "fantazy2",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "fantazy2",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1309",
+        "PROPERTY_ID": "395",
+        "VALUE": "209*139, 139*139, 139*69",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "rezidence",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "rezidence",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      },
+      {
+        "ID": "1308",
+        "PROPERTY_ID": "395",
+        "VALUE": "3339*197",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "romb",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "romb",
+        "PROPERTY_NAME": "Размеры плитки",
+        "PROPERTY_CODE": "ATT_RAZPLIT",
+        "PROPERTY_SORT": "200"
+      }
+    ]
   },
-
   {
-    "name": "Тип покраски", 
-    "id": "okrasType",
-    "values": ["частичная", "полная", "смешанная"]
+    "ID": "362",
+    "NAME": "Серия",
+    "CODE": "ATT_SERIES",
+    "VALUES": [
+      {
+        "ID": "645",
+        "PROPERTY_ID": "362",
+        "VALUE": "COLOR MIX",
+        "DEF": "N",
+        "SORT": "300",
+        "XML_ID": "ATT_SERIES_COLORMIX",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_SERIES_COLORMIX",
+        "PROPERTY_NAME": "Серия",
+        "PROPERTY_CODE": "ATT_SERIES",
+        "PROPERTY_SORT": "300"
+      },
+      {
+        "ID": "644",
+        "PROPERTY_ID": "362",
+        "VALUE": "Лайн",
+        "DEF": "N",
+        "SORT": "200",
+        "XML_ID": "ATT_SERIES_LINE",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_SERIES_LINE",
+        "PROPERTY_NAME": "Серия",
+        "PROPERTY_CODE": "ATT_SERIES",
+        "PROPERTY_SORT": "300"
+      },
+      {
+        "ID": "643",
+        "PROPERTY_ID": "362",
+        "VALUE": "Стандарт",
+        "DEF": "N",
+        "SORT": "100",
+        "XML_ID": "ATT_SERIES_STANDART",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_SERIES_STANDART",
+        "PROPERTY_NAME": "Серия",
+        "PROPERTY_CODE": "ATT_SERIES",
+        "PROPERTY_SORT": "300"
+      }
+    ]
   },
-
   {
-    "name": "Цвет", 
-    "id": "color",
-    "values": ["белый", "серый", "черный", "красный", "желтый"]
-  },
-
-  {
-    "name": "Толщина", 
-    "id": "thickness",
-    "values": ["2мм", "3мм", "4мм", "5мм", "6мм"]
-  },
-  {
-    "name": "Толщина", 
-    "id": "thickness3",
-    "values": ["2мм", "3мм", "4мм", "5мм", "6мм"]
-  },
-  {
-    "name": "Толщина", 
-    "id": "thickness4",
-    "values": ["2мм", "3мм", "4мм", "5мм", "6мм"]
+    "ID": "397",
+    "NAME": "Цветовое решение",
+    "CODE": "ATT_COLOR_DESIGHN",
+    "VALUES": [
+      {
+        "ID": "810",
+        "PROPERTY_ID": "397",
+        "VALUE": "COLOR MIX",
+        "DEF": "N",
+        "SORT": "200",
+        "XML_ID": "ATT_COLOR_DESIGN_COLORMIX",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_COLOR_DESIGN_COLORMIX",
+        "PROPERTY_NAME": "Цветовое решение",
+        "PROPERTY_CODE": "ATT_COLOR_DESIGHN",
+        "PROPERTY_SORT": "400"
+      },
+      {
+        "ID": "811",
+        "PROPERTY_ID": "397",
+        "VALUE": "Гранит",
+        "DEF": "N",
+        "SORT": "300",
+        "XML_ID": "ATT_COLOR_DESIGN_GRANIT",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_COLOR_DESIGN_GRANIT",
+        "PROPERTY_NAME": "Цветовое решение",
+        "PROPERTY_CODE": "ATT_COLOR_DESIGHN",
+        "PROPERTY_SORT": "400"
+      },
+      {
+        "ID": "1281",
+        "PROPERTY_ID": "397",
+        "VALUE": "Гранит Микс",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "ATT_COLOR_DESIGN_GRANITMIX",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_COLOR_DESIGN_GRANITMIX",
+        "PROPERTY_NAME": "Цветовое решение",
+        "PROPERTY_CODE": "ATT_COLOR_DESIGHN",
+        "PROPERTY_SORT": "400"
+      },
+      {
+        "ID": "817",
+        "PROPERTY_ID": "397",
+        "VALUE": "Стандарт",
+        "DEF": "N",
+        "SORT": "500",
+        "XML_ID": "ATT_COLOR_DESIGN_STAND",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_COLOR_DESIGN_STAND",
+        "PROPERTY_NAME": "Цветовое решение",
+        "PROPERTY_CODE": "ATT_COLOR_DESIGHN",
+        "PROPERTY_SORT": "400"
+      },
+      {
+        "ID": "809",
+        "PROPERTY_ID": "397",
+        "VALUE": "Стандарт",
+        "DEF": "N",
+        "SORT": "100",
+        "XML_ID": "ATT_COLOR_DESIGN_STANDART",
+        "TMP_ID": null,
+        "EXTERNAL_ID": "ATT_COLOR_DESIGN_STANDART",
+        "PROPERTY_NAME": "Цветовое решение",
+        "PROPERTY_CODE": "ATT_COLOR_DESIGHN",
+        "PROPERTY_SORT": "400"
+      }
+    ]
   }
 ]
-

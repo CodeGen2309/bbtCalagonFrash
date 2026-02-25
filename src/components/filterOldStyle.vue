@@ -3,9 +3,9 @@ import apirator from '@/lib/apirator.js';
 import { onMounted, ref } from 'vue';
 
 const filterData = ref([{
-  "name": "Ширина", 
-  "id": "width",
-  "values": ["150мм", "200мм", "300мм", "400мм", "500мм"]
+  "NAME": "Ширина", 
+  "CODE": "width",
+  "VALUES": ["150мм", "200мм", "300мм", "400мм", "500мм"]
 }])
 
 onMounted( async () => {

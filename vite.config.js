@@ -46,7 +46,7 @@ export default defineConfig({
           "src": "/test/icons/logo.svg",
           "sizes": "192x192",
           "type": "image/svg+xml"
-        },],
+        }],
 
         "prefer_related_applications": false
       }

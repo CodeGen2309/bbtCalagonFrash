@@ -6,10 +6,12 @@
   import apirator from '@/lib/apirator'
   import productList from '@/components/productList.vue';
   import pageFilter from '@/components/filter.vue';
+  import angleLink from "@/components/angleLink.vue";
 
   let route = useRoute()
   let sectionID = route.params.id
   let isMobile = window.innerWidth < 900
+
 
   let section = ref({})
   let prodList = ref([])
@@ -57,8 +59,6 @@
     <div class="sect--cover" v-if="!isMobile">
       <img class="sect--coverImage" :src="section.PICTURE_FILE">
       <p class="sect--coverTitle">{{  section.NAME  }}</p>
-
-      <RouterLink to="/" class="sect--backButton">Вернуться в каталог</RouterLink>
     </div>
 
     <div class="sect--sidebar" v-if="!isMobile">
@@ -69,11 +69,15 @@
       <div class="sect--cover" v-if="isMobile">
         <img class="sect--coverImage" :src="section.PICTURE_FILE">
         <p class="sect--coverTitle">{{  section.NAME  }}</p>
-
-        <RouterLink to="/" class="sect--backButton">Вернуться в каталог</RouterLink>
       </div>
 
       <productList class="sect--prodListComp" :items="prodList"/>
+    </div>
+
+    <div class="sect--links" v-if="!isMobile">
+      <angleLink class="sect--link" link="catalog" text="Вернуться в каталог" />
+      <!-- <angleLink class="sect--link" link="catalog" text="Меню магазина" /> -->
+      <!-- <angleLink class="sect--link" link="catalog" text="Свернуть боковую панель" /> -->
     </div>
   </div>
 </template>
@@ -185,6 +189,19 @@
   padding: 40px 20px;
   flex-grow: 1;
   overflow-y: scroll;  
+}
+
+.sect--links {
+  position: absolute;
+  display: flex;
+  bottom: 0; left: 0;
+  padding-right: 120px;
+  overflow: hidden;
+}
+
+.sect--link {
+  position: relative;
+  z-index: inherit;
 }
 
 

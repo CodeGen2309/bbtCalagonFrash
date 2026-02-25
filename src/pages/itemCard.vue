@@ -6,6 +6,7 @@ import { RouterLink, useRoute } from 'vue-router';
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
+// import productFilter from '@/components/filterOldStyle.vue';
 
 
 let mockButtons = [
@@ -97,7 +98,7 @@ onMounted( async () => {
       <RouterLink :to="{ name: 'section', params: { id: section.ID }}" class="iCard--crumb">
         {{  section.NAME  }}
       </RouterLink>
-
+      /
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 
@@ -171,9 +172,23 @@ onMounted( async () => {
 }
 
 .iCard--crumb {
+  background: #ecf0f1;
+  padding: 6px 14px;
+  border-radius: 6px;
+  /* border: 2px solid rgba(0, 0, 0, .1); */
   text-decoration: none;
   color: inherit;
+
+  cursor: pointer;
+  transition: .3s;
 }
+
+
+.iCard--crumb:hover {
+  background: rgba(0, 0, 0, .4);
+  color: white;
+}
+
 
 .iCard--content {
   position: relative;
@@ -518,6 +533,10 @@ onMounted( async () => {
     ;
   }
 
+  .ctgallery--count {
+    width: 40%;
+  }
+
   .iCard--footer {
     display: none;
   }
@@ -529,11 +548,18 @@ onMounted( async () => {
     z-index: 9;
   }
 
-  .ctgallery--mainSlide {
+  .transformer {
+    padding: 0;
+  }
+  .ctgallery--countHolder,
+  .ctgallery--priceHolder { 
+    padding-bottom: 20px;
   }
 
-  .ctgallery--thumblist {
-    flex-direction: row;
+  .ctgallery--priceHolder {
+    padding-left: 50px;
+    font-size: 1rem;
   }
+
 }
 </style>

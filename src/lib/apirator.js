@@ -51,5 +51,6 @@ export default {
 
   async getFilter () {
     return await fetch("/test/mocks/mockFilter.json")
+    // return await fetch("/mocks/mockFilter.json")
   },
 }

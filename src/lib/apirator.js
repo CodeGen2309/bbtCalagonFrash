@@ -50,7 +50,10 @@ export default {
   },
 
   async getFilter () {
+    if (this.devmode) {
+      return await fetch("/mocks/mockFilter.json")
+    }
+    
     return await fetch("/test/mocks/mockFilter.json")
-    // return await fetch("/mocks/mockFilter.json")
   },
 }

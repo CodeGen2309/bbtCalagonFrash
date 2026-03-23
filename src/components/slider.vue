@@ -1,7 +1,7 @@
 <script setup>
   import 'vue3-carousel/carousel.css'
   import { Carousel, Slide, Navigation } from 'vue3-carousel'
-  import { ref, defineProps } from 'vue'
+  import { ref } from 'vue'
 
   const props = defineProps({ 'images': Array })
 

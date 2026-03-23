@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted, defineProps } from 'vue';
+  import { onMounted } from 'vue';
   import { RouterLink } from 'vue-router';
 
   import setupEnv from '@/setupEnv';

@@ -3,7 +3,8 @@ import { RouterLink } from 'vue-router';
 
 import sectionList       from '@/components/sectionList.vue';
 import mobileSectionList from '@/components/mobileSectionList.vue';
-import massonry          from '@/components/massonry.vue';
+// import massonry          from '@/components/massonry.vue';\
+import massonry          from '@/components/scrollTiles.vue';
 import CtlgFooter        from '@/components/ctlgFooter.vue';
 
 let isMobile = window.innerWidth < 900
@@ -52,6 +53,7 @@ let isMobile = window.innerWidth < 900
 
 
 .ctlog--itemsHolder {
+  overflow-y: scroll;
 }
 
 .ctlog--itemList {

@@ -1,34 +1,27 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, Transition } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
-import { animate } from 'motion';
-
 
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
 
 
-let mockButtons = [
-  'С этим товаром покупают', 
-  'Гарантийные обязательства', 
-]
 
-
-let route = useRoute()
+let route  = useRoute()
 let itemID = route.params.id
 
 let arrItem  = ref({})
 let name  = ref('')
+
 let decription = ref('')
+let showDescription = ref(false)
 
 let section = ref({ 'NAME': 'Load',  'ID': '1'})
 
 let slides = ref([])
 let mockSlide = ref("/img/plitka/atlant.jpg")
 
-let subinfo = ref(false)
-let subTitle = ref('Описание')
 let showNotify = ref(false)
 
 
@@ -42,23 +35,6 @@ const finalPrice = computed(() => basePrice.value * count.value)
 
 // FUNCTIONS
 // ============================
-
-async function togleInfo (text) {
-  let info = document.querySelector('.iCard--subinfo')
-  subTitle.value = text
-  
-  if (!subinfo.value) {
-    subinfo.value = !subinfo.value
-    await animate(info, { opacity: [0, 1] }, { duration: .3, easing: 'ease-in-out' })
-  }
-}
-
-
-async function hideInfo () {
-  let info = document.querySelector('.iCard--subinfo')
-  await animate(info, { opacity: [1, 0] }, { duration: .3, easing: 'ease-in-out' })
-  subinfo.value = false
-}
 
 
 function skuUpdateHandler (sku) {
@@ -113,11 +89,6 @@ onMounted( async () => {
 <template>
 <div class="iCard">
   <div class="iCard--content">
-    <div class="iCard--subinfo" v-show="subinfo">
-      <div class="iCard--subinfoTitle" v-html="decription" ></div>
-      <div class="iCard--subinfoClose" @click="hideInfo">Вернуться к товару</div>
-    </div>
-
     <div class="iCard--block iCard--breadcrumbs">
       <RouterLink :to="{ name: 'catalog', params: { id: section.ID }}" class="iCard--crumb">Каталог</RouterLink> / 
 
@@ -129,7 +100,16 @@ onMounted( async () => {
     </div>
 
     <div class="iCard--gallery ctgallery">
-      <slider class="iCard--slider" :images="slides"></slider>
+      <div class="iCard--sliderHolder">
+        <slider class="iCard--slider" :images="slides" />
+
+        <Transition name="notifyAnim">
+          <div v-if="showDescription" 
+            class="iCard--descHolder"
+            v-html="decription"
+          ></div>
+        </Transition>
+      </div>
 
       <div class="ctgallery--pricePanel">
         <div class="ctgallery--priceHolder transformer">
@@ -144,11 +124,9 @@ onMounted( async () => {
         </div>
 
         <div class="ctgallery--buyHolder transformer">
-          <button class="ctgallery--buyButton transformer--inner"
-            @click="addToBasket"
-          >
-            В корзину
-          </button>
+          <button @click="addToBasket"
+            class="ctgallery--buyButton transformer--inner"
+          > В корзину </button>
         </div>
 
         <transition name="notifyAnim">
@@ -160,7 +138,10 @@ onMounted( async () => {
     <div class="iCard--block iCard--filter ctfilter">
       <div class="ctfilter--wall ctwall">
         <p class="ctwall--title">{{ name }}</p>
-        <productFilter class="ctwall--filter" :pid="itemID" @update-sku="skuUpdateHandler" />
+
+        <productFilter class="ctwall--filter" :pid="itemID" 
+          @update-sku="skuUpdateHandler" 
+        />
       </div>
     </div>
   </div>
@@ -169,16 +150,11 @@ onMounted( async () => {
   <div class="iCard--block iCard--footer">
     <a href="https://belbeton.ru/building-materials/basket/" 
       class="iCard--footerLink iCard--basketLink"
-    >
-      Корзина
-    </a>
-    
+    >Корзина</a>
+
     <a class="iCard--footerLink" href="#" 
-      v-for="item in mockButtons"
-      @click="togleInfo(item)"
-    >
-      {{ item }}
-    </a>
+      @click="showDescription = !showDescription"
+    >Описание</a>    
   </div>
 </div>
 </template>
@@ -287,8 +263,38 @@ onMounted( async () => {
   gap: 20px;
 }
 
-.iCard--slider {
+.iCard--sliderHolder {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+
+  position: relative;
+}
+
+.iCard--slider {
+  position: relative;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.iCard--descHolder {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  overflow: scroll;
+
+
+  display: flex;
+  align-items: center;
+  
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: blur(8px);
+  z-index: 2;
 }
 
 .ctgallery--thumblist {

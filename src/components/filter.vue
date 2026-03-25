@@ -66,7 +66,8 @@ const skuList  = ref({
   },
 })
 
-const matrix = ref({})
+const matrix = ref({
+})
 
 const skuProps = ref({
   "PROPERTY_ATT_GAUGE"    : "Толщина",
@@ -76,7 +77,6 @@ const skuProps = ref({
 
 
 const currentOffer = ref({})
-
 
 
 function isComplex (item) {
@@ -135,15 +135,18 @@ function checkButton (key, value) {
 
 onMounted( async () => {
   let pid = props.pid
-  console.log(pid);
   
   let filterData = await apirator.getFilter(pid).then(res => res.json())
   console.log('GET filter');
   
 
-  matrix.value   = filterData['MATRIX']
   skuList.value  = filterData['OFFERS']
   skuProps.value = filterData['PROPS']
+  matrix.value   = filterData['MATRIX']
+
+
+  console.log({matrix: matrix.value});
+
   currentOffer.value = updateCurrentOffer()
 })
 </script>
@@ -151,18 +154,18 @@ onMounted( async () => {
 
 <template>
 <div class="iFilter">
-  <div class="iFilter--optHolder" v-for="item, key in matrix" ">
+  <div class="iFilter--optHolder" v-for="item, key in matrix">
     <p class="iFilter--optName">{{ skuProps[key] }}</p>
 
     <ul class="iFilter--optList" v-if="isComplex(item)">
-        <button class="iFilter--optIcon" v-for="dict in item" @click="updateFilter(key, dict)"
-          :class="{'active': complexIsActive(key, dict)}"
-          :disabled="!checkButton(key, dict)"
-        >
-          <img class="iFilter--optImg" :src="dict['PICTURE_FILE']" alt="" />
-          <p class="iFilter--optText">{{ dict['UF_NAME'] }}</p>
-        </button>
-      </ul>
+      <button class="iFilter--optIcon" v-for="dict in item" @click="updateFilter(key, dict)"
+        :class="{'active': complexIsActive(key, dict)}"
+        :disabled="!checkButton(key, dict)"
+      >
+        <img class="iFilter--optImg" :src="dict['PICTURE_FILE']" alt="" />
+        <p class="iFilter--optText">{{ dict['UF_NAME'] }}</p>
+      </button>
+    </ul>
 
 
     <ul class="iFilter--optList" v-else>

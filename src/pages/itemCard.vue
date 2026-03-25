@@ -1,7 +1,8 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import { animate } from 'motion';
 import { RouterLink, useRoute } from 'vue-router';
+import { animate } from 'motion';
+
 
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
@@ -9,7 +10,6 @@ import productFilter from '@/components/filter.vue';
 
 
 let mockButtons = [
-  'Описание', 
   'С этим товаром покупают', 
   'Гарантийные обязательства', 
 ]
@@ -29,6 +29,7 @@ let mockSlide = ref("/img/plitka/atlant.jpg")
 
 let subinfo = ref(false)
 let subTitle = ref('Описание')
+let showNotify = ref(false)
 
 
 // SKU OPTIONS
@@ -67,11 +68,22 @@ function skuUpdateHandler (sku) {
 }
 
 
+function showNotifyText () {
+  showNotify.value = true
+
+  setTimeout(() => {
+    showNotify.value = false
+  }, 5000);
+} 
+
+
 async function addToBasket () {
   let req = await apirator.addToBasket(currentSku.value['ID'], count.value)
   .then(res => res.json())
 
   console.log({addToBasket: req});
+  showNotifyText();
+  count.value = 1
 }
 
 
@@ -135,9 +147,13 @@ onMounted( async () => {
           <button class="ctgallery--buyButton transformer--inner"
             @click="addToBasket"
           >
-            Добавить
+            В корзину
           </button>
         </div>
+
+        <transition name="notifyAnim">
+          <div v-if="showNotify" class="ctgallery--notify">Товар добавлен в корзину</div>
+        </transition>
       </div>
     </div>
 
@@ -151,6 +167,12 @@ onMounted( async () => {
 
   
   <div class="iCard--block iCard--footer">
+    <a href="https://belbeton.ru/building-materials/basket/" 
+      class="iCard--footerLink iCard--basketLink"
+    >
+      Корзина
+    </a>
+    
     <a class="iCard--footerLink" href="#" 
       v-for="item in mockButtons"
       @click="togleInfo(item)"
@@ -316,6 +338,7 @@ onMounted( async () => {
 }
 
 .ctgallery--pricePanel {
+  position: relative;
   display: flex;
   justify-content: center;
   /* background: hsl(190 10% 85%); */
@@ -325,6 +348,23 @@ onMounted( async () => {
   width: 100%; 
   height: 60px;
   overflow: hidden;
+}
+
+.ctgallery--notify {
+  position: absolute;
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+
+  background-color: #4cd137;
+  color: white;
 }
 
 .transformer {
@@ -522,6 +562,12 @@ onMounted( async () => {
 .iCard--footerLink:hover::before {
   width: 100%;
   background: rgba(189, 195, 199, .3);
+}
+
+
+.notifyAnim-enter-active, 
+.notifyAnim-leave-active {
+  opacity: 0;
 }
 
 @media screen and (width < 900px) {

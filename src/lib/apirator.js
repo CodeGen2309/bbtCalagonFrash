@@ -1,5 +1,6 @@
 export default {
-  devmode : false,
+  // devmode : false,
+  devmode : true,
   apiUrl  : "https://belbeton.ru",
 
 
@@ -24,7 +25,7 @@ export default {
       return await fetch("/mocks/sectionList.json")
     }
 
-    let link = `${this.apiUrl}/test/ajax/get-sections.php`
+    let link = `/test/ajax/get-sections.php`
     return await this.getReqest(link)
   },
 
@@ -35,7 +36,7 @@ export default {
     }
 
 
-    let link = `${this.apiUrl}/test/ajax/get-section-items.php?section_id=${sectoinId}`
+    let link = `/test/ajax/get-section-items.php?section_id=${sectoinId}`
     return await this.getReqest(link)
   },
 
@@ -45,7 +46,7 @@ export default {
     }
 
     
-    let link = `${this.apiUrl}/test/ajax/get-item.php?id=${pid}`
+    let link = `/test/ajax/get-item.php?id=${pid}`
     return await this.getReqest(link)
   },
 

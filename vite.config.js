@@ -20,7 +20,6 @@ export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
-    // vueDevTools(),
 
     VitePWA({
       registerType: "autoUpdate",

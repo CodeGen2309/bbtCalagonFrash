@@ -15,6 +15,7 @@
     slideEffect: 'slide',
     mouseDrag: false,
     touchDrag: true,
+    // gap: 20
     // height: 400,
   }
 
@@ -32,7 +33,10 @@
 <div class="slider">
   <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
     <Slide v-for="image, index in images" :key="index">
-      <img :src="image" alt="Gallery Image" class="gallery-image" />
+      <div class="gallery--imageHolder">
+        <img :src="image" alt="Gallery Image" class="gallery--backdrop" />
+        <img :src="image" alt="Gallery Image" class="gallery--image" />
+      </div>
     </Slide>
   </Carousel>
 
@@ -43,7 +47,7 @@
           :class="['thumbnail', { 'is-active': isActive }]"
           @click="slideTo(currentIndex)"
         >
-          <img :src="image" alt="Thumbnail Image" class="thumbnail-image" />
+          <img :src="image" alt="Thumbnail Image" class="thumbnail--image" />
         </div>
       </template>
     </Slide>
@@ -77,12 +81,33 @@
 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-.gallery-image {
+.gallery--imageHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: black;
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gallery--backdrop {
+  position: absolute;
+  width: 110%; height: 110%;
+  object-fit: cover;
+  filter: blur(6px);
+}
+
+.gallery--image {
+  position: relative;
   /* border-radius: 16px; */
-  border-radius: 0px;
 }
 
 #thumbnails {
@@ -96,6 +121,10 @@ img {
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.3s ease-in-out;
+}
+
+.thumbnail--image {
+  object-fit: cover;
 }
 
 .thumbnail.is-active,

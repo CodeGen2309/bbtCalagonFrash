@@ -61,9 +61,9 @@
       <p class="sect--coverTitle">{{  section.NAME  }}</p>
     </div>
 
-    <div class="sect--sidebar" v-if="!isMobile">
+    <!-- <div class="sect--sidebar" v-if="!isMobile">
       <pageFilter class="sect--filter" />
-    </div>
+    </div> -->
 
     <div class="sect--productList">
       <div class="sect--cover" v-if="isMobile">
@@ -87,7 +87,7 @@
 
 .sect {
   display: grid;
-  grid-template-columns: minmax(400px, 2fr) 4fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 200px 1fr;
   gap: 20px;
 

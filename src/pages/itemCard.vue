@@ -6,7 +6,6 @@ import { RouterLink, useRoute } from 'vue-router';
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
-// import productFilter from '@/components/filterOldStyle.vue';
 
 
 let mockButtons = [
@@ -24,7 +23,6 @@ let name  = ref('')
 let decription = ref('')
 
 let section = ref({ 'NAME': 'Load',  'ID': '1'})
-let optList = ref([])
 
 let slides = ref([])
 let mockSlide = ref("/img/plitka/atlant.jpg")
@@ -32,10 +30,13 @@ let mockSlide = ref("/img/plitka/atlant.jpg")
 let subinfo = ref(false)
 let subTitle = ref('Описание')
 
-let basePrice = ref(1)
-let count = ref(1)
 
-let finalPrice = computed(() => basePrice.value * count.value)
+// SKU OPTIONS
+const currentSku = ref({ 'MEASURE': 'шт' })
+const basePrice = ref(1)
+const count = ref(1)
+
+const finalPrice = computed(() => basePrice.value * count.value)
 
 
 // FUNCTIONS
@@ -59,13 +60,26 @@ async function hideInfo () {
 }
 
 
+function skuUpdateHandler (sku) {
+  currentSku.value = sku
+  basePrice.value = parseInt(sku['PRICE_DATA']['PRICE'])
+  console.log({ sku: currentSku.value });
+}
+
+
+async function addToBasket () {
+  let req = await apirator.addToBasket(currentSku.value['ID'], count.value)
+  .then(res => res.json())
+
+  console.log({addToBasket: req});
+}
+
 
 async function setupAjax () {
   let resItem  = await apirator.getProduct(itemID).then(res => res.json())
   
   arrItem.value = resItem
-  optList.value = await apirator.getFilter().then(res => res.json())
-  
+
   name.value       = resItem['ITEM']['NAME']
   slides.value     = resItem['GALLERY']
   section.value    = resItem['SECTION']
@@ -113,12 +127,16 @@ onMounted( async () => {
         <div class="transformer ctgallery--countHolder">
           <div class="ctgallery--countPanel transformer--inner">
             <input class="ctgallery--count" type="number" v-model="count">
-            <span class="ctgallery--countUnit">  м<sup>2</sup> </span>
+            <span class="ctgallery--countUnit"> {{ currentSku['MEASURE'] }} </span>
           </div>
         </div>
 
         <div class="ctgallery--buyHolder transformer">
-          <button class="ctgallery--buyButton transformer--inner">Купить</button>
+          <button class="ctgallery--buyButton transformer--inner"
+            @click="addToBasket"
+          >
+            Добавить
+          </button>
         </div>
       </div>
     </div>
@@ -126,7 +144,7 @@ onMounted( async () => {
     <div class="iCard--block iCard--filter ctfilter">
       <div class="ctfilter--wall ctwall">
         <p class="ctwall--title">{{ name }}</p>
-        <productFilter class="ctwall--filter"></productFilter>
+        <productFilter class="ctwall--filter" :pid="itemID" @update-sku="skuUpdateHandler" />
       </div>
     </div>
   </div>
@@ -175,9 +193,13 @@ onMounted( async () => {
   background: #ecf0f1;
   padding: 6px 14px;
   border-radius: 6px;
-  /* border: 2px solid rgba(0, 0, 0, .1); */
   text-decoration: none;
   color: inherit;
+
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   cursor: pointer;
   transition: .3s;
@@ -404,9 +426,6 @@ onMounted( async () => {
 }
 
 .ctwall--title {
-  /* justify-content: center; */
-  /* align-items: center; */
-
   position: relative;
   font-size: 1.6rem;
   letter-spacing: 1px;

@@ -49,11 +49,21 @@ export default {
     return await this.getReqest(link)
   },
 
-  async getFilter () {
+  async getFilter (pid) {
     if (this.devmode) {
       return await fetch("/mocks/mockFilter.json")
     }
     
-    return await fetch("/test/mocks/mockFilter.json")
+    // return await fetch(`${this.apiUrl}/test/ajax/get-filter.php`)
+    return await fetch(`/test/ajax/get-filter.php?id=${pid}`)
   },
+
+
+  async addToBasket (pid, quantity) {
+    if (this.devmode) {
+      return true
+    }
+
+    return await fetch(`/test/ajax/add-to-basket.php?offerId=${pid}&quantity=${quantity}`)
+  }
 }

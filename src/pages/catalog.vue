@@ -9,6 +9,9 @@ import CtlgFooter        from '@/components/ctlgFooter.vue';
 
 let isMobile = window.innerWidth < 900
 
+
+
+
 </script>
 
 
@@ -25,8 +28,6 @@ let isMobile = window.innerWidth < 900
 
     <div class="ctlog--footer" v-if="!isMobile">
       <CtlgFooter class="ctlog--footerPanel"></CtlgFooter>
-      
-      <RouterLink :to="{ name: 'section', params: { id: '485' }}" class="ctlog--footerButton">Посмотреть весь каталог</RouterLink>
     </div>
   </div>
 </template>

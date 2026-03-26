@@ -9,10 +9,8 @@
 
 
   onMounted( async () => {
-    let sectionReq = await apirator.getSections()
-    let sectionList = await sectionReq.json()
-
-    sections.value = sectionList
+    const res = await apirator.getSections().then(res => res.json())
+    sections.value = res
   })
 </script>
 
@@ -118,7 +116,6 @@
   padding: 30px 50px;
   margin: 0;
 
-  transition: .3s;
   transition-delay: .1s;
 }
 

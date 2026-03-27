@@ -14,6 +14,9 @@ const sections = ref([])
 const activeSection  = ref({ 'NAME': 'Load',  'ID': '0'})
 const offers   = ref([])
 
+// Для обновления ленты в девмоде
+const rerenderKey = ref(0)
+
 
 
 
@@ -26,7 +29,9 @@ async function updateSection (sectionID) {
   activeSection.value = sectionData.section
   offers.value = sectionData.items
 
-  console.log('UPDATED');
+  // Для обновления ленты в девмоде
+  rerenderKey.value += 1 
+
   console.log('activeSection', activeSection.value);
 }
 
@@ -50,9 +55,11 @@ onMounted( async () => {
     </div>
 
     <div class="ctlog--itemsHolder" v-if="!isMobile">
-      <scrollTiles :offers="offers"  class="ctlog--itemList" 
-        :key="activeSection.ID" 
-      />
+      <Transition name="tilesAnim" mode="out-in">
+        <scrollTiles :offers="offers"  class="ctlog--itemList" 
+          :key="activeSection.ID"
+        />
+      </Transition>
     </div>
 
     <div class="ctlog--footer" v-if="!isMobile">
@@ -142,6 +149,18 @@ onMounted( async () => {
   color: rgba(0, 0, 0, 1);
   /* font-weight: 300; */
 }
+
+.tilesAnim-enter-active,
+.tilesAnim-leave-active {
+  transition: all .4s ease;
+}
+
+.tilesAnim-enter-from,
+.tilesAnim-leave-to {
+  opacity: 0;
+  filter: blur(10px);
+}
+
 
 @media screen and ( width < 900px ) {
   .ctlog {

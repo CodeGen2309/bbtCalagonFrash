@@ -1,0 +1,217 @@
+{
+  "mainMenu": [
+    {
+      "link": "https://belbeton.ru/corporation/",
+      "text": "Корпорация",
+      "subMenu": "corp",
+      "img": "/v4sources/img/menuCovers/14.jpg"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/",
+      "text": "Недвижимость",
+      "subMenu": "realEstate",
+      "img": "/v4sources/img/menuCovers/nedv.jpg"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/catalog/",
+      "text": "Строительные материалы",
+      "subMenu": "shop",
+      "img": "/v4sources/img/menuCovers/zavod.jpg"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/",
+      "text": "ЖНК",
+      "subMenu": "jnk",
+      "img": "/v4sources/img/menuCovers/jnk.jpg"
+    }
+  ],
+  "corp": [
+    {
+      "link": "https://belbeton.ru/corporation/",
+      "text": "О корпорации"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/the-structure-of-the-corporation/",
+      "text": "Структура корпорации"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/news/",
+      "text": "Новости"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/promotions-and-discounts/",
+      "text": "Акции и скидки"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/gallery/",
+      "text": "Галерея"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/social-responsibility.php",
+      "text": "Благотворительность"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/jobs/",
+      "text": "Вакансии"
+    },
+    {
+      "link": "https://belbeton.ru/corporation/contacts/",
+      "text": "Контакты"
+    }
+  ],
+  "shop": [
+    {
+      "link": "https://belbeton.ru/building-materials/catalog/",
+      "text": "Интернет-магазин"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/indiv-reports",
+      "text": "Сборные коттеджи"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/news/",
+      "text": "Новости"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/price-list/",
+      "text": "Прайс-лист"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/promotions-and-discounts/",
+      "text": "Акции и скидки"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/article/",
+      "text": "Статьи"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/contacts/",
+      "text": "Контакты"
+    },
+    {
+      "link": "https://belbeton.ru/building-materials/gallery/",
+      "text": "Галерея"
+    }
+  ],
+  "realEstate": [
+    {
+      "link": "https://belbeton.ru/real-estate/about-the-builder/",
+      "text": "Информация о застройщике"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/construction/buildings/",
+      "text": "Объекты строительства"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/price-list-for-property/",
+      "text": "Прайс-лист на недвижимость"
+    },
+    {
+      "link": "http://belcpn.ru/",
+      "text": "Вторичная недвижимость"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/construction/commercial-spaces/",
+      "text": "Коммерческая недвижимость"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/construction/garages/",
+      "text": "Гаражи и автостоянки"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/promotions-and-discounts/",
+      "text": "Акции и скидки"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/how-to-buy/",
+      "text": "Как купить"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/loan-calculator/",
+      "text": "Кредитный калькулятор"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/news/",
+      "text": "Новости"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/clearance-center/",
+      "text": "Центр оформления недвижимости"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/about-belgorod-region/",
+      "text": "О Белгородской области"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/question-answer/",
+      "text": "Вопрос-ответ"
+    },
+    {
+      "link": "https://belbeton.ru/real-estate/contacts/",
+      "text": "Контакты "
+    }
+  ],
+
+  "jnk": [
+    {
+      "link": "https://belbeton.ru/wnc/wnc-is/",
+      "text": "ЖНК - это..."
+    },
+    {
+      "link": "https://belbeton.ru/wnc/real-estate/",
+      "text": "Подобрать квартиру в ЖНК"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/how-to-join/",
+      "text": "Как вступить"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/methods-of-redemption-of-housing-calculator-shareholder/",
+      "text": "Калькулятор пайщика"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/warranty/",
+      "text": "Гарантии"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/stock/",
+      "text": "Акции"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/co-operative-management/",
+      "text": "Управление кооперативом"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/incorporation-documents/",
+      "text": "Учредительные документы"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/the-history-of-wnc-zhbk-1/",
+      "text": "История ЖНК «ЖБК-1»"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/state-support/",
+      "text": "Господдержка"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/the-general-meeting-of-members-of-the-cooperative/",
+      "text": "Годовое собрание пайщиков"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/press-about-us",
+      "text": "Новости"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/the-answers-to-the-questions/",
+      "text": "Вопрос-ответ"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/contacts/",
+      "text": "Контакты"
+    },
+    {
+      "link": "https://belbeton.ru/wnc/rekvizity-dlya-oplaty.php",
+      "text": "Реквизиты для оплаты"
+    }
+  ]
+}

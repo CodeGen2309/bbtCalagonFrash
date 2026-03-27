@@ -1,12 +1,30 @@
 <script setup>
-import CtlgHeader from '@/components/ctlgHeader.vue';
+import { animate } from 'motion';
+import { useRouter } from 'vue-router';
+import CtlgHeader from '@/components/header.vue';
+
+const router = useRouter()
+
+async function toggleMenu () {
+  let curRoute = router.currentRoute.value.name
+  let nextRoute = curRoute == 'menu' ? '/' : '/menu'
+
+  // await animate(
+  //   document.querySelector('.market'),
+  //   { opacity: 0, filter: 'blur(10px)' },
+  //   { duration: .3 }
+  // )
+
+  router.push(nextRoute)
+}
+
 </script>
 
 
 <template>
-  <section class="market">
-    <CtlgHeader></CtlgHeader>
+  <CtlgHeader @burgerClick="toggleMenu"></CtlgHeader>
 
+  <section class="market">
     <router-view v-slot="{ Component }">
       <transition name="fadeAnim" mode="out-in">
         <component :is="Component" />
@@ -20,7 +38,7 @@ import CtlgHeader from '@/components/ctlgHeader.vue';
   .market {
     position: relative;
     width: calc(100vw - 40px); 
-    height: calc(100vh - 40px);
+    height: calc(100vh - 60px);
     margin: 20px;
     box-sizing: border-box;
     border-radius: 10px;

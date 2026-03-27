@@ -1,7 +1,28 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { animate, stagger } from 'motion';
 
 const props = defineProps([ 'offers' ])
+
+
+
+
+// FUNCTIONS
+// ------------------------------------
+function mountedAnim() {
+  animate(
+    '.sTiles--item',
+    { opacity: [0, 1], transform: ['translateY(-20px)', 'translateY(0px)'] },
+    { duration: .5, delay: stagger(.1) }
+  )
+}
+
+
+// HOOKS
+// ------------------------------------
+onMounted( () => {
+  setTimeout(mountedAnim, 1000)
+})
 
 </script>
 
@@ -44,6 +65,7 @@ const props = defineProps([ 'offers' ])
   border-radius: 10px;
   flex-grow: 1;
   
+  opacity: 0;
   overflow: hidden;
 }
 

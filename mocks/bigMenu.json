@@ -1,0 +1,266 @@
+{
+  "mainMenu": [
+    {
+      "link": "https://belbeton.ru/real-estate/",
+      "text": "Недвижимость",
+      "subMenu": "realEstate"
+    },
+
+    {
+      "link": "https://belbeton.ru/building-materials/catalog/",
+      "text": "Строительные материалы",
+      "subMenu": "shop"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/",
+      "text": "ЖНК",
+      "subMenu": "jnk"
+    }
+  ],
+
+  "corp": [
+    {
+      "link": "https://belbeton.ru/corporation/",
+      "text": "О корпорации",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/corp/about.jpg",
+      "class": "menup__mosaicItem_large"
+    },
+
+    {
+      "link": "https://belbeton.ru/corporation/news/",
+      "text": "Новости",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/corp/news.jpg",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/corporation/promotions-and-discounts/",
+      "text": "Акции и скидки",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/corp/akcii.webp",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/corporation/gallery/",
+      "text": "Галерея",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/corp/galery.jpeg",
+      "class": "menup__mosaicItem_wide"
+    },
+
+    {
+      "link": "https://belbeton.ru/corporation/social-responsibility.php",
+      "text": "Благотворительность",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/corp/blag.jpg",
+      "class": "menup__mosaicItem_wide"
+    },
+
+    {
+      "link": "https://belbeton.ru/corporation/contacts/",
+      "text": "Контакты",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/corp/contakts.jpg",
+      "class": "menup__mosaicItem_uwide"
+    }
+  ],
+
+  "shop": [
+    {
+      "text": "Интернет-магазин",
+      "link": "https://belbeton.ru/building-materials/catalog/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/shop.webp",
+      "class": "menup__mosaicItem_large"
+    },
+
+    {
+      "text": "Представительства в городах",
+      "link": "https://belbeton.ru/building-materials/contacts/representatives-in-other-cities/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/contragents.jpg",
+      "class": "menup__mosaicItem_wide"
+    },
+  
+    {
+      "text": "Галерея",
+      "link": "https://belbeton.ru/building-materials/gallery/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/galery.jpeg",
+      "class": "menup__mosaicItem_small"
+    },
+  
+    {
+      "text": "Контакты",
+      "link": "https://belbeton.ru/building-materials/contacts/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/contakts.jpg",
+      "class": "menup__mosaicItem_small"
+    },
+  
+    {
+      "text": "Акции и скидки",
+      "link": "https://belbeton.ru/building-materials/promotions-and-discounts/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/akcii.webp",
+      "class": ""
+    },
+  
+    {
+      "text": "Новости",
+      "link": "https://belbeton.ru/building-materials/news/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/news.jpg",
+      "class": ""
+    },
+  
+    {
+      "text": "Прайс-лист",
+      "link": "https://belbeton.ru/building-materials/price-list/",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/shop/pricelist.jpg",
+      "class": ""
+    }
+  ],
+  
+  
+  "oldshop": [
+    {
+      "link": "https://belbeton.ru/building-materials/catalog/",
+      "text": "Интернет-магазин",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/shop/shop.jpg",
+      "class": ""
+    },
+
+    {
+      "link": "https://belbeton.ru/building-materials/news/",
+      "text": "Новости",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/shop/news.jpg",
+      "class": ""
+    },
+
+    {
+      "link": "https://belbeton.ru/building-materials/price-list/",
+      "text": "Прайс-лист",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/shop/pricelist.webp"
+    },
+
+    {
+      "link": "https://belbeton.ru/building-materials/promotions-and-discounts/",
+      "text": "Акции и скидки",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/shop/akcii.webp",
+      "class": ""
+    },
+
+    {
+      "link": "https://belbeton.ru/building-materials/contacts/",
+      "text": "Контакты",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/shop/contakts.jpg",
+      "class": ""
+    }
+  ],
+
+
+  "realEstate": [
+    {
+      "link": "https://belbeton.ru/real-estate/about-the-builder/",
+      "text": "Информация о застройщике",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/about.jpg",
+      "class": "menup__mosaicItem_large"
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/construction/buildings/",
+      "text": "Объекты строительства",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/obj.jpg",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/price-list-for-property/",
+      "text": "Прайс-лист",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/price.jpg",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/construction/commercial-spaces/",
+      "text": "Коммерческая недвижимость",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/komm.jpg",
+      "class": ""
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/construction/garages/",
+      "text": "Гаражи и автостоянки",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/garages.jpg",
+      "class": "menup__mosaicItem_wide"
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/promotions-and-discounts/",
+      "text": "Акции и скидки",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/akcii.jpg",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/how-to-buy/",
+      "text": "Как купить",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/howtobuy.jpg",
+      "class": ""
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/clearance-center/",
+      "text": "Центр оформления недвижимости",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/centr.jpg",
+      "class": ""
+    },
+
+    {
+      "link": "https://belbeton.ru/real-estate/question-answer/",
+      "text": "Вопрос-ответ",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/vopros.jpg"
+    }
+  ],
+
+  "jnk": [
+    {
+      "link": "https://belbeton.ru/wnc/wnc-is/",
+      "text": "ЖНК - это...",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/jnk/jnk.jpg",
+      "class": "menup__mosaicItem_large"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/real-estate/",
+      "text": "Подобрать квартиру в ЖНК",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/jnk/getapart.webp",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/how-to-join/",
+      "text": "Как вступить",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/jnk/howToPay.jpg",
+      "class": "menup__mosaicItem_small"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/stock/",
+      "text": "Акции",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/jnk/akcii.jpg",
+      "class": "menup__mosaicItem_wide"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/methods-of-redemption-of-housing-calculator-shareholder/",
+      "text": "Калькулятор пайщика",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/jnk/jnkalc.webp"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/press-about-us",
+      "text": "Новости",
+      "img": "https://belbeton.ru/v4sources/img/menuCovers/jnk/news.jpg"
+    },
+
+    {
+      "link": "https://belbeton.ru/wnc/the-answers-to-the-questions/",
+      "text": "Вопрос-ответ",
+      "img":  "https://belbeton.ru/v4sources/img/menuCovers/jnk/vopr.jpg"
+    }
+  ]
+}

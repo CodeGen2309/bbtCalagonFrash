@@ -2,6 +2,10 @@
 import { computed, onMounted, ref, Transition } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 
+import cartIcon from '/public/icons/cart.svg?component'
+import descIcon from '/public/icons/description.svg?component'
+
+
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
@@ -9,8 +13,8 @@ import productFilter from '@/components/filter.vue';
 
 
 let route  = useRoute()
-let itemID = route.params.id
 
+let itemID = route.params.id
 let arrItem  = ref({})
 let name  = ref('')
 
@@ -145,11 +149,17 @@ onMounted( async () => {
   <div class="iCard--block iCard--footer">
     <a href="https://belbeton.ru/building-materials/basket/" 
       class="iCard--footerLink iCard--basketLink"
-    >Корзина</a>
+    >
+      <cartIcon class="iCard--icon" />
+      Корзина
+    </a>
 
     <a class="iCard--footerLink" href="#" 
       @click="showDescription = !showDescription"
-    >Описание</a>    
+    >
+      <descIcon class="iCard--icon" />
+      Описание
+    </a>
   </div>
 </div>
 </template>
@@ -179,7 +189,7 @@ onMounted( async () => {
   gap: 20px;
 
   grid-column: span 2;
-  z-index: 9;
+  z-index: 8;
 }
 
 .iCard--crumb {
@@ -550,6 +560,16 @@ onMounted( async () => {
   transition: .3s;
 }
 
+
+.iCard--icon {
+  /* width: 50px; */
+  /* height: 50px; */
+  fill: rgba(0, 0, 0, .6);
+  scale: 1.2;
+  padding: 0px 10px;
+}
+
+
 .iCard--footerLink::before {
   content: '';
   position: absolute;
@@ -612,22 +632,41 @@ onMounted( async () => {
 
   .ctgallery--pricePanel {
     position: fixed;
+    flex-wrap: wrap;
     bottom: 0; left: 0;
-    height: 80px;
+    height: fit-content;
     z-index: 9;
   }
 
   .transformer {
     padding: 0;
   }
+
   .ctgallery--countHolder,
   .ctgallery--priceHolder { 
-    padding-bottom: 20px;
+    width: 30%;
+    padding: 20px;
   }
 
   .ctgallery--priceHolder {
     padding-left: 50px;
     font-size: 1rem;
+  }
+
+  .ctgallery--buyHolder {
+    display: flex;
+    justify-content: center;
+    transform: none;
+
+    
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .ctgallery--buyButton {
+    transform: none;
+    text-align: center;
   }
 
 }

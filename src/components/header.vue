@@ -123,7 +123,7 @@ let HeadLinks = [
   gap: 20px;
 
   box-sizing: border-box;
-  z-index: 9;
+  z-index: 7;
 }
 
 .header__main {
@@ -131,6 +131,7 @@ let HeadLinks = [
   background: white;
   margin-left: -20px;
   padding: 20px 60px;
+  z-index: 9;
 }
 
 .header__inner {

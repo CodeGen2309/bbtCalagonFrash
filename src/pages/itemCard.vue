@@ -94,7 +94,7 @@ onMounted( async () => {
 <div class="iCard">
   <div class="iCard--content">
     <div class="iCard--block iCard--breadcrumbs">
-      <RouterLink :to="{ name: 'catalog', params: { id: section.ID }}" class="iCard--crumb">Каталог</RouterLink> / 
+      <RouterLink :to="{ name: 'catalog' }" class="iCard--crumb">Каталог</RouterLink> / 
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 
@@ -189,7 +189,7 @@ onMounted( async () => {
   gap: 20px;
 
   grid-column: span 2;
-  z-index: 8;
+  z-index: 9;
 }
 
 .iCard--crumb {

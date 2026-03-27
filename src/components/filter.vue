@@ -13,6 +13,7 @@ const skuList  = ref({
     "ID": "145015",
     "PROPERTY_ATT_GAUGE_VALUE": "60",
     "PROPERTY_ATT_GAUGE_ENUM_ID": "683",
+    
     "PROPERTY_SURFACE_TYPE_VALUE": {
       "ID": "13",
       "UF_NAME": "Гладкий",
@@ -30,6 +31,7 @@ const skuList  = ref({
     "PROPERTY_ATT_SERIES_ENUM_ID": "643",
     "PROPERTY_ATT_COLOR_DESIGHN_VALUE": "Стандарт",
     "PROPERTY_ATT_COLOR_DESIGHN_ENUM_ID": "809",
+
     "PROPERTY_ATT_COLOR_VALUE": {
       "ID": "22",
       "UF_NAME": "Коричневый",
@@ -42,7 +44,9 @@ const skuList  = ref({
       "UF_FILE": "236713",
       "PICTURE_FILE": "https:\/\/belbeton.ru\/upload\/uf\/910\/59ambd3ndu1eb192y1iuzqbry3sf2r8y.jpg"
     },
+
     "CNT": "1",
+
     "PRICE_DATA": {
       "ID": "3341",
       "PRODUCT_ID": "145015",

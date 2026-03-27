@@ -91,11 +91,6 @@ onMounted( async () => {
   <div class="iCard--content">
     <div class="iCard--block iCard--breadcrumbs">
       <RouterLink :to="{ name: 'catalog', params: { id: section.ID }}" class="iCard--crumb">Каталог</RouterLink> / 
-
-      <RouterLink :to="{ name: 'section', params: { id: section.ID }}" class="iCard--crumb">
-        {{  section.NAME  }}
-      </RouterLink>
-      /
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 
@@ -281,7 +276,7 @@ onMounted( async () => {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  padding: 20px;
+  padding: 40px 20px;
   box-sizing: border-box;
 
   font-size: 1.1rem;
@@ -290,7 +285,7 @@ onMounted( async () => {
 
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   
   background: rgba(255, 255, 255, .9);
   backdrop-filter: blur(8px);
@@ -525,7 +520,10 @@ onMounted( async () => {
 /* ================================================ */
 .iCard--footer {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  gap: 20px;
+  padding: 0 ;
+  /* justify-content: center; */
   /* background: hsl(190 10% 95%); */
   background: #ecf0f1;
 
@@ -543,8 +541,8 @@ onMounted( async () => {
   text-decoration: none;
   color: inherit;
   
-  padding: 0px;
-  flex-grow: 1;
+  padding: 0px 40px;
+  /* flex-grow: 1; */
 
   color: rgba(0, 0, 0, 1);
   font-size: 1.2rem;

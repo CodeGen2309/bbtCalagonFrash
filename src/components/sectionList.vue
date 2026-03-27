@@ -1,33 +1,37 @@
 <script setup>
-  import { onMounted, ref } from 'vue';
-  import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
 
-  import apirator from '@/lib/apirator';
-
-
-  let sections = ref('')
+const props = defineProps([ 'sections' ])
+const emit  = defineEmits(['sectionUpdated'])
+const activeSectin = ref('126')
 
 
-  onMounted( async () => {
-    const res = await apirator.getSections().then(res => res.json())
-    sections.value = res
-  })
+function updateSection (sectionID) {
+  activeSectin.value = sectionID
+  emit('sectionUpdated', sectionID)
+}
+
 </script>
 
 
 <template>
   <ul class="sList">
-    <router-link class="sList--item" 
+    <div class="sList--item" 
       v-for="section in sections" :key="section.ID"
-      :to="{ name: 'section', params: { id: section.ID } }"
+      :class="{ 'sList--item-active': section.ID == activeSectin }"
+      @click="updateSection(section.ID)"
     >
-      <img class="sList--image" :src="section.PICTURE_FILE" :alt="section.PICTURE_FILE">
+      <img loading="lazy" class="sList--image" 
+        :src="section.PICTURE_FILE" 
+        :alt="section.PICTURE_FILE"
+      >
+      
       <div class="sList--cover"></div>
 
-      <div class="sList--label transformer">
-        <p class="sList--text transformer--inner">{{ section.NAME }}</p>
+      <div class="sList--label">
+        <p class="sList--text">{{ section.NAME }}</p>
       </div>
-    </router-link>
+    </div>
   </ul>
 </template>
 
@@ -47,23 +51,26 @@
 .sList--item {
   position: relative;
   display: flex;
-  min-height: 100px;
-  width: 100%;
 
-  border-radius: 2px;
-  text-decoration: none;
+  min-height: 100px;
+
   font-size: .9rem;
   letter-spacing: 1px;
 
   border-radius: 10px;
   overflow: hidden;
+
   transition: .4s;
   transition-delay: .1s;
+  cursor: pointer;
 }
 
+
+.sList--item-active,
 .sList--item:hover {
   min-height: 250px;
 }
+
 
 .sList--image {
   width: 100%; height: 100%;
@@ -72,6 +79,7 @@
   object-position: center;
   position: absolute;
 }
+
 
 .sList--cover {
   position: absolute;
@@ -85,6 +93,7 @@
   );
 }
 
+
 .sList--label {
   position: relative;
   margin: 0; padding: 0px;
@@ -93,19 +102,23 @@
   width: 60%;
 
   display: flex;
-  justify-content: center;
   align-items: end;
 
   color: black;
   background: rgba(255, 255,  255, 1);
+
+  transform: skewX(20deg);
+  margin-left: -30px;
 
   transition: .4s;
   transition-delay: .1s;
 }
 
 
+.sList--item-active .sList--label,
 .sList--item:hover .sList--label {
-  color: white;
+  margin-left: -50px;
+  width: 100%;
   background: rgba(0, 0,  0,  0);
 }
 
@@ -116,13 +129,16 @@
   padding: 30px 50px;
   margin: 0;
 
+  
   transition-delay: .1s;
+  transform: skewX(-20deg);
 }
 
-
+.sList--item-active .sList--text,
 .sList--item:hover .sList--text {
-  padding: 20px;
+  /* padding: 20px; */
   font-size: 21px;
+  color: white;
 }
 
 </style>

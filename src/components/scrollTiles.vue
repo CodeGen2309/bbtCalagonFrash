@@ -1,9 +1,7 @@
 <script setup>
-import mockData from '@mocks/sectionData.json'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
-
-const offers = mockData.items
+const props = defineProps([ 'offers' ])
 
 </script>
 
@@ -14,7 +12,7 @@ const offers = mockData.items
       :to="{ name: 'itemCard', params: { id: item.ID } }" 
       class="sTiles--item" 
     >
-      <img class="sTiles--cover" :src="item['GALLERY'][0]" alt="">
+      <img loading="lazy" class="sTiles--cover" :src="item['GALLERY'][0]" alt="">
 
 
       <div class="sTiles--labelHolder ">
@@ -40,7 +38,7 @@ const offers = mockData.items
   position: relative;
   display: block;
 
-  height: 250px;
+  height: 35dvh;
   min-width: 25%;
 
   border-radius: 10px;

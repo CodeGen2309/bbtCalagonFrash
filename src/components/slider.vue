@@ -62,7 +62,7 @@
 
 <style scoped>
 :root {
-  background-color: #242424;
+  background-color: rgba(0, 0, 0, .4);
 }
 
 .slider {
@@ -92,7 +92,7 @@ img {
   position: relative;
   width: 100%;
   height: 100%;
-  background: black;
+  background: rgba(0, 0, 0, .4);
 
   border-radius: 10px;
   overflow: hidden;
@@ -102,12 +102,11 @@ img {
   position: absolute;
   width: 110%; height: 110%;
   object-fit: cover;
-  filter: blur(6px);
+  filter: blur(10px);
 }
 
 .gallery--image {
   position: relative;
-  /* border-radius: 16px; */
 }
 
 #thumbnails {

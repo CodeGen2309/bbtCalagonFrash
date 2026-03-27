@@ -1,6 +1,6 @@
 export default {
-  // devmode : false,
-  devmode : true,
+  // devmode : true,
+  devmode : false,
   apiUrl  : "https://belbeton.ru",
 
 

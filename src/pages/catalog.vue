@@ -1,29 +1,58 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { onMounted, ref } from 'vue';
+import apirator from '@/lib/apirator';
 
 import sectionList       from '@/components/sectionList.vue';
 import mobileSectionList from '@/components/mobileSectionList.vue';
 // import massonry          from '@/components/massonry.vue';\
-import massonry          from '@/components/scrollTiles.vue';
+import scrollTiles       from '@/components/scrollTiles.vue';
 import CtlgFooter        from '@/components/ctlgFooter.vue';
 
-let isMobile = window.innerWidth < 900
+
+const isMobile = window.innerWidth < 900
+const sections = ref([]) 
+const activeSection  = ref({ 'NAME': 'Load',  'ID': '0'})
+const offers   = ref([])
 
 
 
 
+// FUNCTIONS
+// ------------------------------------
+async function updateSection (sectionID) {
+  const sectionData = await apirator.getSectionItems(sectionID)
+  .then(res => res.json())
+
+  activeSection.value = sectionData.section
+  offers.value = sectionData.items
+
+  console.log('UPDATED');
+  console.log('activeSection', activeSection.value);
+}
+
+
+
+onMounted( async () => {
+  sections.value = await apirator.getSections().then(res => res.json())
+  updateSection(126)
+})
 </script>
 
 
 <template>
   <div class="ctlog">
     <div class="ctlog--sections">
-      <sectionList v-if="!isMobile"></sectionList>
-      <mobileSectionList v-else></mobileSectionList>
+      <sectionList :sections="sections" v-if="!isMobile" 
+        @sectionUpdated="updateSection"
+      />
+
+      <mobileSectionList v-else />
     </div>
 
     <div class="ctlog--itemsHolder" v-if="!isMobile">
-      <massonry class="ctlog--itemList"></massonry>
+      <scrollTiles :offers="offers"  class="ctlog--itemList" 
+        :key="activeSection.ID" 
+      />
     </div>
 
     <div class="ctlog--footer" v-if="!isMobile">

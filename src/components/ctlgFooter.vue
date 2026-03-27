@@ -8,20 +8,24 @@
 
 <template>
   <ul class="ftr--panelList">
-    <li class="ftr--panelItem">
-      <userIcon class="ftr--icon" />
-      <p class="ftr--iconText">Личный кабинет</p>
-    </li>
-    
-    <li class="ftr--panelItem">
-      <chatIcon class="ftr--icon" />
-      <p class="ftr--iconText">Чат с менеджером</p>
-    </li>
-    
-    <li class="ftr--panelItem">
+    <a class="ftr--panelItem" 
+      href="https://belbeton.ru/building-materials/basket/"
+    >
       <cartIcon class="ftr--icon"  />
       <p class="ftr--iconText">Корзина</p>
-    </li>
+    </a>
+
+    <a class="ftr--panelItem"
+      href="https://belbeton.ru/buyer/"
+    >
+      <userIcon class="ftr--icon" />
+      <p class="ftr--iconText">Личный кабинет</p>
+    </a>
+    
+    <!-- <li class="ftr--panelItem">
+      <chatIcon class="ftr--icon" />
+      <p class="ftr--iconText">Чат с менеджером</p>
+    </li> -->    
   </ul>
 </template>
 
@@ -44,8 +48,10 @@
 
   padding: 15px 20px;
   border-radius: 10px;
-  /* background: hsl(190 10% 100%); */
   background: white;
+
+  color: inherit;
+  text-decoration: none;
   font-weight: 400;
 
   cursor: pointer;

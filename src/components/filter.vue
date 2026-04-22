@@ -96,11 +96,11 @@ function complexIsActive (key, dict) {
 
 
 function updateCurrentOffer (filters = selectedOptions.value) {
-  let allOffers = Object.values(skuList.value)
+  const allOffers = Object.values(skuList.value)
 
-  let res = allOffers.find( offer => {
-    return Object.entries(filters).every(([key, filterValue]) => {
-      let offerValue = offer[`${key}_VALUE`];
+  const res = allOffers.find( offer => {
+    return Object.entries(filters).every( ([key, filterValue]) => {
+      const offerValue = offer[`${key}_VALUE`];
 
       if (typeof(filterValue) == 'object') {
         return offerValue['UF_NAME'] == filterValue['UF_NAME'];
@@ -117,7 +117,9 @@ function updateCurrentOffer (filters = selectedOptions.value) {
 function updateFilter (key, value) {
   if (selectedOptions.value[key] == value) {
     delete selectedOptions.value[key]
-  } else {
+  } 
+  
+  else {
     selectedOptions.value[key] = value;
   }
 

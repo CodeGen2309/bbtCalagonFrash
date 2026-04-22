@@ -1,12 +1,6 @@
 export default {
-  // devmode : true,
-  devmode : false,
-  apiUrl  : "https://belbeton.ru",
-
-
-  async getReqest (url) {
-    return await fetch(url)
-  },
+  devmode : process.env.NODE_ENV == 'development',
+  apiUrl  : "/test/ajax",
 
 
   async postRequest (url, body) {
@@ -25,8 +19,7 @@ export default {
       return await fetch("/mocks/sectionList.json")
     }
 
-    let link = `/test/ajax/get-sections.php`
-    return await this.getReqest(link)
+    return await fetch(`${this.apiUrl}/get-sections.php`)
   },
 
 
@@ -35,36 +28,37 @@ export default {
       return await fetch("/mocks/sectionData.json")
     }
 
-
-    let link = `/test/ajax/get-section-items.php?section_id=${sectoinId}`
-    return await this.getReqest(link)
+    let link = `${this.apiUrl}/get-section-items.php?section_id=${sectoinId}`
+    return await fetch(link)
   },
+
 
   async getProduct (pid) {
     if (this.devmode) {
       return await fetch("/mocks/mockItem.json")
     }
 
-    
-    let link = `/test/ajax/get-item.php?id=${pid}`
-    return await this.getReqest(link)
+    return await fetch(`${this.apiUrl}/get-item.php?id=${pid}`)
   },
+
 
   async getFilter (pid) {
     if (this.devmode) {
       return await fetch("/mocks/mockFilter.json")
     }
     
-    // return await fetch(`${this.apiUrl}/test/ajax/get-filter.php`)
-    return await fetch(`/test/ajax/get-filter.php?id=${pid}`)
+    return await fetch(`${this.apiUrl}/get-filter.php?id=${pid}`)
   },
 
 
   async addToBasket (pid, quantity) {
-    if (this.devmode) {
-      return true
-    }
+    if (this.devmode) { return true }
 
-    return await fetch(`/test/ajax/add-to-basket.php?offerId=${pid}&quantity=${quantity}`)
+    const url = new URL(`${this.apiUrl}/add-to-basket.php`)
+    url.searchParams.append('offerId', pid)
+    url.searchParams.append('quantity', quantity)
+
+    // `${this.apiUrl}/add-to-basket.php?offerId=${pid}&quantity=${quantity}`
+    return await fetch(url)
   }
 }

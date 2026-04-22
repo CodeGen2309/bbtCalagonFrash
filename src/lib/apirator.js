@@ -54,11 +54,7 @@ export default {
   async addToBasket (pid, quantity) {
     if (this.devmode) { return true }
 
-    const url = new URL(`${this.apiUrl}/add-to-basket.php`)
-    url.searchParams.append('offerId', pid)
-    url.searchParams.append('quantity', quantity)
-
-    // `${this.apiUrl}/add-to-basket.php?offerId=${pid}&quantity=${quantity}`
-    return await fetch(url)
+    const link = `${this.apiUrl}/add-to-basket.php?offerId=${pid}&quantity=${quantity}`
+    return await fetch(link)
   }
 }

@@ -1,12 +1,14 @@
 <script setup>
 import apirator from '@/lib/apirator.js';
-import { onMounted, ref, defineEmits } from 'vue';
+import { onMounted, ref, defineEmits, toRaw } from 'vue';
 
 
 const props = defineProps([ 'pid' ])
 const emits = defineEmits(['updateSku'])
 
 const selectedOptions = ref({})
+const currentOffer = ref({})
+const matrix = ref({})
 
 const skuList  = ref({
   "145015": {
@@ -70,8 +72,6 @@ const skuList  = ref({
   },
 })
 
-const matrix = ref({
-})
 
 const skuProps = ref({
   "PROPERTY_ATT_GAUGE"    : "Толщина",
@@ -80,9 +80,8 @@ const skuProps = ref({
 })
 
 
-const currentOffer = ref({})
 
-
+// FUNCTIONS
 function isComplex (item) {
   const firstValue = Object.values(item)[0];
   return typeof firstValue == 'object'
@@ -124,7 +123,19 @@ function updateFilter (key, value) {
   }
 
   currentOffer.value = updateCurrentOffer()
+
   emits('updateSku', currentOffer.value)
+}
+
+
+
+// TESTED FUNCTIONAL FOR UPDATE FILTER
+function setActiveFilterButtons () {
+  const matrixKeys = Object.keys(matrix.value)
+  for (let key of matrixKeys) {
+    const currentOfferProp = currentOffer['value'][`${key}_VALUE`]
+    selectedOptions['value'][key] = currentOfferProp
+  }
 }
 
 
@@ -140,20 +151,14 @@ function checkButton (key, value) {
 
 
 onMounted( async () => {
-  let pid = props.pid
-  
-  let filterData = await apirator.getFilter(pid).then(res => res.json())
-  console.log('GET filter');
-  
+  const pid = props.pid
+  const filterData = await apirator.getFilter(pid).then(res => res.json())
 
   skuList.value  = filterData['OFFERS']
   skuProps.value = filterData['PROPS']
   matrix.value   = filterData['MATRIX']
 
-
-  console.log({matrix: matrix.value});
-
-  currentOffer.value = updateCurrentOffer()
+  console.log({ currentOffer: currentOffer.value });
 })
 </script>
 
@@ -164,7 +169,8 @@ onMounted( async () => {
     <p class="iFilter--optName">{{ skuProps[key] }}</p>
 
     <ul class="iFilter--optList" v-if="isComplex(item)">
-      <button class="iFilter--optIcon" v-for="dict in item" @click="updateFilter(key, dict)"
+      <button class="iFilter--optIcon" v-for="dict in item" 
+        @click="updateFilter(key, dict)"
         :class="{'active': complexIsActive(key, dict)}"
         :disabled="!checkButton(key, dict)"
       >
@@ -173,9 +179,9 @@ onMounted( async () => {
       </button>
     </ul>
 
-
     <ul class="iFilter--optList" v-else>
-      <button class="iFilter--optValue" v-for="value in item" @click="updateFilter(key, value)"
+      <button class="iFilter--optValue" v-for="value in item" 
+        @click="updateFilter(key, value)"
         :class="{'active': selectedOptions[key] == value}"
         :disabled="!checkButton(key, value)"
       >
@@ -262,12 +268,12 @@ onMounted( async () => {
 }
 
 
-
 .iFilter--optValue:hover {
   background: rgba(0, 0, 0, .4);
   /* color: hsl(190 10% 100%); */
   color: white;
 }
+
 
 .iFilter--optIcon {
   display: flex;
@@ -284,15 +290,18 @@ onMounted( async () => {
   font-weight: 400;
 }
 
+
 .iFilter--optIcon:hover {
   background: rgba(0, 0, 0, .1);
   cursor: pointer;
 }
 
+
 .iFilter--optIcon:disabled {
   opacity: .3;
   cursor: not-allowed;
 }
+
 
 .iFilter--optIcon:disabled img {
   height: 10px;

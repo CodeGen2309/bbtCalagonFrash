@@ -44,7 +44,6 @@ const finalPrice = computed(() => basePrice.value * count.value)
 function skuUpdateHandler (sku) {
   currentSku.value = sku
   basePrice.value = parseInt(sku['PRICE_DATA']['PRICE'])
-  console.log({ sku: currentSku.value });
 }
 
 

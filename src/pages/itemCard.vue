@@ -166,6 +166,19 @@ onMounted( async () => {
 
 <style scoped>
 
+.transformer {
+  flex-grow: 1;
+  transform: skewX(30deg);
+  min-width: 35%;
+}
+
+.transformer--inner {
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .iCard {
   display: grid;
   grid-template-rows: 1fr 60px;
@@ -351,8 +364,8 @@ onMounted( async () => {
   position: relative;
   display: flex;
   justify-content: center;
-  /* background: hsl(190 10% 85%); */
-  background: #ecf0f1;
+  background: hsl(190 10 95);
+  /* background: #ecf0f1; */
   grid-area: pricePanel;
 
   width: 100%; 
@@ -377,20 +390,10 @@ onMounted( async () => {
   color: white;
 }
 
-.transformer {
-  flex-grow: 1;
-  transform: skewX(30deg);
-  min-width: 35%;
-}
-
-.transformer--inner {
-  width: 100%; height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .ctgallery--priceHolder {
+  /* background: hsl(200 100 30); */
+  background: rgba(0, 102, 153, 1);
+  color: white;
 }
 
 .ctgallery--price {
@@ -398,13 +401,14 @@ onMounted( async () => {
   font-size: 1.2rem;
   letter-spacing: 1px;
   font-weight: 600;
-  color: rgba(0, 0, 0, 1);
+  /* color: rgba(0, 0, 0, 1); */
 }
 
 .ctgallery--countHolder {
   color: black;
   font-size: 1.2rem;
   letter-spacing: 1px;
+  ;
 }
 
 .ctgallery--count {
@@ -650,6 +654,8 @@ onMounted( async () => {
   .ctgallery--priceHolder {
     padding-left: 50px;
     font-size: 1rem;
+    background: none;
+    color: black;
   }
 
   .ctgallery--buyHolder {

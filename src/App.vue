@@ -38,7 +38,7 @@ async function toggleMenu () {
   .market {
     position: relative;
     width: calc(100vw - 40px); 
-    height: calc(100vh - 60px);
+    height: calc(100vh - 40px);
     margin: 20px;
     box-sizing: border-box;
     border-radius: 10px;

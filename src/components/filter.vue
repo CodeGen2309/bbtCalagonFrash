@@ -1,6 +1,6 @@
 <script setup>
 import apirator from '@/lib/apirator.js';
-import { onMounted, ref, defineEmits, toRaw } from 'vue';
+import { onMounted, ref, defineEmits } from 'vue';
 
 
 const props = defineProps([ 'pid' ])
@@ -113,7 +113,8 @@ function updateCurrentOffer (filters = selectedOptions.value) {
 }
 
 
-function updateFilter (key, value) {
+// function updateFilter (key, value) {
+function updateFilter (ent, key, value) {
   if (selectedOptions.value[key] == value) {
     delete selectedOptions.value[key]
   } 
@@ -125,6 +126,7 @@ function updateFilter (key, value) {
   currentOffer.value = updateCurrentOffer()
 
   emits('updateSku', currentOffer.value)
+  ent.target.scrollIntoView({ behavior: 'smooth' })
 }
 
 
@@ -170,7 +172,7 @@ onMounted( async () => {
 
     <ul class="iFilter--optList" v-if="isComplex(item)">
       <button class="iFilter--optIcon" v-for="dict in item" 
-        @click="updateFilter(key, dict)"
+        @click="updateFilter($event, key, dict)"
         :class="{'active': complexIsActive(key, dict)}"
         :disabled="!checkButton(key, dict)"
       >
@@ -181,7 +183,7 @@ onMounted( async () => {
 
     <ul class="iFilter--optList" v-else>
       <button class="iFilter--optValue" v-for="value in item" 
-        @click="updateFilter(key, value)"
+        @click="updateFilter($event, key, value)"
         :class="{'active': selectedOptions[key] == value}"
         :disabled="!checkButton(key, value)"
       >
@@ -199,6 +201,7 @@ onMounted( async () => {
   flex-direction: column;
   /* align-items: stretch; */
   gap: 50px;
+  transition: .3s;
 }
 
 .iFilter--optHolder {
@@ -231,7 +234,7 @@ onMounted( async () => {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  /* justify-content: center; */
+  /* justify-content: space-between; */
   gap: 16px;
 
   list-style: none;

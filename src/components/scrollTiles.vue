@@ -59,7 +59,7 @@ onMounted( () => {
   position: relative;
   display: block;
 
-  height: 35dvh;
+  height: 30dvh;
   min-width: 25%;
 
   border-radius: 10px;

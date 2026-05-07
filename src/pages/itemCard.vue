@@ -24,8 +24,6 @@ let showDescription = ref(false)
 let section = ref({ 'NAME': 'Load',  'ID': '1'})
 
 let slides = ref([])
-let mockSlide = ref("/img/plitka/atlant.jpg")
-
 let showNotify = ref(false)
 
 
@@ -43,7 +41,15 @@ const finalPrice = computed(() => basePrice.value * count.value)
 
 function skuUpdateHandler (sku) {
   currentSku.value = sku
+  console.log({ sku })
   basePrice.value = parseInt(sku['PRICE_DATA']['PRICE'])
+
+  console.log(sku['PICTURE_FILE'])
+  
+  if ( sku['PICTURE_FILE'] ) {
+    console.log('WE HAVE THE PICTURE!')
+    slides['value'][0] = sku['PICTURE_FILE']
+  }
 }
 
 
@@ -75,7 +81,6 @@ async function setupAjax () {
   slides.value     = resItem['GALLERY']
   section.value    = resItem['SECTION']
   basePrice.value  = Number(resItem['PRICE']['PRICE'])
-  mockSlide.value  = slides.value[0]
   decription.value = resItem['ITEM']['DETAIL_TEXT']
   
   return resItem
@@ -93,7 +98,7 @@ onMounted( async () => {
 <div class="iCard">
   <div class="iCard--content">
     <div class="iCard--block iCard--breadcrumbs">
-      <RouterLink :to="{ name: 'catalog' }" class="iCard--crumb">Каталог</RouterLink> / 
+      <RouterLink :to="-1" class="iCard--crumb">Каталог</RouterLink> / 
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 

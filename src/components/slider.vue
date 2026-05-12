@@ -1,37 +1,44 @@
 <script setup>
-  import 'vue3-carousel/carousel.css'
-  import { Carousel, Slide, Navigation } from 'vue3-carousel'
-  import { ref } from 'vue'
 
-  const props = defineProps({ 'images': Array })
+import 'vue3-carousel/carousel.css'
+import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import { ref } from 'vue'
 
-  const currentSlide = ref(0)
+const props = defineProps({ 'images': Array })
+const currentSlide = ref(1)
 
-  const slideTo = (nextSlide) => (currentSlide.value = nextSlide)
+const galleryConfig = {
+  itemsToShow: 1,
+  wrapAround: true,
+  slideEffect: 'slide',
+  mouseDrag: false,
+  autoplay: 10000,
+  touchDrag: true,
+  // gap: 20
+  // height: 400,
+}
 
-  const galleryConfig = {
-    itemsToShow: 1,
-    wrapAround: true,
-    slideEffect: 'slide',
-    mouseDrag: false,
-    touchDrag: true,
-    // gap: 20
-    // height: 400,
-  }
+const thumbnailsConfig = {
+  // height: 80,
+  itemsToShow: 10,
+  // wrapAround: true,
+  touchDrag: true,
+  gap: 10,
+}
 
-  const thumbnailsConfig = {
-    // height: 80,
-    itemsToShow: 10,
-    // wrapAround: true,
-    touchDrag: true,
-    gap: 10,
-  }
+
+// FUNCTIONS
+function slideTo (nextSlide) {
+  currentSlide.value = nextSlide
+}
+
+defineExpose({ slideTo })
 </script>
 
 
 <template>
-<div class="slider">
-  <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
+<div class="slider" ref="sliderInstance">
+  <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide" slide-effect="fade">
     <Slide v-for="image, index in images" :key="index">
       <div class="gallery--imageHolder">
         <img :src="image" alt="Gallery Image" class="gallery--backdrop" />

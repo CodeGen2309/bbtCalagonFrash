@@ -12,25 +12,26 @@ import productFilter from '@/components/filter.vue';
 
 
 
-let route  = useRoute()
+const route    = useRoute()
+const backLink = apirator.devmode ? '/' : 'https://belbeton.ru/test/'
 
-let itemID = route.params.id
-let arrItem  = ref({})
-let name  = ref('')
+const itemID   = route.params.id
+const arrItem  = ref({})
+const name     = ref('')
 
-let decription = ref('')
-let showDescription = ref(false)
+const decription      = ref('')
+const showDescription = ref(false)
+const showNotify      = ref(false)
 
-let section = ref({ 'NAME': 'Load',  'ID': '1'})
 
-let slides = ref([])
-let showNotify = ref(false)
+const sliderInstance  = ref(null)
+const slides          = ref([ '' ])
 
 
 // SKU OPTIONS
 const currentSku = ref({ 'MEASURE': 'шт' })
-const basePrice = ref(1)
-const count = ref(1)
+const basePrice  = ref(1)
+const count      = ref(1)
 
 const finalPrice = computed(() => basePrice.value * count.value)
 
@@ -41,14 +42,11 @@ const finalPrice = computed(() => basePrice.value * count.value)
 
 function skuUpdateHandler (sku) {
   currentSku.value = sku
-  console.log({ sku })
-  basePrice.value = parseInt(sku['PRICE_DATA']['PRICE'])
+  basePrice.value  = parseInt(sku['PRICE_DATA']['PRICE'])
 
-  console.log(sku['PICTURE_FILE'])
-  
   if ( sku['PICTURE_FILE'] ) {
-    console.log('WE HAVE THE PICTURE!')
     slides['value'][0] = sku['PICTURE_FILE']
+    sliderInstance.value.slideTo(0)
   }
 }
 
@@ -78,11 +76,12 @@ async function setupAjax () {
   arrItem.value = resItem
 
   name.value       = resItem['ITEM']['NAME']
-  slides.value     = resItem['GALLERY']
-  section.value    = resItem['SECTION']
   basePrice.value  = Number(resItem['PRICE']['PRICE'])
   decription.value = resItem['ITEM']['DETAIL_TEXT']
+  slides.value     = resItem['GALLERY']
   
+  // FIXME: свойство больше не используется
+  // section.value    = resItem['SECTION']
   return resItem
 }
 
@@ -98,13 +97,13 @@ onMounted( async () => {
 <div class="iCard">
   <div class="iCard--content">
     <div class="iCard--block iCard--breadcrumbs">
-      <RouterLink :to="-1" class="iCard--crumb">Каталог</RouterLink> / 
+      <RouterLink :to="backLink" class="iCard--crumb">Каталог</RouterLink> / 
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 
     <div class="iCard--gallery ctgallery">
       <div class="iCard--sliderHolder">
-        <slider class="iCard--slider" :images="slides" />
+        <slider ref="sliderInstance" class="iCard--slider" :images="slides" />
 
         <Transition name="notifyAnim">
           <div v-if="showDescription" 

@@ -25,7 +25,7 @@ const showNotify      = ref(false)
 
 
 const sliderInstance  = ref(null)
-const slides          = ref([ '' ])
+const slides          = ref([ { src: '', class: '' } ])
 
 
 // SKU OPTIONS
@@ -41,11 +41,16 @@ const finalPrice = computed(() => basePrice.value * count.value)
 
 
 function skuUpdateHandler (sku) {
+  console.log({sku})
   currentSku.value = sku
   basePrice.value  = parseInt(sku['PRICE_DATA']['PRICE'])
 
   if ( sku['PICTURE_FILE'] ) {
-    slides['value'][0] = sku['PICTURE_FILE']
+    slides['value'][0] = {
+      src: sku['PICTURE_FILE'], 
+      class: 'gallery--offer' 
+    }
+
     sliderInstance.value.slideTo(0)
   }
 }
@@ -78,7 +83,15 @@ async function setupAjax () {
   name.value       = resItem['ITEM']['NAME']
   basePrice.value  = Number(resItem['PRICE']['PRICE'])
   decription.value = resItem['ITEM']['DETAIL_TEXT']
-  slides.value     = resItem['GALLERY']
+
+  // slides.value     = resItem['GALLERY']
+  console.log(resItem['GALLERY']);
+
+  for (let i = 0; i < resItem['GALLERY'].length; i++) {
+    slides.value[i] = { class: 'gallery--product', src: resItem['GALLERY'][i] }
+  }
+
+  console.log(slides.value);
   
   // FIXME: свойство больше не используется
   // section.value    = resItem['SECTION']

@@ -41,8 +41,11 @@ defineExpose({ slideTo })
   <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide" slide-effect="fade">
     <Slide v-for="image, index in images" :key="index">
       <div class="gallery--imageHolder">
-        <img :src="image" alt="Gallery Image" class="gallery--backdrop" />
-        <img :src="image" alt="Gallery Image" class="gallery--image" />
+        <img :src="image.src" alt="Gallery Image" class="gallery--backdrop" />
+
+        <img :src="image.src" alt="Gallery Image" 
+          class="gallery--image" :class="image.class"
+        />
       </div>
     </Slide>
   </Carousel>
@@ -54,7 +57,7 @@ defineExpose({ slideTo })
           :class="['thumbnail', { 'is-active': isActive }]"
           @click="slideTo(currentIndex)"
         >
-          <img :src="image" alt="Thumbnail Image" class="thumbnail--image" />
+          <img :src="image.src" alt="Thumbnail Image" class="thumbnail--image" />
         </div>
       </template>
     </Slide>
@@ -113,6 +116,12 @@ img {
 }
 
 .gallery--image {
+  position: relative;
+}
+
+.gallery--offer {
+  width: 50%;
+  height: 50%;
   position: relative;
 }
 

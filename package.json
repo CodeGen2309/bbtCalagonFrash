@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@primeuix/themes": "^1.2.5",
+    "@remixicon/vue": "^4.9.0",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@splidejs/vue-splide": "^0.6.12",
     "motion": "^12.23.16",

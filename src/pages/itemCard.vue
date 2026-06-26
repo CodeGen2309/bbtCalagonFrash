@@ -2,14 +2,12 @@
 import { computed, onMounted, ref, Transition } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 
-import cartIcon from '/public/icons/cart.svg?component'
-import descIcon from '/public/icons/description.svg?component'
-
 
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
 
+import { RiFile2Line, RiInformation2Line, RiShoppingBag4Line } from '@remixicon/vue';
 
 
 const route    = useRoute()
@@ -41,16 +39,17 @@ const finalPrice = computed(() => basePrice.value * count.value)
 
 
 function skuUpdateHandler (sku) {
-  console.log({sku})
+  let offerSlide = { 
+    src: sku['PICTURE_FILE'] || false, 
+    class: "gallery--offer", 
+    desc: sku['PREVIEW_TEXT'] || false
+  }
+
   currentSku.value = sku
   basePrice.value  = parseInt(sku['PRICE_DATA']['PRICE'])
 
-  if ( sku['PICTURE_FILE'] ) {
-    slides['value'][0] = {
-      src: sku['PICTURE_FILE'], 
-      class: 'gallery--offer' 
-    }
-
+  if ( offerSlide.src ) {
+    slides['value'][0] = offerSlide 
     sliderInstance.value.slideTo(0)
   }
 }
@@ -93,8 +92,6 @@ async function setupAjax () {
 
   console.log(slides.value);
   
-  // FIXME: свойство больше не используется
-  // section.value    = resItem['SECTION']
   return resItem
 }
 
@@ -166,16 +163,25 @@ onMounted( async () => {
     <a href="https://belbeton.ru/building-materials/basket/" 
       class="iCard--footerLink iCard--basketLink"
     >
-      <cartIcon class="iCard--icon" />
+      <RiShoppingBag4Line class="iCard--footerIcon" />
       Корзина
     </a>
 
     <a class="iCard--footerLink" href="#" 
       @click="showDescription = !showDescription"
     >
-      <descIcon class="iCard--icon" />
+      <RiInformation2Line class="iCard--footerIcon" />
       Описание
     </a>
+
+    <a href="https://belbeton.ru/building-materials/price-list/" 
+      target="blank"
+      class="iCard--footerLink iCard--basketLink"
+    >
+      <RiFile2Line class="iCard--footerIcon" />
+      Прайс-лист
+    </a>
+
   </div>
 </div>
 </template>
@@ -271,9 +277,11 @@ onMounted( async () => {
   z-index: 8;
 }
 
+
 .iCard--subinfoTitle {
   padding: 20px;
 }
+
 
 .iCard--subinfoClose {
   padding: 10px 40px;
@@ -553,7 +561,7 @@ onMounted( async () => {
   justify-content: start;
   gap: 20px;
   padding: 0 ;
-  /* justify-content: center; */
+  /* justify-content: cdddenter; */
   /* background: hsl(190 10% 95%); */
   background: #ecf0f1;
 
@@ -567,26 +575,18 @@ onMounted( async () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+
 
   text-decoration: none;
   color: inherit;
   
   padding: 0px 40px;
-  /* flex-grow: 1; */
 
   color: rgba(0, 0, 0, 1);
   font-size: 1.2rem;
   letter-spacing: 1px;
   transition: .3s;
-}
-
-
-.iCard--icon {
-  /* width: 50px; */
-  /* height: 50px; */
-  fill: rgba(0, 0, 0, .6);
-  scale: 1.2;
-  padding: 0px 10px;
 }
 
 
@@ -599,6 +599,11 @@ onMounted( async () => {
   background: rgba(0, 0, 0, 0);
   transition: .5s;
 }
+
+.iCard--footerIcon {
+  scale: 1.1;
+}
+
 
 .iCard--footerLink:hover {
 }

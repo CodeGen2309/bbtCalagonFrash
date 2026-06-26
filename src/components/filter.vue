@@ -1,6 +1,6 @@
 <script setup>
 import apirator from '@/lib/apirator.js';
-import { onMounted, ref, defineEmits } from 'vue';
+import { onMounted, ref, defineEmits, toRaw } from 'vue';
 
 
 const props = defineProps([ 'pid' ])
@@ -126,7 +126,10 @@ function updateFilter (ent, key, value) {
   currentOffer.value = updateCurrentOffer()
 
   emits('updateSku', currentOffer.value)
-  ent.target.scrollIntoView({ behavior: 'smooth' })
+
+  if (ent) {
+    ent.target.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 
 
@@ -134,6 +137,7 @@ function updateFilter (ent, key, value) {
 // TESTED FUNCTIONAL FOR UPDATE FILTER
 function setActiveFilterButtons () {
   const matrixKeys = Object.keys(matrix.value)
+
   for (let key of matrixKeys) {
     const currentOfferProp = currentOffer['value'][`${key}_VALUE`]
     selectedOptions['value'][key] = currentOfferProp
@@ -160,7 +164,8 @@ onMounted( async () => {
   skuProps.value = filterData['PROPS']
   matrix.value   = filterData['MATRIX']
 
-  console.log({ currentOffer: currentOffer.value });
+  let skutest = Object.keys(skuList.value)[0]
+  updateFilter(false, skutest)
 })
 </script>
 

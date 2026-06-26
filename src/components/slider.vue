@@ -30,6 +30,7 @@ const thumbnailsConfig = {
 // FUNCTIONS
 function slideTo (nextSlide) {
   currentSlide.value = nextSlide
+  console.log(props.images[nextSlide])
 }
 
 defineExpose({ slideTo })
@@ -46,6 +47,12 @@ defineExpose({ slideTo })
         <img :src="image.src" alt="Gallery Image" 
           class="gallery--image" :class="image.class"
         />
+
+        <p v-if="image.desc"
+          class="gallery--footnote"
+        >
+          {{ image.desc }}
+        </p>
       </div>
     </Slide>
   </Carousel>
@@ -119,9 +126,24 @@ img {
   position: relative;
 }
 
+.gallery--footnote {
+  position: absolute;
+  bottom: 10px; left: 10px;
+  z-index: inherit;
+
+
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background:rgba(0, 0, 0, .6);
+  color: white;
+  font-size: 1.2rem;
+}
+
+
 .gallery--offer {
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
   position: relative;
 }
 

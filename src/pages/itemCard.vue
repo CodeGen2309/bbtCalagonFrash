@@ -329,7 +329,7 @@ onMounted( async () => {
   font-size: 1.1rem;
   letter-spacing: 1px;
   overflow: scroll;
-
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;
@@ -338,6 +338,11 @@ onMounted( async () => {
   backdrop-filter: blur(8px);
   z-index: 2;
 }
+
+.iCard--descHolder::-webkit-scrollbar {
+  display: none;
+}
+
 
 .ctgallery--thumblist {
   display: flex;

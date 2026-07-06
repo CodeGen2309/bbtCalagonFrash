@@ -2,7 +2,6 @@
 import apirator from '@/lib/apirator.js';
 import { onMounted, ref, defineEmits, toRaw } from 'vue';
 
-
 const props = defineProps([ 'pid' ])
 const emits = defineEmits(['updateSku'])
 
@@ -79,6 +78,9 @@ const skuProps = ref({
   "PROPERTY_ATT_SERIES"   : "Серия",
 })
 
+const singlePropTest = ref({
+  // "PROPERTY_ATT_GAUGE"    : true
+})
 
 
 // FUNCTIONS
@@ -155,6 +157,29 @@ function checkButton (key, value) {
 }
 
 
+function setupSingleTest (rawMatrix) {
+  const matrixKeys = Object.keys(rawMatrix)
+
+  for (let key of matrixKeys) {
+    const keyDict = toRaw(matrix.value[key])
+    const dictLength = Object.keys(keyDict).length
+
+    if (dictLength == 1) {
+      const singleProp = Object.values(keyDict)[0]
+
+      if (singleProp['UF_NAME']) {
+        singlePropTest.value[key] = {single: true, propText: singleProp['UF_NAME']}
+      }
+
+      else {
+        singlePropTest.value[key] = {single: true, propText: singleProp}
+      }
+    } 
+  }
+
+}
+
+
 
 onMounted( async () => {
   const pid = props.pid
@@ -165,6 +190,8 @@ onMounted( async () => {
   matrix.value   = filterData['MATRIX']
 
   let skutest = Object.keys(skuList.value)[0]
+
+  setupSingleTest(filterData['MATRIX'])
   updateFilter(false, skutest)
 })
 </script>
@@ -172,29 +199,38 @@ onMounted( async () => {
 
 <template>
 <div class="iFilter">
-  <div class="iFilter--optHolder" v-for="item, key in matrix">
-    <p class="iFilter--optName">{{ skuProps[key] }}</p>
+  <div class="iFilter--noteList" v-if="Object.keys(singlePropTest).length > 0">
+    <div class="iFilter--note" v-for="item, key in singlePropTest" >
+      <p class="iFilter--propName">{{ skuProps[key] }}</p>
+      <p class="iFilter--propText">{{ item.propText }}</p>
+    </div>
+  </div>
 
-    <ul class="iFilter--optList" v-if="isComplex(item)">
-      <button class="iFilter--optIcon" v-for="dict in item" 
-        @click="updateFilter($event, key, dict)"
-        :class="{'active': complexIsActive(key, dict)}"
-        :disabled="!checkButton(key, dict)"
-      >
-        <img class="iFilter--optImg" :src="dict['PICTURE_FILE']" alt="" />
-        <p class="iFilter--optText">{{ dict['UF_NAME'] }}</p>
-      </button>
-    </ul>
+  <div class="iFilter--opt" v-for="item, key in matrix" >
+    <div class="iFilter--optHolder" v-if="!singlePropTest[key]">
+      <p class="iFilter--optName">{{ skuProps[key] }}</p>
 
-    <ul class="iFilter--optList" v-else>
-      <button class="iFilter--optValue" v-for="value in item" 
-        @click="updateFilter($event, key, value)"
-        :class="{'active': selectedOptions[key] == value}"
-        :disabled="!checkButton(key, value)"
-      >
-        {{ value }}
-      </button>
-    </ul>
+      <ul class="iFilter--optList" v-if="isComplex(item)">
+        <button class="iFilter--optIcon" v-for="dict in item" 
+          @click="updateFilter($event, key, dict)"
+          :class="{'active': complexIsActive(key, dict)}"
+          :disabled="!checkButton(key, dict)"
+        >
+          <img class="iFilter--optImg" :src="dict['PICTURE_FILE']" alt="" />
+          <p class="iFilter--optText">{{ dict['UF_NAME'] }}</p>
+        </button>
+      </ul>
+
+      <ul class="iFilter--optList" v-else>
+        <button class="iFilter--optValue" v-for="value in item" 
+          @click="updateFilter($event, key, value)"
+          :class="{'active': selectedOptions[key] == value}"
+          :disabled="!checkButton(key, value)"
+        >
+          {{ value }}
+        </button>
+      </ul>
+    </div>
   </div>
 </div>
 </template>
@@ -205,13 +241,43 @@ onMounted( async () => {
   display: flex;
   flex-direction: column;
   /* align-items: stretch; */
-  gap: 50px;
+  /* gap: 50px; */
   transition: .3s;
+}
+
+
+.iFilter--noteList {
+  display: flex;
+  flex-direction: column;
+  background: #ecf0f1;
+  padding: 20px;
+}
+
+
+.iFilter--note {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding: 20px 10px;
+}
+
+
+.iFilter--propName {
+  margin: 0; padding: 0;
+}
+
+.iFilter--note:last-child {
+  border-bottom: none;
+}
+
+.iFilter--propText {
+  margin: 0; padding: 0;
 }
 
 .iFilter--optHolder {
   /* background: hsl(190 10% 95%); */
   background: #ecf0f1;
+  margin: 40px 0;
   /* border-radius: 10px; */
 }
 

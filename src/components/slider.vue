@@ -135,9 +135,10 @@ img {
   margin: 0;
   padding: 10px 20px;
   border-radius: 10px;
-  background:rgba(0, 0, 0, .6);
-  color: white;
-  font-size: 1.2rem;
+  background:rgba(255, 255, 255, .6);
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 300;
 }
 
 

@@ -19,6 +19,7 @@
     }
   ],
 
+
   "corp": [
     {
       "link": "https://belbeton.ru/corporation/",
@@ -62,6 +63,7 @@
       "class": "menup__mosaicItem_uwide"
     }
   ],
+
 
   "shop": [
     {
@@ -215,6 +217,7 @@
       "img":  "https://belbeton.ru/v4sources/img/menuCovers/real/vopros.jpg"
     }
   ],
+
 
   "jnk": [
     {

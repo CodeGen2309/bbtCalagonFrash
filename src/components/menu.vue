@@ -1,6 +1,6 @@
 <script setup>
 import { animate, stagger } from 'motion';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import bigMenu from '/mocks/bigMenu.json'
 
 
@@ -18,8 +18,8 @@ let menuList = [
 
 async function changeSubMenu (index) {
   let menuHolder = document.querySelectorAll('.menup__mosaic')
-  let menuCover = document.querySelectorAll('.menup__back')
-  let newMenu = menuList[index]
+  let menuCover  = document.querySelectorAll('.menup__back')
+  let newMenu    = menuList[index]
 
 
   await animate(
@@ -45,6 +45,7 @@ async function changeSubMenu (index) {
   )
 }
 </script>
+
 
 <template>
   <section class="menup">

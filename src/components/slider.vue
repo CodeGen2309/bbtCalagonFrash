@@ -30,7 +30,6 @@ const thumbnailsConfig = {
 // FUNCTIONS
 function slideTo (nextSlide) {
   currentSlide.value = nextSlide
-  console.log(props.images[nextSlide])
 }
 
 defineExpose({ slideTo })

@@ -4,7 +4,6 @@ import apirator from '@/lib/apirator';
 
 import sectionList       from '@/components/sectionList.vue';
 import mobileSectionList from '@/components/mobileSectionList.vue';
-// import massonry          from '@/components/massonry.vue';\
 import scrollTiles       from '@/components/scrollTiles.vue';
 import CtlgFooter        from '@/components/ctlgFooter.vue';
 
@@ -31,14 +30,15 @@ async function updateSection (sectionID) {
 
   // Для обновления ленты в девмоде
   rerenderKey.value += 1 
-
-  console.log('activeSection', activeSection.value);
 }
 
 
 
 onMounted( async () => {
-  sections.value = await apirator.getSections().then(res => res.json())
+  sections.value = await apirator
+    .getSections()
+  .then(res => res.json())
+
   updateSection(126)
 })
 </script>

@@ -40,9 +40,9 @@ const finalPrice = computed(() => basePrice.value * count.value)
 
 function skuUpdateHandler (sku) {
   let offerSlide = { 
-    src: sku['PICTURE_FILE'] || false, 
+    src:   sku['PICTURE_FILE'] || false, 
     class: "gallery--offer", 
-    desc: sku['PREVIEW_TEXT'] || false
+    desc:  sku['PREVIEW_TEXT'] || false
   }
 
   currentSku.value = sku
@@ -68,7 +68,6 @@ async function addToBasket () {
   let req = await apirator.addToBasket(currentSku.value['ID'], count.value)
   .then(res => res.json())
 
-  console.log({addToBasket: req});
   showNotifyText();
   count.value = 1
 }
@@ -83,14 +82,9 @@ async function setupAjax () {
   basePrice.value  = Number(resItem['PRICE']['PRICE'])
   decription.value = resItem['ITEM']['DETAIL_TEXT']
 
-  // slides.value     = resItem['GALLERY']
-  console.log(resItem['GALLERY']);
-
   for (let i = 0; i < resItem['GALLERY'].length; i++) {
     slides.value[i] = { class: 'gallery--product', src: resItem['GALLERY'][i] }
   }
-
-  console.log(slides.value);
   
   return resItem
 }

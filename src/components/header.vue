@@ -4,12 +4,12 @@ import { ref, Transition } from 'vue'
 import gmenu from '../../mocks/mainMenu.json'
 import menuSection from '@/components/menuSection.vue';
 
-let isMenuShow = ref(false)
+let isMenuShow    = ref(false)
 let isSubMenuShow = ref(false)
-let subMenu = ref({})
-let mainMenu = gmenu.mainMenu
+let subMenu       = ref({})
+let mainMenu      = gmenu.mainMenu
+let leaveTimeOut  = null
 
-let leaveTimeOut = null
 
 function toggleMenu () {
   if (isMenuShow.value) {
@@ -25,7 +25,7 @@ function toggleMenu () {
 
 function hideMenu () {
   leaveTimeOut = setTimeout(() => {
-    isMenuShow.value = false
+    isMenuShow.value    = false
     isSubMenuShow.value = false
   }, 500)
 }
@@ -36,11 +36,10 @@ function clearHideCounter () {
 }
 
 
-
 function changeSubMenu (menuItem) {
   let newMenu = {
     cover: menuItem.img,
-    name: menuItem.subMenu,
+    name:  menuItem.subMenu,
   }
 
   isSubMenuShow.value = false
@@ -90,19 +89,20 @@ let HeadLinks = [
 
 <transition name = 'sideFade'>
   <menuSection class="mainMenu"
-    :menu="mainMenu" v-if = "isMenuShow"
-    @hover="changeSubMenu"
-    @leave="hideMenu"
+    v-if   = "isMenuShow"
+    :menu  = "mainMenu"
+    @hover = "changeSubMenu"
+    @leave = "hideMenu"
   />
 </transition>
 
 <transition name = 'subFade'>
   <menuSection class="subMenu"
-    @hover="clearHideCounter"
-    @leave="hideMenu"
-    :menu="gmenu[subMenu.name]"
-    :cover="subMenu.cover"
-    v-show="isSubMenuShow"
+    @hover = "clearHideCounter"
+    @leave = "hideMenu"
+    :menu  = "gmenu[subMenu.name]"
+    :cover = "subMenu.cover"
+    v-show = "isSubMenuShow"
   />
 </transition>
 </template>

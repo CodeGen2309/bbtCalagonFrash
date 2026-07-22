@@ -19,9 +19,9 @@
     
     event.preventDefault(); // Предотвращает мобильную подсказку
       // Сохраняем ссылку на событие, чтобы активировать его позже
-    _install_prompt.value = event;
+      _install_prompt.value = event;
       // Уведомить пользовательский интерфейс о том, что приложение может быть установлено
-    _install_ready.value = true;
+      _install_ready.value = true;
   }
 
   function installPWA(){

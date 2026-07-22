@@ -2,6 +2,10 @@ export default {
   devmode : process.env.NODE_ENV == 'development',
   apiUrl  : "/test/ajax",
 
+  async getBackLink () {
+    if (this.devmode) { return '/' }
+    else { return 'https://belbeton.ru/test/' }
+  },
 
   async postRequest (url, body) {
     let opts = {

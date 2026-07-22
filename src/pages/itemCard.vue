@@ -11,7 +11,7 @@ import { RiFile2Line, RiInformation2Line, RiShoppingBag4Line } from '@remixicon/
 
 
 const route    = useRoute()
-const backLink = apirator.devmode ? '/' : 'https://belbeton.ru/test/'
+const backLink = apirator.getBackLink()
 
 const itemID   = route.params.id
 const arrItem  = ref({})
@@ -20,7 +20,6 @@ const name     = ref('')
 const decription      = ref('')
 const showDescription = ref(false)
 const showNotify      = ref(false)
-
 
 const sliderInstance  = ref(null)
 const slides          = ref([ { src: '', class: '' } ])

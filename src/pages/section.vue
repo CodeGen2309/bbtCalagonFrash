@@ -1,20 +1,17 @@
 <script setup>
-  import { onMounted, ref } from "vue"
+  import { onMounted, ref }   from "vue"
   import { animate, stagger } from 'motion';
-  import { useRoute, RouterLink } from "vue-router";
+  import { useRoute }         from "vue-router";
   
-  import apirator from '@/lib/apirator'
+  import apirator    from '@/lib/apirator'
   import productList from '@/components/productList.vue';
-  import pageFilter from '@/components/filter.vue';
-  import angleLink from "@/components/angleLink.vue";
+  import angleLink   from "@/components/angleLink.vue";
 
-  let route = useRoute()
+  let route     = useRoute()
   let sectionID = route.params.id
-  let isMobile = window.innerWidth < 900
-
-
-  let section = ref({})
-  let prodList = ref([])
+  let isMobile  = window.innerWidth < 900
+  let section   = ref({})
+  let prodList  = ref([])
 
 
   async function showOffAnim () {
@@ -61,10 +58,6 @@
       <p class="sect--coverTitle">{{  section.NAME  }}</p>
     </div>
 
-    <!-- <div class="sect--sidebar" v-if="!isMobile">
-      <pageFilter class="sect--filter" />
-    </div> -->
-
     <div class="sect--productList">
       <div class="sect--cover" v-if="isMobile">
         <img class="sect--coverImage" :src="section.PICTURE_FILE">
@@ -84,7 +77,6 @@
 
 
 <style scoped>
-
 .sect {
   display: grid;
   grid-template-columns: 1fr;
@@ -98,6 +90,7 @@
   overflow: hidden;
 }
 
+
 .sect--cover {
   position: relative;
   display: flex;
@@ -109,6 +102,7 @@
   overflow: hidden;
 }
 
+
 .sect--coverImage {
   position: absolute;
   width: 110%; height: 110%;
@@ -116,6 +110,7 @@
   object-position: center;
   filter: blur(6px) brightness(0.7);
 }
+
 
 .sect--coverTitle {
   position: relative;

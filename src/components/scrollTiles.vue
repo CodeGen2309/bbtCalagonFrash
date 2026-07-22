@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import { animate, stagger } from 'motion';
 
 const props = defineProps([ 'offers' ])
@@ -33,8 +33,8 @@ onMounted( () => {
       :to="{ name: 'itemCard', params: { id: item.ID } }" 
       class="sTiles--item" 
     >
-      <img loading="lazy" class="sTiles--cover" :src="item['GALLERY'][0]" alt="">
-
+      <!-- <img loading="lazy" class="sTiles--cover" :src="item['GALLERY'][0]" alt=""> -->
+      <img loading="lazy" class="sTiles--cover" :src="item['PREVIEW_PICTURE_FILE']" alt="">
 
       <div class="sTiles--labelHolder ">
         <p class="sTiles--itemLabel">{{ item.NAME }}</p>

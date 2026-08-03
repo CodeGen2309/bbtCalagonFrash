@@ -2,7 +2,7 @@
 import { onMounted } from 'vue';
 import { animate, stagger } from 'motion';
 
-const props = defineProps([ 'offers' ])
+const props = defineProps([ 'offers', 'sectionid'])
 
 
 
@@ -30,7 +30,7 @@ onMounted( () => {
 <template>
   <div class="sTiles">
     <RouterLink v-for="item in offers" :key="item.ID" 
-      :to="{ name: 'itemCard', params: { id: item.ID } }" 
+      :to="{ name: 'itemCard', params: { id: item.ID, section: sectionid } }" 
       class="sTiles--item" 
     >
       <!-- <img loading="lazy" class="sTiles--cover" :src="item['GALLERY'][0]" alt=""> -->

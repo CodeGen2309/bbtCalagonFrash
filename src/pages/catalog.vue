@@ -1,5 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+
 import apirator from '@/lib/apirator';
 
 import sectionList       from '@/components/sectionList.vue';
@@ -7,6 +9,9 @@ import mobileSectionList from '@/components/mobileSectionList.vue';
 import scrollTiles       from '@/components/scrollTiles.vue';
 import CtlgFooter        from '@/components/ctlgFooter.vue';
 
+
+const route = useRoute()
+const params = route.params
 
 const isMobile = window.innerWidth < 900
 const sections = ref([]) 
@@ -39,7 +44,8 @@ onMounted( async () => {
     .getSections()
   .then(res => res.json())
 
-  updateSection(126)
+  if (params.sid) { updateSection(params.sid) }
+  else { updateSection(126) }
 })
 </script>
 
@@ -48,16 +54,17 @@ onMounted( async () => {
   <div class="ctlog">
     <div class="ctlog--sections">
       <sectionList :sections="sections" v-if="!isMobile" 
-        @sectionUpdated="updateSection"
+        @sectionUpdated="updateSection" :key="activeSection"
       />
 
       <mobileSectionList v-else />
+      {{ params }}
     </div>
 
     <div class="ctlog--itemsHolder" v-if="!isMobile">
       <Transition name="tilesAnim" mode="out-in">
         <scrollTiles :offers="offers"  class="ctlog--itemList" 
-          :key="activeSection.ID"
+          :key="activeSection.ID" :sectionid="activeSection.ID"
         />
       </Transition>
     </div>

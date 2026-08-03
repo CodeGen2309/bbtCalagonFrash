@@ -1,6 +1,7 @@
 export default {
   devmode : process.env.NODE_ENV == 'development',
   apiUrl  : "/test/ajax",
+  // apiUrl  : "/building-materials/catalog/ajax",
 
   async getBackLink () {
     if (this.devmode) { return '/' }

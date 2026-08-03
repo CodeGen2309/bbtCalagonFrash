@@ -11,11 +11,13 @@ import { RiFile2Line, RiInformation2Line, RiShoppingBag4Line } from '@remixicon/
 
 
 const route    = useRoute()
-const backLink = apirator.getBackLink()
 
-const itemID   = route.params.id
-const arrItem  = ref({})
-const name     = ref('')
+const itemID     = route.params.id
+const sectionID  = route.params.section
+const backLink   = apirator.getBackLink()
+
+const arrItem    = ref({})
+const name       = ref('')
 
 const decription      = ref('')
 const showDescription = ref(false)
@@ -45,7 +47,7 @@ function skuUpdateHandler (sku) {
   }
 
   currentSku.value = sku
-  basePrice.value  = parseInt(sku['PRICE_DATA']['PRICE'])
+  basePrice.value  = parseInt(sku['PRICE_DATA']['DISCOUNT_PRICE'])
 
   if ( offerSlide.src ) {
     slides['value'][0] = offerSlide 
@@ -100,7 +102,11 @@ onMounted( async () => {
 <div class="iCard">
   <div class="iCard--content">
     <div class="iCard--block iCard--breadcrumbs">
-      <RouterLink :to="backLink" class="iCard--crumb">Каталог</RouterLink> / 
+      <RouterLink :to="{name: 'catalog', params: { sid: sectionID }}" 
+        class="iCard--crumb">
+        Каталог
+      </RouterLink> / 
+
       <a href="#"  class="iCard--crumb">{{ name }}</a>
     </div>
 

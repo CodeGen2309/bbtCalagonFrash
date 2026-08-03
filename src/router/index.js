@@ -4,7 +4,7 @@ const router = createRouter({
   history: createMemoryHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/:sid?',
       name: 'catalog',
       component: () => import('@/pages/catalog.vue'),
     },
@@ -16,7 +16,7 @@ const router = createRouter({
     },
 
     {
-      path: '/itemCard/:id',
+      path: '/itemCard/:id/:section?',
       name: 'itemCard',
       component: () => import('@/pages/itemCard.vue'),
     },

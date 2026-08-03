@@ -58,7 +58,6 @@ onMounted( async () => {
       />
 
       <mobileSectionList v-else />
-      {{ params }}
     </div>
 
     <div class="ctlog--itemsHolder" v-if="!isMobile">

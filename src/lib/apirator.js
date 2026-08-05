@@ -3,11 +3,6 @@ export default {
   apiUrl  : "/test/ajax",
   // apiUrl  : "/building-materials/catalog/ajax",
 
-  async getBackLink () {
-    if (this.devmode) { return '/' }
-    else { return 'https://belbeton.ru/test/' }
-  },
-
   async postRequest (url, body) {
     let opts = {
       method  : 'POST', 

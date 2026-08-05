@@ -14,7 +14,6 @@ const route    = useRoute()
 
 const itemID     = route.params.id
 const sectionID  = route.params.section
-const backLink   = apirator.getBackLink()
 
 const arrItem    = ref({})
 const name       = ref('')

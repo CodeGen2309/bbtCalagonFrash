@@ -43,14 +43,12 @@
     transition: .3s;
   }
 
-
   .msnry--item::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
   }
-
 
   .msnry--item:hover {
     /* box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1); */
@@ -64,7 +62,6 @@
   .msnry--item-wide {
     width: 40%;  
   }
-
 
   .msnry--itemImg {
     position: absolute;

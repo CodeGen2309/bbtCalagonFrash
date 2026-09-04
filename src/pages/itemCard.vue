@@ -46,7 +46,7 @@ function skuUpdateHandler (sku) {
   }
 
   currentSku.value = sku
-  basePrice.value  = parseInt(sku['PRICE_DATA']['DISCOUNT_PRICE'])
+  basePrice.value  = Math.ceil(sku['PRICE_DATA']['DISCOUNT_PRICE'])
 
   if ( offerSlide.src ) {
     slides['value'][0] = offerSlide 

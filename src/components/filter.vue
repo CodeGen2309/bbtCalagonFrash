@@ -250,7 +250,7 @@ onMounted( async () => {
   display: flex;
   flex-direction: column;
   background: #ecf0f1;
-  padding: 20px;
+  padding: 10px;
 }
 
 
@@ -277,7 +277,7 @@ onMounted( async () => {
 .iFilter--optHolder {
   /* background: hsl(190 10% 95%); */
   background: #ecf0f1;
-  margin: 40px 0;
+  margin: 10px 0;
   /* border-radius: 10px; */
 }
 

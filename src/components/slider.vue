@@ -8,13 +8,13 @@ const props = defineProps({ 'images': Array })
 const currentSlide = ref(1)
 
 const galleryConfig = {
-  itemsToShow: 1,
+  itemsToShow: 1.1,
   wrapAround: true,
   slideEffect: 'slide',
   mouseDrag: false,
   autoplay: 10000,
   touchDrag: true,
-  // gap: 20
+  gap: 10,
   // height: 400,
 }
 
@@ -38,7 +38,7 @@ defineExpose({ slideTo })
 
 <template>
 <div class="slider" ref="sliderInstance">
-  <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide" slide-effect="fade">
+  <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
     <Slide v-for="image, index in images" :key="index">
       <div class="gallery--imageHolder">
         <img :src="image.src" alt="Gallery Image" class="gallery--backdrop" />
@@ -54,6 +54,11 @@ defineExpose({ slideTo })
         </p>
       </div>
     </Slide>
+
+
+    <template #addons>
+      <Navigation />
+    </template>
   </Carousel>
 
   <Carousel id="thumbnails" v-bind="thumbnailsConfig" v-model="currentSlide">
@@ -68,9 +73,6 @@ defineExpose({ slideTo })
       </template>
     </Slide>
 
-    <template #addons>
-      <Navigation />
-    </template>
   </Carousel>
 </div>
 </template>
@@ -118,7 +120,7 @@ img {
   position: absolute;
   width: 110%; height: 110%;
   object-fit: cover;
-  filter: blur(10px);
+  filter: blur(10px) brightness(.7);
 }
 
 .gallery--image {

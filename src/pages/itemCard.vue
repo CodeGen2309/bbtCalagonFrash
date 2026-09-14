@@ -549,7 +549,7 @@ onMounted( async () => {
   height: 60%;
   mask-image: linear-gradient(to bottom, transparent, black 20px, black 90%, transparent);
   box-sizing: border-box;
-  padding: 40px 20px 40px 0px;
+  padding: 40px 0px;
   overflow-y: scroll;
   flex-grow: 1;
 }

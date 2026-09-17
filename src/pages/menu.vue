@@ -9,7 +9,7 @@ let pager = bigMenu.mainMenu
 
 
 let menuList = [
-  bigMenu.corp,
+  // bigMenu.corp,
   bigMenu.realEstate,
   bigMenu.shop,
   bigMenu.jnk

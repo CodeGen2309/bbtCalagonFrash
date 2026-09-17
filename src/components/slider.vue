@@ -1,27 +1,25 @@
 <script setup>
 
 import 'vue3-carousel/carousel.css'
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
 import { ref } from 'vue'
 
 const props = defineProps({ 'images': Array })
 const currentSlide = ref(1)
 
 const galleryConfig = {
-  itemsToShow: 1.1,
+  itemsToShow: 1.4,
   wrapAround: true,
   slideEffect: 'slide',
   mouseDrag: false,
   autoplay: 10000,
   touchDrag: true,
   gap: 10,
-  // height: 400,
 }
 
 const thumbnailsConfig = {
   // height: 80,
   itemsToShow: 10,
-  // wrapAround: true,
   touchDrag: true,
   gap: 10,
 }
@@ -40,40 +38,18 @@ defineExpose({ slideTo })
 <div class="slider" ref="sliderInstance">
   <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
     <Slide v-for="image, index in images" :key="index">
-      <div class="gallery--imageHolder">
-        <img :src="image.src" alt="Gallery Image" class="gallery--backdrop" />
-
         <img :src="image.src" alt="Gallery Image" 
           class="gallery--image" :class="image.class"
-        />
-
-        <p v-if="image.desc"
-          class="gallery--footnote"
-        >
-          {{ image.desc }}
-        </p>
-      </div>
+       />
     </Slide>
 
 
     <template #addons>
       <Navigation />
+      <Pagination />
     </template>
   </Carousel>
 
-  <Carousel id="thumbnails" v-bind="thumbnailsConfig" v-model="currentSlide">
-    <Slide v-for="image, index in images" :key="index">
-      <template #default="{ currentIndex, isActive }">
-        <div
-          :class="['thumbnail', { 'is-active': isActive }]"
-          @click="slideTo(currentIndex)"
-        >
-          <img :src="image.src" alt="Thumbnail Image" class="thumbnail--image" />
-        </div>
-      </template>
-    </Slide>
-
-  </Carousel>
 </div>
 </template>
 
@@ -84,47 +60,34 @@ defineExpose({ slideTo })
 }
 
 .slider {
-  height: 400px;
+  mask-image: linear-gradient(
+    to left, 
+    transparent, 
+    black 20px, 
+    black 90%, 
+    transparent
+  );
 }
 
 #gallery {
   height: calc(100% - 70px);
+  max-height: 100%;
 }
 
 .carousel {
-  --vc-nav-background: rgba(255, 255, 255, 0.7);
   --vc-nav-border-radius: 100%;
 }
 
+
 img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
-.gallery--imageHolder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .4);
-
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.gallery--backdrop {
-  position: absolute;
-  width: 110%; height: 110%;
-  object-fit: cover;
-  filter: blur(10px) brightness(.7);
-}
 
 .gallery--image {
-  position: relative;
+  display: block;
+  max-width: 100%;
+  max-height: 500px;
+  /* object-fit: contain; */
 }
 
 .gallery--footnote {
@@ -154,6 +117,7 @@ img {
   height: 60px;
 }
 
+
 .thumbnail {
   height: 100%;
   width: 100%;
@@ -162,13 +126,21 @@ img {
   transition: opacity 0.3s ease-in-out;
 }
 
+
 .thumbnail--image {
   object-fit: cover;
 }
 
+
 .thumbnail.is-active,
 .thumbnail:hover {
   opacity: 1;
+}
+
+.carousel__next,
+.carousel__prev {
+  background: rgba(255, 255, 255, .5);
+  margin: 10px;
 }
 
 

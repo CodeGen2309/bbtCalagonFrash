@@ -2,7 +2,6 @@
 import { computed, onMounted, ref, Transition } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 
-
 import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
@@ -12,9 +11,14 @@ import { RiFile2Line, RiInformation2Line, RiShoppingBag4Line } from '@remixicon/
 
 const route    = useRoute()
 
+
+// SECTION DATA
 const itemID     = route.params.id
 const sectionID  = route.params.section
+const sectionName = ref('')
 
+
+// ITEM DATA
 const arrItem    = ref({})
 const name       = ref('')
 
@@ -22,6 +26,8 @@ const decription      = ref('')
 const showDescription = ref(false)
 const showNotify      = ref(false)
 
+
+// SLIDER DATA
 const sliderInstance  = ref(null)
 const slides          = ref([ { src: '', class: '' } ])
 
@@ -76,11 +82,11 @@ async function addToBasket () {
 async function setupAjax () {
   let resItem  = await apirator.getProduct(itemID).then(res => res.json())
   
-  arrItem.value = resItem
-
+  arrItem.value    = resItem
   name.value       = resItem['ITEM']['NAME']
   basePrice.value  = Number(resItem['PRICE']['PRICE'])
   decription.value = resItem['ITEM']['DETAIL_TEXT']
+  sectionName.value = resItem['SECTION']['NAME']
 
   for (let i = 0; i < resItem['GALLERY'].length; i++) {
     slides.value[i] = { class: 'gallery--product', src: resItem['GALLERY'][i] }
@@ -101,9 +107,14 @@ onMounted( async () => {
 <div class="iCard">
   <div class="iCard--content">
     <div class="iCard--block iCard--breadcrumbs">
-      <RouterLink :to="{name: 'catalog', params: { sid: sectionID }}" 
+      <RouterLink :to="{name: 'catalog'}" 
         class="iCard--crumb">
         Каталог
+      </RouterLink> / 
+
+      <RouterLink :to="{name: 'catalog', params: { sid: sectionID }}" 
+        class="iCard--crumb">
+        {{ sectionName }}
       </RouterLink> / 
 
       <a href="#"  class="iCard--crumb">{{ name }}</a>

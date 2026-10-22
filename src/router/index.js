@@ -10,12 +10,6 @@ const router = createRouter({
     },
     
     {
-      path: '/section/:id',
-      name: 'section',
-      component: () => import('@/pages/section.vue'),
-    },
-
-    {
       path: '/itemCard/:id/:section?',
       name: 'itemCard',
       component: () => import('@/pages/itemCard.vue'),

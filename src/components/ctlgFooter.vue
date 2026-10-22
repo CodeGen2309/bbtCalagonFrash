@@ -1,8 +1,9 @@
 <script setup>
+  import angleContainer from './angleContainer.vue';
+
   import userIcon from '/public/icons/user.svg?component'
   import cartIcon from '/public/icons/cart.svg?component'
   import chatIcon from '/public/icons/chat.svg?component'
-
 </script>
 
 
@@ -26,6 +27,8 @@
       <chatIcon class="ftr--icon" />
       <p class="ftr--iconText">Чат с менеджером</p>
     </li> -->    
+
+    <angleContainer />
   </ul>
 </template>
 

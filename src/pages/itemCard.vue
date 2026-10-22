@@ -176,12 +176,12 @@ onMounted( async () => {
       Корзина
     </a>
 
-    <a class="iCard--footerLink" href="#" 
+    <div class="iCard--footerLink"
       @click="showDescription = !showDescription"
     >
       <RiInformation2Line class="iCard--footerIcon" />
       Описание
-    </a>
+    </div>
 
     <a href="https://belbeton.ru/building-materials/price-list/" 
       target="blank"

@@ -8,7 +8,7 @@ const props = defineProps({ 'images': Array })
 const currentSlide = ref(1)
 
 const galleryConfig = {
-  itemsToShow: 1.4,
+  itemsToShow: 1.2,
   wrapAround: true,
   slideEffect: 'slide',
   mouseDrag: false,
@@ -37,19 +37,20 @@ defineExpose({ slideTo })
 <template>
 <div class="slider" ref="sliderInstance">
   <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
-    <Slide v-for="image, index in images" :key="index">
+    <Slide class="gallery--slide" v-for="image, index in images" :key="index">
         <img :src="image.src" alt="Gallery Image" 
           class="gallery--image" :class="image.class"
        />
     </Slide>
-
-
-    <template #addons>
-      <Navigation />
-      <Pagination />
-    </template>
   </Carousel>
 
+  <Carousel id="thumbnails" v-bind="thumbnailsConfig" v-model="currentSlide">
+    <Slide v-for="image, index in images" :key="index" @click="slideTo(index)">
+        <img :src="image.src" alt="Gallery Image" 
+          class="thumbnail" :class="image.class"
+       />
+    </Slide>
+  </Carousel>
 </div>
 </template>
 
@@ -60,13 +61,6 @@ defineExpose({ slideTo })
 }
 
 .slider {
-  mask-image: linear-gradient(
-    to left, 
-    transparent, 
-    black 20px, 
-    black 90%, 
-    transparent
-  );
 }
 
 #gallery {
@@ -79,15 +73,17 @@ defineExpose({ slideTo })
 }
 
 
-img {
+.gallery--slide {
+  position: relative;
 }
 
 
 .gallery--image {
-  display: block;
-  max-width: 100%;
-  max-height: 500px;
-  /* object-fit: contain; */
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .gallery--footnote {
@@ -115,6 +111,8 @@ img {
 #thumbnails {
   margin-top: 10px;
   height: 60px;
+  border: none;
+  outline: none;
 }
 
 

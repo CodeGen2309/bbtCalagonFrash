@@ -8,6 +8,7 @@ import sectionList       from '@/components/sectionList.vue';
 import mobileSectionList from '@/components/mobileSectionList.vue';
 import scrollTiles       from '@/components/scrollTiles.vue';
 import CtlgFooter        from '@/components/ctlgFooter.vue';
+import ThreeCols         from '@/components/threeCols.vue';
 
 
 const route = useRoute()
@@ -60,10 +61,19 @@ onMounted( async () => {
       <mobileSectionList v-else />
     </div>
 
+    <!-- <div class="ctlog--itemsHolder" v-if="!isMobile"> -->
+      <!-- <Transition name="tilesAnim" mode="out-in"> -->
+        <!-- <scrollTiles :offers="offers"  class="ctlog--itemList"  -->
+          <!-- :key="activeSection.ID" :sectionid="activeSection.ID" -->
+        <!-- /> -->
+      <!-- </Transition> -->
+    <!-- </div> -->
+
+
     <div class="ctlog--itemsHolder" v-if="!isMobile">
       <Transition name="tilesAnim" mode="out-in">
-        <scrollTiles :offers="offers"  class="ctlog--itemList" 
-          :key="activeSection.ID" :sectionid="activeSection.ID"
+        <ThreeCols :offers="offers" :key="activeSection.ID"
+          :sectionid="activeSection.ID" 
         />
       </Transition>
     </div>
@@ -80,7 +90,7 @@ onMounted( async () => {
 .ctlog {
   display: grid;
   grid-template-rows: 1fr 80px;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1fr 3fr;
   gap: 20px;
 
   width: 100%; height: 100%;

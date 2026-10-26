@@ -6,7 +6,7 @@ import apirator from '@/lib/apirator.js';
 import slider from '@/components/slider.vue';
 import productFilter from '@/components/filter.vue';
 
-import { RiFile2Line, RiInformation2Line, RiShoppingBag4Line } from '@remixicon/vue';
+import { RiCloseCircleFill, RiCloseFill, RiFile2Line, RiInformation2Line, RiShoppingBag4Line } from '@remixicon/vue';
 
 
 const route    = useRoute()
@@ -125,10 +125,13 @@ onMounted( async () => {
         <slider ref="sliderInstance" class="iCard--slider" :images="slides" />
 
         <Transition name="notifyAnim">
-          <div v-if="showDescription" 
-            class="iCard--descHolder"
-            v-html="decription"
-          ></div>
+          <div class="iCard--descHolder" v-if="showDescription">
+            <div class="iCard--closeIconHolder">
+              <RiCloseFill class="iCard--closeIcon" @click="showDescription = false"/>
+            </div>
+
+            <div class="iCard--desc" v-html="decription" />
+          </div>
         </Transition>
       </div>
 
@@ -335,6 +338,25 @@ onMounted( async () => {
   padding: 40px 20px;
   box-sizing: border-box;
 
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: blur(8px);
+
+  transition: .3s;
+  z-index: 2;
+}
+
+.iCard--closeIconHolder {
+  position: absolute;
+  top: 10px; right: 10px;
+  cursor: pointer;
+}
+
+.iCard--closeIcon {
+  scale: 1.5;
+  color: rgba(0, 0, 0, .8);
+}
+
+.iCard--desc {
   font-size: 1.1rem;
   letter-spacing: 1px;
   overflow: scroll;
@@ -343,12 +365,9 @@ onMounted( async () => {
   display: flex;
   flex-direction: column;
   
-  background: rgba(255, 255, 255, .9);
-  backdrop-filter: blur(8px);
-  z-index: 2;
 }
 
-.iCard--descHolder::-webkit-scrollbar {
+.iCard--desc::-webkit-scrollbar {
   display: none;
 }
 

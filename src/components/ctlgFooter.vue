@@ -28,7 +28,7 @@
       <p class="ftr--iconText">Чат с менеджером</p>
     </li> -->    
 
-    <angleContainer />
+    <!-- <angleContainer /> -->
   </ul>
 </template>
 

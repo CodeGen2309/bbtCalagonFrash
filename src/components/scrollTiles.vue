@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
-import { animate, stagger } from 'motion';
+import { animate, stagger, inView } from 'motion';
 
 const props = defineProps([ 'offers', 'sectionid'])
 
@@ -21,7 +21,7 @@ function mountedAnim() {
 // HOOKS
 // ------------------------------------
 onMounted( () => {
-  setTimeout(mountedAnim, 1000)
+  setTimeout(mountedAnim, 500)
 })
 
 </script>
